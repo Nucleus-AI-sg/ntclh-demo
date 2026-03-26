@@ -1,11 +1,6 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { programmes, cohorts, programmeMetrics } from '@/data'
+import { ProgrammeList } from './_components/programme-list'
 
-export default function ProgrammesPage() {
-  return (
-    <PagePlaceholder
-      title="Programme Management"
-      description="Programme tracks, cohort setup, curriculum overview, and enrolment pipeline management."
-      prd="PRD-10"
-    />
-  )
+export default function ProgrammesRoute() {
+  return <ProgrammeList programmes={programmes} cohorts={cohorts} metrics={programmeMetrics} />
 }
