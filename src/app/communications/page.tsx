@@ -1,11 +1,6 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { communications, outreachSequences } from '@/data'
+import { CommunicationsPage } from './_components/communications-page'
 
-export default function CommunicationsPage() {
-  return (
-    <PagePlaceholder
-      title="Communications Hub"
-      description="Multi-channel outreach campaigns, templates, automation sequences, and message history."
-      prd="PRD-11"
-    />
-  )
+export default function CommunicationsRoute() {
+  return <CommunicationsPage communications={communications} sequences={outreachSequences} />
 }
