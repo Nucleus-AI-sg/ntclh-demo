@@ -1,0 +1,40 @@
+export { staff } from './staff'
+export { programmes } from './programmes'
+export { cohorts } from './cohorts'
+export { employers } from './employers'
+export { trainees } from './trainees'
+export { vacancies } from './vacancies'
+export { assessments } from './assessments'
+export { matchResults } from './matches'
+export { placements } from './placements'
+export { documents } from './documents'
+export { communications } from './communications'
+export { outreachSequences } from './outreach-sequences'
+export { alerts } from './alerts'
+export {
+  monthlyMetrics,
+  programmeMetrics,
+  pipelineCounts,
+  dashboardKpis,
+  placementFunnel,
+  sectorBreakdown,
+  reportTemplates,
+} from './analytics'
+export {
+  aiPerformanceHistory,
+  modelVersions,
+  overridePatterns,
+  strategicInsights,
+  assessmentFeatureImportance,
+  matchingFeatureImportance,
+  overrideAnalysis,
+  feedbackTimeline,
+} from './ai-performance'
+export { chatScripts, fallbackResponse } from './chat-scripts'
+export { integrations } from './integrations'
+export {
+  platformSettings,
+  channelConfigs,
+  notificationPreferences,
+  users,
+} from './settings'
