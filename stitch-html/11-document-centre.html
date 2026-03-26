@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Document Centre | Nucleus AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#3f484c",
+              "secondary-fixed-dim": "#bac9d0",
+              "surface-container-high": "#e5e8ee",
+              "primary-fixed": "#b6eaff",
+              "on-background": "#181c20",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#001f28",
+              "tertiary": "#004f54",
+              "primary-fixed-dim": "#86d1ec",
+              "surface-variant": "#dfe3e8",
+              "surface-container-low": "#f1f4fa",
+              "on-secondary-fixed-variant": "#3b494f",
+              "surface-container": "#ebeef4",
+              "tertiary-fixed": "#7df4ff",
+              "outline": "#6f787d",
+              "tertiary-container": "#006970",
+              "on-secondary-fixed": "#101d23",
+              "inverse-surface": "#2d3135",
+              "surface-dim": "#d7dae0",
+              "surface": "#f7f9ff",
+              "surface-bright": "#f7f9ff",
+              "on-tertiary-fixed-variant": "#004f54",
+              "error-container": "#ffdad6",
+              "surface-tint": "#00677f",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#d6e5ec",
+              "inverse-primary": "#86d1ec",
+              "primary": "#004d60",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#eef1f7",
+              "on-tertiary-fixed": "#002022",
+              "on-tertiary-container": "#72eaf5",
+              "background": "#f7f9ff",
+              "on-secondary-container": "#58676d",
+              "on-secondary": "#ffffff",
+              "error": "#ba1a1a",
+              "surface-container-highest": "#dfe3e8",
+              "secondary-container": "#d6e5ec",
+              "primary-container": "#00677f",
+              "on-primary-container": "#98e3ff",
+              "secondary": "#536167",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#181c20",
+              "on-primary": "#ffffff",
+              "outline-variant": "#bfc8cd",
+              "on-primary-fixed-variant": "#004e60",
+              "tertiary-fixed-dim": "#5dd8e2"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      body { font-family: 'Inter', sans-serif; background-color: #f7f9ff; color: #181c20; }
+      h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+      .glass-panel { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-[#f7f9ff] dark:bg-slate-900 z-50">
+<div class="flex flex-col h-full py-6 px-4">
+<div class="mb-10 px-2">
+<span class="text-xl font-bold tracking-tight text-[#004d60] dark:text-[#00677f]">Nucleus AI</span>
+<p class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-widest mt-1">Executive Architect</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#3f484c] hover:bg-[#f1f4fa] transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px]">settings_accessibility</span>
+<span class="text-[13px] font-medium">Operations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#004d60] font-bold border-r-4 border-[#004d60] bg-[#ebeef4] group" href="#">
+<span class="material-symbols-outlined text-[20px]">business_center</span>
+<span class="text-[13px]">Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#3f484c] hover:bg-[#f1f4fa] transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+<span class="text-[13px] font-medium">Intelligence</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#3f484c] hover:bg-[#f1f4fa] transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-[13px] font-medium">System</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#3f484c] hover:bg-[#f1f4fa] transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+<span class="text-[13px] font-medium">Support</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4">
+<button class="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-[#004d60] to-[#00677f] text-white py-3 rounded-lg text-sm font-semibold shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                    New Document
+                </button>
+<div class="pt-4 border-t border-outline-variant/15">
+<div class="flex items-center gap-3 px-3 py-2 text-[#3f484c] hover:bg-[#f1f4fa] cursor-pointer rounded transition-all">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-[13px] font-medium">Settings</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#3f484c] hover:bg-[#f1f4fa] cursor-pointer rounded transition-all">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="text-[13px] font-medium">Logout</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 ml-64 min-w-0 flex flex-col h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-40 bg-[#f7f9ff]/80 backdrop-blur-xl border-b border-[#bfc8cd]/15">
+<div class="flex flex-col w-full pl-8 pr-8 pt-4 pb-0">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2 text-on-surface-variant text-[11px] font-semibold tracking-wider">
+<span>Management</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">Document Reviewer</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<input class="bg-surface-container-low border-none rounded-full px-4 py-1.5 text-sm w-64 focus:ring-1 focus:ring-primary" placeholder="Search across documents..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2 text-on-surface-variant text-[18px]">search</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">help</span>
+<div class="flex items-center gap-2 ml-2 pl-4 border-l border-outline-variant/30">
+<span class="text-xs font-semibold text-on-surface text-right">Sarah Tan<br/><span class="text-[10px] text-on-surface-variant font-normal">Administrator</span></span>
+<img class="w-8 h-8 rounded-full border border-primary/20" data-alt="professional headshot of an executive woman with dark hair in a corporate setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ2KFU4osaQQrysmGZ6CTe0F9moZda3oiGV7Unql47fNeDU7zKuO1EluqlkgiuWREKezcMnQLtF9ir5TmVetKvNSqD8Z3Wr2L2E7i0sYAQJ3ErpP8d4ZS0baux6JGRubEPPI0GoNRxq6WBguCdqOVhEj_5HXE54LRcppHdjElu7d6ZbcGLmWV8XXD1zIYUgxGMJl_-0-pRR9GpHkYTp2F3jdzd_0i5T0_Qp7_v-UGU3KzWTFFiZZt5JFrWFLETHv_mLnH2GeL8niU"/>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<h1 class="text-[2rem] font-bold text-primary tracking-tight font-headline">Document Reviewer</h1>
+<div class="flex gap-8">
+<a class="text-[#3f484c] pb-4 text-sm font-semibold hover:text-[#004d60] transition-all" href="#">Verification Queue</a>
+<a class="text-[#004d60] border-b-2 border-[#004d60] pb-4 text-sm font-bold" href="#">Document Reviewer</a>
+<a class="text-[#3f484c] pb-4 text-sm font-semibold hover:text-[#004d60] transition-all" href="#">Archive</a>
+<a class="text-[#3f484c] pb-4 text-sm font-semibold hover:text-[#004d60] transition-all" href="#">OCR Performance</a>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left 3/4: Queue -->
+<div class="w-3/4 flex flex-col p-8 overflow-y-auto space-y-8 border-r border-outline-variant/10">
+<!-- ROW 1: Metrics -->
+<section class="grid grid-cols-6 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/5">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Received (30 days)</p>
+<p class="text-2xl font-bold mt-1 text-on-surface">47</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/5">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Auto-Verified</p>
+<div class="flex items-end gap-2 mt-1">
+<p class="text-2xl font-bold text-on-surface">31</p>
+<span class="text-xs font-bold text-tertiary mb-1">66%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/5">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Pending Review</p>
+<p class="text-2xl font-bold mt-1 text-primary">8</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/5">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Flagged</p>
+<p class="text-2xl font-bold mt-1 text-error">5</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/5">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Avg Proc. Time</p>
+<p class="text-2xl font-bold mt-1 text-on-surface">4.2 min</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/5">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">OCR Accuracy</p>
+<p class="text-2xl font-bold mt-1 text-tertiary">94%</p>
+</div>
+</section>
+<!-- ROW 2: Filters -->
+<section class="flex flex-wrap items-end gap-4 bg-surface-container-low p-4 rounded-xl">
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-1">Document Type</label>
+<select class="bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-1 focus:ring-primary min-w-[160px]">
+<option>Pay Slip</option>
+<option>CPF Statement</option>
+<option>Employment Letter</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-1">Status</label>
+<select class="bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-1 focus:ring-primary min-w-[140px]">
+<option>All Statuses</option>
+<option>Flagged</option>
+<option>Pending</option>
+<option>Verified</option>
+</select>
+</div>
+<div class="space-y-1.5 flex-1 max-w-[200px]">
+<div class="flex justify-between">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-1">OCR Confidence</label>
+<span class="text-[10px] font-bold text-primary">85%+</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container-high rounded-lg appearance-none cursor-pointer" type="range"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-1">Date Range</label>
+<div class="flex items-center bg-surface-container-lowest rounded-lg px-3 py-2 text-sm gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
+<span class="text-xs">Last 7 Days</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-1">Programme</label>
+<select class="bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-1 focus:ring-primary min-w-[140px]">
+<option>Executive Track</option>
+<option>Mid-Career</option>
+</select>
+</div>
+<button class="bg-surface-container-high p-2 rounded-lg text-on-surface hover:bg-surface-variant transition-all ml-auto">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</section>
+<!-- ROW 3: Verification Queue Table -->
+<section class="flex-1">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-separate border-spacing-y-2.5">
+<thead>
+<tr class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+<th class="pb-2 pl-4 w-12 text-center">#</th>
+<th class="pb-2">Trainee</th>
+<th class="pb-2">Document Type</th>
+<th class="pb-2">Submitted</th>
+<th class="pb-2">Confidence</th>
+<th class="pb-2">Status</th>
+<th class="pb-2 pr-4">Priority</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<!-- Row 1 - ACTIVE/SELECTED -->
+<tr class="bg-surface-container-high border-l-4 border-error transition-all cursor-pointer">
+<td class="py-4 pl-4 rounded-l-lg text-center font-bold text-error">01</td>
+<td class="py-4 font-semibold text-on-surface">David Ng</td>
+<td class="py-4 text-on-surface-variant">Pay Slip</td>
+<td class="py-4 text-on-surface-variant">22 Mar</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-bold text-error">72%</span>
+<span class="text-[10px] text-on-surface-variant">(Low)</span>
+</div>
+</td>
+<td class="py-4">
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Flagged</span>
+</td>
+<td class="py-4 pr-4 rounded-r-lg font-bold text-error">High</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-all cursor-pointer shadow-sm">
+<td class="py-4 pl-4 rounded-l-lg text-center text-on-surface-variant">02</td>
+<td class="py-4 font-semibold text-on-surface">Mei Ling</td>
+<td class="py-4 text-on-surface-variant">CPF Statement</td>
+<td class="py-4 text-on-surface-variant">23 Mar</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-orange-400"></span>
+<span class="font-bold text-orange-600">88%</span>
+<span class="text-[10px] text-on-surface-variant">(Med)</span>
+</div>
+</td>
+<td class="py-4">
+<span class="bg-primary-container/30 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Pending</span>
+</td>
+<td class="py-4 pr-4 rounded-r-lg font-bold text-orange-600">Medium</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-all cursor-pointer shadow-sm">
+<td class="py-4 pl-4 rounded-l-lg text-center text-on-surface-variant">03</td>
+<td class="py-4 font-semibold text-on-surface">Kumar S.</td>
+<td class="py-4 text-on-surface-variant">Pay Slip</td>
+<td class="py-4 text-on-surface-variant">23 Mar</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-bold text-tertiary">96%</span>
+<span class="text-[10px] text-on-surface-variant">(High)</span>
+</div>
+</td>
+<td class="py-4">
+<span class="bg-tertiary-container/20 text-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Auto-Verified</span>
+</td>
+<td class="py-4 pr-4 rounded-r-lg font-bold text-tertiary/60">Low</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-all cursor-pointer shadow-sm">
+<td class="py-4 pl-4 rounded-l-lg text-center text-on-surface-variant">04</td>
+<td class="py-4 font-semibold text-on-surface">Amy Chen</td>
+<td class="py-4 text-on-surface-variant">Employment Letter</td>
+<td class="py-4 text-on-surface-variant">24 Mar</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-bold text-tertiary">91%</span>
+<span class="text-[10px] text-on-surface-variant">(High)</span>
+</div>
+</td>
+<td class="py-4">
+<span class="bg-tertiary-container/20 text-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Auto-Verified</span>
+</td>
+<td class="py-4 pr-4 rounded-r-lg font-bold text-tertiary/60">Low</td>
+</tr>
+<!-- Row 5 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-all cursor-pointer shadow-sm">
+<td class="py-4 pl-4 rounded-l-lg text-center text-on-surface-variant">05</td>
+<td class="py-4 font-semibold text-on-surface">John Tan</td>
+<td class="py-4 text-on-surface-variant">Pay Slip</td>
+<td class="py-4 text-on-surface-variant">24 Mar</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-bold text-error">45%</span>
+<span class="text-[10px] text-on-surface-variant">(Low)</span>
+</div>
+</td>
+<td class="py-4">
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Flagged</span>
+</td>
+<td class="py-4 pr-4 rounded-r-lg font-bold text-error">High</td>
+</tr>
+<!-- Row 6 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-all cursor-pointer shadow-sm">
+<td class="py-4 pl-4 rounded-l-lg text-center text-on-surface-variant">06</td>
+<td class="py-4 font-semibold text-on-surface">Priya S.</td>
+<td class="py-4 text-on-surface-variant">Employment Letter</td>
+<td class="py-4 text-on-surface-variant">24 Mar</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-bold text-tertiary">91%</span>
+<span class="text-[10px] text-on-surface-variant">(High)</span>
+</div>
+</td>
+<td class="py-4">
+<span class="bg-primary-container/30 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Pending</span>
+</td>
+<td class="py-4 pr-4 rounded-r-lg font-bold text-orange-600">Medium</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Batch Actions Bar -->
+<div class="sticky bottom-0 bg-primary/95 backdrop-blur-md p-4 rounded-xl flex items-center justify-between text-white shadow-2xl z-20">
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold uppercase tracking-widest opacity-80">Batch Actions (1 Selected)</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-all">Request Resubmission</button>
+<button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-all">Flag for Review</button>
+<button class="bg-white text-primary px-6 py-2 rounded-lg text-sm font-bold shadow-lg active:scale-95 transition-all">Approve Selected</button>
+</div>
+</div>
+</div>
+<!-- Right 1/4: Preview Panel -->
+<div class="w-1/4 bg-surface-container-low flex flex-col overflow-y-auto">
+<!-- Panel Header -->
+<header class="p-6 bg-surface-container-highest border-b border-outline-variant/30">
+<div class="flex justify-between items-start mb-2">
+<h2 class="text-lg font-bold text-on-surface leading-tight">David Ng - Pay Slip</h2>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Flagged</span>
+</div>
+<p class="text-xs text-on-surface-variant">Submitted: 22 Mar 2026, 14:45 SGT</p>
+</header>
+<!-- Document Preview Placeholder -->
+<div class="p-6">
+<div class="aspect-[3/4] bg-surface-dim rounded-lg flex flex-col items-center justify-center text-on-surface-variant border-2 border-dashed border-outline-variant relative overflow-hidden group">
+<span class="material-symbols-outlined text-[48px] mb-2 opacity-30">description</span>
+<p class="text-xs font-semibold opacity-50 uppercase tracking-widest">Digital Preview</p>
+<!-- Image representation for visual completeness -->
+<div class="absolute inset-0 bg-slate-200/50 flex items-center justify-center">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-20" data-alt="close up of a professional business document with complex rows and columns of financial data" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBksO80L1Uv7muJKN_jiLqh6X4-h9BqExUJuim6s8-3LmxwC_b2DniN8uQQw_9b0bJagPbLyxs4i1vDKItmvlRBG5pynGtt1vjH7IoZpLppWk0_WnidN3-aiPXGjbFpfTiUJRmt362x1wbCWyFfu5miCASRzokk6t4g6zpHs1yfBs_J1Lajnnqek9c85r7V9YpzrnbhWs64PHtGvwrRSUHhqa0KlwJUJjx8-EaCWYmEtoKakFkRvFnq3rHZsTv1odn_NikWMbPH24"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<button class="bg-white shadow-xl px-4 py-2 rounded-full text-xs font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+                                    Expand Document
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- OCR Results -->
+<div class="px-6 space-y-4 mb-8">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/10">
+<h3 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-3">Extracted Data Points</h3>
+<ul class="space-y-3">
+<li class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Employer</span>
+<div class="flex items-center gap-1.5 text-orange-600 font-semibold">
+<span>DataInsights Solutions...</span>
+<span class="material-symbols-outlined text-[16px]">warning</span>
+</div>
+</li>
+<li class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Employee</span>
+<div class="flex items-center gap-1.5 text-tertiary font-semibold">
+<span>David Ng</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</li>
+<li class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Pay Period</span>
+<div class="flex items-center gap-1.5 text-tertiary font-semibold">
+<span>January 2026</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</li>
+<li class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Salary</span>
+<div class="flex items-center gap-1.5 text-tertiary font-semibold">
+<span>$4,200</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</li>
+<li class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">CPF Contribution</span>
+<div class="flex items-center gap-1.5 text-tertiary font-semibold">
+<span>$420</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</li>
+</ul>
+</div>
+<!-- Discrepancy Alert -->
+<div class="bg-error-container/30 border-2 border-error/20 p-4 rounded-xl">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-error text-[20px]">error</span>
+<h4 class="text-xs font-bold text-on-error-container">Discrepancy Alert</h4>
+</div>
+<p class="text-xs text-on-error-container leading-relaxed">
+                            Employer name <span class="font-bold underline">DataInsights Solutions Pte Ltd</span> does not match declared employer <span class="font-bold">DataInsights Pte Ltd</span>.
+                        </p>
+<div class="mt-3 bg-white/40 p-2 rounded text-[11px] font-medium text-on-surface italic">
+                            Suggestion: Minor name variation - verify with trainee
+                        </div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="mt-auto p-6 bg-surface-container-high space-y-3">
+<button class="w-full bg-primary text-white py-3 rounded-lg text-sm font-bold shadow-md hover:bg-primary-container transition-all">
+                        Approve Anyway
+                    </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-surface-container-highest text-on-surface-variant py-2.5 rounded-lg text-xs font-bold hover:bg-outline-variant/30 transition-all border border-outline-variant/20">
+                            Request Resub.
+                        </button>
+<button class="bg-surface-container-highest text-error py-2.5 rounded-lg text-xs font-bold hover:bg-error-container/50 transition-all border border-error/20">
+                            Escalate
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

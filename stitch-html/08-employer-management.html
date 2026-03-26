@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employer Management | Nucleus AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#011f28",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#3f484c",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary-container": "#4c6771",
+                        "on-tertiary-container": "#ffd0a7",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#afcbd7",
+                        "on-tertiary-fixed-variant": "#6b3b01",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-container": "#875219",
+                        "on-primary-container": "#98e3ff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#b6eaff",
+                        "on-primary-fixed-variant": "#004e60",
+                        "tertiary-fixed-dim": "#ffb876",
+                        "on-background": "#191c1e",
+                        "surface": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "secondary-container": "#c8e4f0",
+                        "secondary-fixed": "#cbe7f3",
+                        "on-surface": "#191c1e",
+                        "surface-dim": "#d8dadc",
+                        "on-primary-fixed": "#001f28",
+                        "inverse-primary": "#86d1ec",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#48626c",
+                        "primary-fixed-dim": "#86d1ec",
+                        "error-container": "#ffdad6",
+                        "background": "#f7f9fb",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary": "#ffffff",
+                        "outline": "#6f787d",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "surface-tint": "#00677f",
+                        "outline-variant": "#bfc8cd",
+                        "surface-bright": "#f7f9fb",
+                        "tertiary": "#6b3b01",
+                        "primary": "#004d60",
+                        "tertiary-fixed": "#ffdcc0",
+                        "on-tertiary-fixed": "#2d1600",
+                        "primary-container": "#00677f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#304a54"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #004d60 0%, #00677f 100%);
+        }
+        /* Custom Table Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f2f4f6;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bfc8cd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col z-40 bg-slate-50 dark:bg-slate-900 h-full w-64 border-r-0 font-manrope text-sm tracking-tight">
+<div class="p-6">
+<div class="text-xl font-bold text-[#00677F] dark:text-[#00a3c8] tracking-tighter mb-8">Nucleus AI</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard -->
+<div class="text-slate-500 dark:text-slate-400 pl-6 pr-6 py-3 my-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/30 hover:text-[#00677F] transition-all duration-200 flex items-center gap-3 cursor-pointer">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span>Dashboard</span>
+</div>
+<!-- Enrolment -->
+<div class="text-slate-500 dark:text-slate-400 pl-6 pr-6 py-3 my-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/30 hover:text-[#00677F] transition-all duration-200 flex items-center gap-3 cursor-pointer">
+<span class="material-symbols-outlined text-lg">person_add</span>
+<span>Enrolment</span>
+</div>
+<!-- Tracking -->
+<div class="text-slate-500 dark:text-slate-400 pl-6 pr-6 py-3 my-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/30 hover:text-[#00677F] transition-all duration-200 flex items-center gap-3 cursor-pointer">
+<span class="material-symbols-outlined text-lg">query_stats</span>
+<span>Tracking</span>
+</div>
+<!-- Matching -->
+<div class="text-slate-500 dark:text-slate-400 pl-6 pr-6 py-3 my-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/30 hover:text-[#00677F] transition-all duration-200 flex items-center gap-3 cursor-pointer">
+<span class="material-symbols-outlined text-lg">handshake</span>
+<span>Matching</span>
+</div>
+<!-- Programmes -->
+<div class="text-slate-500 dark:text-slate-400 pl-6 pr-6 py-3 my-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/30 hover:text-[#00677F] transition-all duration-200 flex items-center gap-3 cursor-pointer">
+<span class="material-symbols-outlined text-lg">layers</span>
+<span>Programmes</span>
+</div>
+<!-- Employers (Active) -->
+<div class="bg-white dark:bg-slate-800 text-[#00677F] font-bold shadow-sm border-l-4 border-[#00677F] pl-5 pr-6 py-3 my-1 flex items-center gap-3 cursor-default">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">business</span>
+<span>Employers</span>
+</div>
+<!-- Communications -->
+<div class="text-slate-500 dark:text-slate-400 pl-6 pr-6 py-3 my-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/30 hover:text-[#00677F] transition-all duration-200 flex items-center gap-3 cursor-pointer">
+<span class="material-symbols-outlined text-lg">chat</span>
+<span>Communications</span>
+</div>
+<!-- Documents -->
+<div class="text-slate-500 dark:text-slate-400 pl-6 pr-6 py-3 my-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/30 hover:text-[#00677F] transition-all duration-200 flex items-center gap-3 cursor-pointer">
+<span class="material-symbols-outlined text-lg">description</span>
+<span>Documents</span>
+</div>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-slate-200/20">
+<div class="flex items-center gap-3 mb-6 px-2">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Professional portrait of a middle-aged Asian female executive with short hair, smiling confidently in a modern office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1VjGnj3n4mlB1GF0aGrzUd0Dpavp_a1xHfSrU5ozOIF3s4GZcsHYx5FLA3p8By0i_yHE4QWU3QnpvRG74nNsbmbRQ-y8RtcVWWIMBV9sMvynaJLO6eORWHY5KTrhKxrixyVDd1DT10WmOuGKdROtw_BOtkoHlCOOXHyyc25Yq2iNxlYJ6cqp_ccY5xbTIO8xNYBGlx5eKkLG9DUaKQet_7mjH0K-rConnqXKwCub7rQFdfoMjQi-LBWVZFesR9E3vWmyOhvpY3h8"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Sarah Tan</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Executive Administrator</p>
+</div>
+</div>
+<div class="text-slate-500 dark:text-slate-400 pl-6 pr-6 py-3 my-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/30 hover:text-[#00677F] transition-all duration-200 flex items-center gap-3 cursor-pointer">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span>Settings</span>
+</div>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="pl-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-30 flex justify-between items-center w-full pr-8 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/20 dark:border-slate-800/20 shadow-sm dark:shadow-none">
+<div class="pl-8 flex flex-col">
+<nav class="flex items-center gap-2 text-[10px] font-manrope font-medium uppercase tracking-widest text-slate-400 dark:text-slate-500">
+<span>DASHBOARD</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-[#00677F] font-semibold">EMPLOYERS</span>
+</nav>
+<h1 class="text-lg font-bold text-primary tracking-tight">Employer Management</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-sm">search</span>
+<input class="pl-9 pr-4 py-1.5 text-sm bg-surface-container-low border-none rounded focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Search employers..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 text-xs font-bold text-primary border border-primary/20 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export Report
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 text-xs font-bold text-white primary-gradient rounded shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Add New Employer
+                </button>
+<div class="flex items-center gap-3 ml-2 pl-4 border-l border-slate-200/50">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors">help_outline</span>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="p-8 flex-1 grid grid-cols-12 gap-8">
+<div class="col-span-9 space-y-8">
+<!-- ROW 1: Summary Metrics -->
+<section class="grid grid-cols-5 gap-4">
+<!-- Total Employers -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border-b-2 border-primary/10 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Total Employers</span>
+<span class="material-symbols-outlined text-primary/40 text-lg">business</span>
+</div>
+<div>
+<span class="text-3xl font-extrabold text-on-surface tracking-tighter">8</span>
+<span class="ml-2 text-[10px] text-emerald-600 font-bold">Active</span>
+</div>
+</div>
+<!-- Open Vacancies -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border-b-2 border-primary/10 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Open Vacancies</span>
+<span class="material-symbols-outlined text-primary/40 text-lg">work_outline</span>
+</div>
+<div>
+<span class="text-3xl font-extrabold text-on-surface tracking-tighter">12</span>
+<div class="mt-1 w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+</div>
+<!-- Placements -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border-b-2 border-primary/10 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Placements (QTR)</span>
+<span class="material-symbols-outlined text-primary/40 text-lg">person_check</span>
+</div>
+<div>
+<span class="text-3xl font-extrabold text-on-surface tracking-tighter">14</span>
+<span class="ml-2 text-[10px] text-primary font-bold">+12% vs LY</span>
+</div>
+</div>
+<!-- Avg Time to Fill -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border-b-2 border-primary/10 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Avg Time to Fill</span>
+<span class="material-symbols-outlined text-primary/40 text-lg">schedule</span>
+</div>
+<div>
+<span class="text-3xl font-extrabold text-on-surface tracking-tighter">28</span>
+<span class="ml-1 text-sm font-medium text-on-surface-variant">days</span>
+</div>
+</div>
+<!-- At-Risk -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border-b-2 border-error/20 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-error uppercase tracking-widest">At-Risk Relationships</span>
+<span class="material-symbols-outlined text-error/40 text-lg">warning</span>
+</div>
+<div>
+<span class="text-3xl font-extrabold text-error tracking-tighter">2</span>
+<span class="ml-2 px-2 py-0.5 bg-error/10 text-error text-[9px] font-bold rounded-full">ACTION REQ</span>
+</div>
+</div>
+</section>
+<!-- ROW 2: Filters Bar -->
+<section class="bg-surface-container-low p-3 rounded flex items-center gap-4">
+<div class="flex items-center gap-2 group">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-2">Sector</label>
+<select class="text-xs bg-transparent border-none focus:ring-0 cursor-pointer py-1 pr-8 font-semibold text-primary">
+<option>All Sectors</option>
+<option>Technology</option>
+<option>Finance</option>
+<option>Healthcare</option>
+</select>
+</div>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase">Engagement</label>
+<select class="text-xs bg-transparent border-none focus:ring-0 cursor-pointer py-1 pr-8 font-semibold text-primary">
+<option>All Levels</option>
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+</div>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase">Manager</label>
+<select class="text-xs bg-transparent border-none focus:ring-0 cursor-pointer py-1 pr-8 font-semibold text-primary">
+<option>All Managers</option>
+<option>Rachel Wong</option>
+<option>Sarah Tan</option>
+</select>
+</div>
+<div class="ml-auto flex items-center gap-4">
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-primary transition-colors">CLEAR ALL</button>
+</div>
+</section>
+<!-- ROW 3: Employer Table -->
+<section class="bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Company</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Sector</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Account Manager</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-center">Open Vacancies</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-center">Placements (YTD)</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Engagement</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right">Last Contact</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">TC</div>
+<span class="text-sm font-bold text-on-surface">TechCorp Pte Ltd</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Technology</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Rachel Wong</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-primary">2</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-on-surface">3</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full">HIGH</span>
+</td>
+<td class="px-6 py-4 text-right text-[10px] font-medium text-on-surface-variant uppercase">2 days ago</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">DI</div>
+<span class="text-sm font-bold text-on-surface">DataInsights Pte Ltd</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Analytics</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Rachel Wong</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-primary">2</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-on-surface">1</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">MEDIUM</span>
+</td>
+<td class="px-6 py-4 text-right text-[10px] font-medium text-on-surface-variant uppercase">5 days ago</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">FF</div>
+<span class="text-sm font-bold text-on-surface">FinanceFirst Pte Ltd</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Finance</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Rachel Wong</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-primary">2</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-on-surface">2</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full">HIGH</span>
+</td>
+<td class="px-6 py-4 text-right text-[10px] font-medium text-on-surface-variant uppercase">1 day ago</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">CS</div>
+<span class="text-sm font-bold text-on-surface">CloudServe Asia</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Cloud</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Rachel Wong</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-primary">2</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-on-surface">1</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full">HIGH</span>
+</td>
+<td class="px-6 py-4 text-right text-[10px] font-medium text-on-surface-variant uppercase">3 days ago</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">GT</div>
+<span class="text-sm font-bold text-on-surface">GreenTech Solutions</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Sustainability</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Rachel Wong</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-primary">1</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-on-surface">0</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-error-container text-error text-[10px] font-bold rounded-full">LOW</span>
+</td>
+<td class="px-6 py-4 text-right text-[10px] font-medium text-on-surface-variant uppercase text-error">7 days ago</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">MW</div>
+<span class="text-sm font-bold text-on-surface">MediaWorks Agency</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Media</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Rachel Wong</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-primary">1</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-on-surface">1</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">MEDIUM</span>
+</td>
+<td class="px-6 py-4 text-right text-[10px] font-medium text-on-surface-variant uppercase">4 days ago</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">RP</div>
+<span class="text-sm font-bold text-on-surface">RetailPro Holdings</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Retail</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Rachel Wong</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-primary">1</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-on-surface">0</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-error-container text-error text-[10px] font-bold rounded-full">LOW</span>
+</td>
+<td class="px-6 py-4 text-right text-[10px] font-medium text-on-surface-variant uppercase">Over 2 weeks</td>
+</tr>
+<!-- Row 8 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">HT</div>
+<span class="text-sm font-bold text-on-surface">HealthTech SG</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Healthcare</td>
+<td class="px-6 py-4 text-xs font-medium text-on-surface-variant">Rachel Wong</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-primary">1</td>
+<td class="px-6 py-4 text-center text-sm font-bold text-on-surface">0</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">MEDIUM</span>
+</td>
+<td class="px-6 py-4 text-right text-[10px] font-medium text-on-surface-variant uppercase">6 days ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low/30 border-t border-surface-container flex justify-between items-center">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Showing 8 of 8 Employers</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT SIDEBAR: Side Section -->
+<div class="col-span-3 space-y-6">
+<!-- Engagement Distribution -->
+<section class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-6">Engagement Dist.</h3>
+<div class="relative flex items-center justify-center mb-6">
+<!-- Simulated Donut Chart -->
+<div class="w-32 h-32 rounded-full border-[12px] border-emerald-500 relative flex items-center justify-center">
+<div class="absolute inset-[-12px] rounded-full border-[12px] border-amber-500" style="clip-path: polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 50%); transform: rotate(140deg);"></div>
+<div class="absolute inset-[-12px] rounded-full border-[12px] border-error" style="clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 20%); transform: rotate(260deg);"></div>
+<div class="text-center">
+<span class="block text-xl font-extrabold text-on-surface">8</span>
+<span class="text-[8px] font-bold text-on-surface-variant uppercase tracking-tighter">Total</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-[11px] font-semibold text-on-surface">High</span>
+</div>
+<span class="text-[11px] font-bold text-on-surface">3</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+<span class="text-[11px] font-semibold text-on-surface">Medium</span>
+</div>
+<span class="text-[11px] font-bold text-on-surface">3</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-[11px] font-semibold text-on-surface">Low</span>
+</div>
+<span class="text-[11px] font-bold text-on-surface">2</span>
+</div>
+</div>
+</section>
+<!-- Top Hiring Employers -->
+<section class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Top Hiring YTD</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-[10px] font-bold text-on-surface-variant uppercase mb-1">
+<span>TechCorp</span>
+<span>3 Placements</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full">
+<div class="bg-primary h-full w-[100%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[10px] font-bold text-on-surface-variant uppercase mb-1">
+<span>FinanceFirst</span>
+<span>2 Placements</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full">
+<div class="bg-primary h-full w-[66%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[10px] font-bold text-on-surface-variant uppercase mb-1">
+<span>DataInsights</span>
+<span>1 Placement</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full">
+<div class="bg-primary h-full w-[33%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[10px] font-bold text-on-surface-variant uppercase mb-1">
+<span>CloudServe</span>
+<span>1 Placement</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full">
+<div class="bg-primary h-full w-[33%] rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Employer Activity -->
+<section class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Recent Activity</h3>
+<div class="space-y-6 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-px before:bg-surface-container">
+<!-- Activity 1 -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-[22px] h-[22px] rounded-full bg-white border border-primary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">record_voice_over</span>
+</div>
+<p class="text-[11px] leading-relaxed">
+<span class="font-bold text-on-surface">TechCorp</span> scheduled an interview with <span class="text-primary font-bold">Marcus Lee</span>.
+                            </p>
+<p class="text-[9px] text-on-surface-variant uppercase font-medium mt-1">2d ago</p>
+</div>
+<!-- Activity 2 -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-[22px] h-[22px] rounded-full bg-white border border-primary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">feedback</span>
+</div>
+<p class="text-[11px] leading-relaxed">
+<span class="font-bold text-on-surface">DataInsights</span> provided feedback on <span class="text-primary font-bold">Wei Ming</span>.
+                            </p>
+<p class="text-[9px] text-on-surface-variant uppercase font-medium mt-1">5d ago</p>
+</div>
+<!-- Activity 3 -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-[22px] h-[22px] rounded-full bg-white border border-error flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[12px] text-error" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+<p class="text-[11px] leading-relaxed">
+<span class="font-bold text-on-surface">GreenTech</span>: UX/UI vacancy expiring soon. No candidates assigned.
+                            </p>
+<p class="text-[9px] text-error uppercase font-bold mt-1">7d alert</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

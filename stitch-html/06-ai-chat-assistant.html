@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Assistant | Nucleus AI Career Placement</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#424655",
+                        "outline-variant": "#c2c6d7",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-container": "#fdfbff",
+                        "surface": "#f8f9fa",
+                        "surface-container": "#edeeef",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-primary-fixed": "#001946",
+                        "on-background": "#191c1d",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-secondary-container": "#334b83",
+                        "secondary-fixed": "#dae2ff",
+                        "on-surface": "#191c1d",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b1c5ff",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#001946",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-tint": "#0057cf",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed": "#dae2ff",
+                        "tertiary-container": "#c74d00",
+                        "secondary": "#455d96",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#b1c5ff",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary-container": "#fffaff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2c457d",
+                        "tertiary": "#9f3c00",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#0054c9",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-fixed-variant": "#00419e",
+                        "primary-container": "#1a6cf4",
+                        "secondary-container": "#a6bdfd",
+                        "outline": "#727786",
+                        "surface-bright": "#f8f9fa",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "error-container": "#ffdad6"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .activity-line {
+            position: relative;
+        }
+        .activity-line::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+        }
+        .ai-line::before { background-color: #0054c9; }
+        .user-line::before { background-color: #c2c6d7; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e1e3e4; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c2c6d7; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<!-- SideNavBar (Authority Source: JSON & Design System) -->
+<nav class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-slate-100 dark:bg-slate-900 font-manrope text-sm font-semibold tracking-tight p-4 overflow-y-auto border-r-0">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-slate-900 dark:text-slate-100 leading-none">Nucleus AI</h1>
+<p class="text-[10px] text-slate-500 font-medium tracking-widest uppercase mt-1">Career Placement</p>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Group: Operations -->
+<div>
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest px-2 mb-2">Operations</p>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span>Enrolment</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">location_searching</span>
+<span>Tracking</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">handshake</span>
+<span>Matching</span>
+</a>
+</div>
+</div>
+<!-- Group: Management -->
+<div>
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest px-2 mb-2">Management</p>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span>Programmes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">business</span>
+<span>Employers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span>Communications</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span>Documents</span>
+</a>
+</div>
+</div>
+<!-- Group: Intelligence -->
+<div>
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest px-2 mb-2">Intelligence</p>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+<span>AI Insights</span>
+</a>
+<!-- ACTIVE STATE: Assistant -->
+<a class="flex items-center gap-3 px-3 py-2 bg-white text-blue-600 rounded-lg shadow-sm scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span>Assistant</span>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</a>
+<div class="mt-4 px-3 py-4 bg-slate-200/50 rounded-xl flex items-center gap-3">
+<img alt="Sarah Tan Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Professional headshot of a female coordinator with a friendly smile, clean corporate office background, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXT8oluOlJ9ujogzC4Gek5QAbskSC4pDoWqDZpQoo0sJUmKZtsqvfgHHQ0cTS0fvio4gas9PMZx2OxxPQo2W9h_jSZ4ALCTdbI6dycss0cEFoOaqZBKG9Un-HRLSdDaO_2bohiw0Htt4JsjJmLCTVox1ilcoRrAAsI71uPQypDwysTmGkBTJZJNvP31-vuTmqj23z-zie6xH-GEsC5OkiwdtK8scTeM2A1bkNBTyCmb1IK6EmusvjUMFfORSgDCLiNQIV7vw7mZSI"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-slate-900 truncate">Sarah Tan</p>
+<p class="text-[10px] text-slate-500 truncate">Senior Coordinator</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar (Authority Source: JSON & Design System) -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-white/80 backdrop-blur-md flex items-center justify-between px-8 z-10 border-b-0">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+<span>DASHBOARD</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-blue-600">ASSISTANT</span>
+</div>
+<h2 class="font-headline font-bold text-slate-900 leading-tight">Programme Assistant</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-slate-500 font-manrope text-sm font-medium">
+<a class="hover:text-blue-500 transition-all" href="#">Assistant</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-400 hover:text-slate-900 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-slate-900 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="ml-2 bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-sm hover:opacity-90 active:opacity-80 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                        New Conversation
+                    </button>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<div class="mt-16 flex flex-1 overflow-hidden">
+<!-- Left: Chat Thread (70%) -->
+<section class="w-[70%] flex flex-col bg-surface-container-lowest relative">
+<div class="flex-1 overflow-y-auto px-12 py-10 space-y-12">
+<!-- USER MESSAGE -->
+<div class="flex justify-end activity-line user-line">
+<div class="max-w-[80%] bg-primary text-white p-5 rounded-xl rounded-tr-none shadow-sm">
+<p class="text-sm font-medium leading-relaxed">
+                                Which ICT trainees completed training last month but haven't submitted documents?
+                            </p>
+</div>
+</div>
+<!-- AI RESPONSE -->
+<div class="flex justify-start activity-line ai-line">
+<div class="max-w-[95%] space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">NUCLEUS AI • 2m ago</span>
+</div>
+<div class="bg-surface-container-low border-l-4 border-primary p-6 rounded-xl space-y-4 shadow-sm">
+<p class="text-sm text-on-surface leading-relaxed">
+                                    I found <strong class="text-primary">6 ICT Career Conversion trainees</strong> who completed training in February 2026 and have not yet submitted employment documents:
+                                </p>
+<!-- Table Component -->
+<div class="overflow-hidden rounded-lg border border-outline-variant/20 bg-white">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-outline-variant/20">
+<th class="px-4 py-3 text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Name</th>
+<th class="px-4 py-3 text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Completion</th>
+<th class="px-4 py-3 text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Status</th>
+<th class="px-4 py-3 text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Last Contact</th>
+</tr>
+</thead>
+<tbody class="text-xs text-on-surface-variant divide-y divide-outline-variant/10">
+<tr><td class="px-4 py-3 font-semibold text-slate-900">David Ng</td><td class="px-4 py-3">15 Feb</td><td class="px-4 py-3"><span class="px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full">3 reminders</span></td><td class="px-4 py-3">20 Mar</td></tr>
+<tr><td class="px-4 py-3 font-semibold text-slate-900">Lisa Koh</td><td class="px-4 py-3">1 Feb</td><td class="px-4 py-3"><span class="px-2 py-0.5 bg-red-50 text-red-600 rounded-full">Escalated</span></td><td class="px-4 py-3">25 Mar</td></tr>
+<tr><td class="px-4 py-3 font-semibold text-slate-900">Kumar S.</td><td class="px-4 py-3">15 Feb</td><td class="px-4 py-3"><span class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full">Auto-chasing</span></td><td class="px-4 py-3">22 Mar</td></tr>
+<tr><td class="px-4 py-3 font-semibold text-slate-900">Wei Lin</td><td class="px-4 py-3">1 Feb</td><td class="px-4 py-3"><span class="px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full">2 reminders</span></td><td class="px-4 py-3">18 Mar</td></tr>
+<tr><td class="px-4 py-3 font-semibold text-slate-900">Sarah Ong</td><td class="px-4 py-3">15 Feb</td><td class="px-4 py-3"><span class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full">Auto-chasing</span></td><td class="px-4 py-3">20 Mar</td></tr>
+<tr><td class="px-4 py-3 font-semibold text-slate-900">James T.</td><td class="px-4 py-3">1 Feb</td><td class="px-4 py-3"><span class="px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full">1 reminder</span></td><td class="px-4 py-3">15 Mar</td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-sm text-on-surface leading-relaxed">
+                                    3 of these trainees have not responded. Would you like a follow-up list or outreach messages?
+                                </p>
+<div class="flex items-center gap-3 pt-2">
+<button class="text-xs font-semibold text-primary flex items-center gap-1 hover:underline">
+                                        View in Tracking <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<button class="px-4 py-2 border border-primary text-primary text-xs font-bold rounded-lg hover:bg-primary/5 transition-colors">
+                                        Draft Outreach Messages
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- USER MESSAGE 2 -->
+<div class="flex justify-end activity-line user-line">
+<div class="max-w-[80%] bg-primary text-white p-5 rounded-xl rounded-tr-none shadow-sm">
+<p class="text-sm font-medium leading-relaxed">
+                                Yes, draft outreach messages for the non-responsive ones
+                            </p>
+</div>
+</div>
+<!-- AI TYPING -->
+<div class="flex justify-start activity-line ai-line">
+<div class="flex items-center gap-4 bg-white px-6 py-4 rounded-xl border border-outline-variant/20 shadow-sm">
+<div class="flex gap-1">
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></div>
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse delay-75"></div>
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse delay-150"></div>
+</div>
+<span class="text-xs font-medium text-slate-400">Nucleus AI is thinking...</span>
+</div>
+</div>
+</div>
+<!-- Chat Input (Bottom Floating) -->
+<div class="px-12 pb-10 pt-4 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest to-transparent">
+<div class="relative max-w-4xl mx-auto flex items-center bg-white/80 backdrop-blur-md rounded-xl shadow-lg border border-outline-variant/30 p-2">
+<button class="p-3 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-3 px-2 text-on-surface" placeholder="Ask anything..." type="text"/>
+<div class="flex items-center gap-2 pr-2">
+<button class="p-3 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center shadow-sm hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right: Context Panel (30%) -->
+<aside class="w-[30%] bg-surface-container-low border-l border-outline-variant/20 p-8 flex flex-col gap-10 overflow-y-auto">
+<div>
+<h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">Referenced Data</h3>
+<!-- Trainees Referenced -->
+<div class="space-y-4 mb-8">
+<h4 class="text-xs font-bold text-slate-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">groups</span>
+                            Trainees Referenced
+                        </h4>
+<div class="space-y-2">
+<a class="flex items-center justify-between p-3 bg-white rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all group" href="#">
+<span class="text-xs font-medium text-slate-700">David Ng</span>
+<span class="material-symbols-outlined text-[16px] text-slate-300 group-hover:text-primary">open_in_new</span>
+</a>
+<a class="flex items-center justify-between p-3 bg-white rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all group" href="#">
+<span class="text-xs font-medium text-slate-700">Lisa Koh</span>
+<span class="material-symbols-outlined text-[16px] text-slate-300 group-hover:text-primary">open_in_new</span>
+</a>
+<a class="flex items-center justify-between p-3 bg-white rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-all group" href="#">
+<span class="text-xs font-medium text-slate-700">Kumar S.</span>
+<span class="material-symbols-outlined text-[16px] text-slate-300 group-hover:text-primary">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Data Sources -->
+<div class="space-y-4 mb-8">
+<h4 class="text-xs font-bold text-slate-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">database</span>
+                            Data Sources
+                        </h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-xs text-slate-600">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                                Trainee Database (Live)
+                            </li>
+<li class="flex items-center gap-2 text-xs text-slate-600">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                                Outreach &amp; CRM Log
+                            </li>
+<li class="flex items-center gap-2 text-xs text-slate-600">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                                ICT Programme Records
+                            </li>
+</ul>
+</div>
+<!-- Confidence -->
+<div class="p-4 bg-white rounded-xl border border-outline-variant/10 flex items-center gap-4">
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full transform -rotate-90">
+<circle class="text-slate-100" cx="20" cy="20" fill="transparent" r="18" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="20" cy="20" fill="transparent" r="18" stroke="currentColor" stroke-dasharray="100" stroke-dashoffset="10" stroke-width="3"></circle>
+</svg>
+<span class="text-[10px] font-bold text-primary">90%</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Confidence</p>
+<p class="text-xs font-bold text-slate-900">High (Verified)</p>
+</div>
+</div>
+</div>
+<!-- Suggested Prompts -->
+<div class="mt-auto">
+<h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Suggested Prompts</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-2 bg-slate-200/50 hover:bg-slate-200 text-xs font-medium text-slate-700 rounded-lg transition-colors text-left">
+                            Why was Marcus recommended?
+                        </button>
+<button class="px-3 py-2 bg-slate-200/50 hover:bg-slate-200 text-xs font-medium text-slate-700 rounded-lg transition-colors text-left">
+                            Q1 placement summary
+                        </button>
+<button class="px-3 py-2 bg-slate-200/50 hover:bg-slate-200 text-xs font-medium text-slate-700 rounded-lg transition-colors text-left">
+                            Matching BA grads
+                        </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</body></html>

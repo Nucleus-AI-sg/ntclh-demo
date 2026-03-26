@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Insights | Nucleus AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "on-secondary-fixed": "#001f28",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-container": "#91afff",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-fixed": "#002113",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#003e99",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c3c6d4",
+                        "background": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-tint": "#2f5ab5",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-container": "#2fc88e",
+                        "on-primary-fixed-variant": "#07419c",
+                        "error": "#ba1a1a",
+                        "secondary": "#00677f",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface-variant": "#434652",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-container": "#00667e",
+                        "outline": "#747783",
+                        "secondary-container": "#97e2fd",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed": "#dae2ff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "secondary-fixed-dim": "#86d1ec",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "on-background": "#191c1e",
+                        "primary": "#00296c",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary": "#003522",
+                        "tertiary-container": "#004e34",
+                        "on-primary-fixed": "#001947",
+                        "inverse-primary": "#b1c5ff",
+                        "secondary-fixed": "#b6eaff",
+                        "surface-container": "#eceef0",
+                        "inverse-surface": "#2d3133",
+                        "surface-dim": "#d8dadc",
+                        "surface": "#f7f9fb",
+                        "on-error-container": "#93000a"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px);
+        }
+        .ai-gradient {
+            background: linear-gradient(135deg, #003e99 0%, #00677f 100%);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="hidden md:flex flex-col h-screen w-64 p-4 bg-slate-100 border-r-0 fixed left-0 top-0">
+<div class="mb-8 px-2">
+<h1 class="text-xl font-bold tracking-tighter text-blue-900">NUCLEUS AI</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mt-1">Strategic Intelligence</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">person_add</span>
+<span class="text-sm font-medium">Enrolment</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">location_searching</span>
+<span class="text-sm font-medium">Tracking</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">handshake</span>
+<span class="text-sm font-medium">Matching</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">account_tree</span>
+<span class="text-sm font-medium">Programmes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 bg-white text-blue-900 font-bold rounded-lg shadow-sm" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="text-sm">AI Insights</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">smart_toy</span>
+<span class="text-sm font-medium">Assistant</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-200 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">analytics</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-slate-200">
+<div class="flex items-center gap-3 px-3 py-2">
+<span class="material-symbols-outlined text-blue-900" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<div class="overflow-hidden">
+<p class="text-sm font-bold text-slate-900 truncate">Sarah Tan</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-tight">Intelligence Lead</p>
+</div>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 mt-2 text-slate-600 hover:bg-slate-200 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 md:ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex flex-col w-full px-8 pt-6 pb-2 bg-slate-50 sticky top-0 z-10">
+<div class="flex justify-between items-center mb-4">
+<div>
+<nav class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-medium text-slate-400 uppercase tracking-widest">NUCLEUS AI</span>
+<span class="material-symbols-outlined text-[10px] text-slate-300">chevron_right</span>
+<span class="text-[10px] font-medium text-slate-400 uppercase tracking-widest">INTELLIGENCE</span>
+</nav>
+<h2 class="text-2xl font-extrabold text-blue-800 tracking-tight">AI Insights &amp; Performance</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-blue-800 transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 text-slate-400 hover:text-blue-800 transition-colors"><span class="material-symbols-outlined">help_outline</span></button>
+</div>
+</div>
+<div class="flex gap-8 border-b-0">
+<a class="text-slate-500 hover:text-slate-800 transition-colors pb-2 text-sm font-medium" href="#">Assessment Model</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors pb-2 text-sm font-medium" href="#">Feedback Loop</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors pb-2 text-sm font-medium" href="#">Matching Model</a>
+<a class="text-blue-800 border-b-2 border-blue-800 pb-2 font-bold text-sm" href="#">Strategic Intelligence</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors pb-2 text-sm font-medium" href="#">Transparency</a>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-8 space-y-6">
+<!-- 1. TOP BANNER: AI Health Score -->
+<section class="ai-gradient rounded-xl p-8 text-white relative overflow-hidden shadow-lg">
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-end gap-6">
+<div class="space-y-1">
+<div class="flex items-center gap-3">
+<h3 class="text-4xl font-extrabold tracking-tighter">Overall AI Accuracy: 84%</h3>
+<div class="flex items-center bg-white/20 px-2 py-0.5 rounded text-sm font-bold text-tertiary-fixed">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>
+                                13%
+                            </div>
+</div>
+<p class="text-on-primary-container text-sm font-medium">Up from 71% at launch (Jun 2025)</p>
+</div>
+<div class="flex gap-8 border-l border-white/20 pl-8">
+<div>
+<p class="text-xs uppercase tracking-widest text-on-primary-container mb-1">Assessment</p>
+<p class="text-2xl font-bold">86%</p>
+</div>
+<div>
+<p class="text-xs uppercase tracking-widest text-on-primary-container mb-1">Matching</p>
+<p class="text-2xl font-bold">82%</p>
+</div>
+<div>
+<p class="text-xs uppercase tracking-widest text-on-primary-container mb-1">Verification</p>
+<p class="text-2xl font-bold">94%</p>
+</div>
+</div>
+</div>
+<!-- Sparkline Visualization -->
+<div class="mt-8 h-12 w-full flex items-end gap-1 opacity-40">
+<div class="bg-white flex-1 h-[20%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[25%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[22%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[35%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[40%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[38%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[55%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[62%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[58%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[75%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[80%] rounded-t-sm"></div>
+<div class="bg-white flex-1 h-[84%] rounded-t-sm"></div>
+</div>
+</section>
+<!-- ROW 1 -->
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-6">
+<!-- 2. Assessment Accuracy Over Time (60%) -->
+<div class="lg:col-span-6 bg-white rounded-xl p-7 border border-slate-200 shadow-sm">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="text-lg font-bold text-slate-900 tracking-tight">Assessment Accuracy Over Time</h4>
+<p class="text-xs text-slate-500">Historical performance by core specialisation</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span><span class="text-[10px] font-bold text-slate-600 uppercase">Overall</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span><span class="text-[10px] font-bold text-slate-600 uppercase">ICT</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-secondary"></span><span class="text-[10px] font-bold text-slate-600 uppercase">BA</span></div>
+</div>
+</div>
+<div class="relative h-64 w-full flex items-end justify-between px-2">
+<!-- Simulated Chart Grid -->
+<div class="absolute inset-0 border-b border-slate-100 flex flex-col justify-between py-2">
+<div class="w-full border-t border-slate-100"></div>
+<div class="w-full border-t border-slate-100"></div>
+<div class="w-full border-t border-slate-100"></div>
+</div>
+<!-- Chart Logic Visual -->
+<div class="relative w-full h-full">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 1000 300">
+<path d="M0,250 L200,200 L400,150 L600,120 L800,80 L1000,50" fill="none" stroke="#003e99" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0,260 L200,220 L400,180 L600,140 L800,100 L1000,70" fill="none" stroke="#22c55e" stroke-dasharray="8 4" stroke-width="2"></path>
+<path d="M0,270 L200,230 L400,190 L600,160 L800,110 L1000,85" fill="none" stroke="#00677f" stroke-width="2"></path>
+<!-- Markers -->
+<circle cx="0" cy="250" fill="#003e99" r="4"></circle>
+<text fill="#64748b" font-size="12" font-weight="bold" text-anchor="middle" x="0" y="280">Jun 25</text>
+<circle cx="200" cy="200" fill="#003e99" r="4"></circle>
+<text fill="#003e99" font-size="10" font-weight="bold" text-anchor="middle" x="200" y="180">v1 Launch</text>
+<circle cx="400" cy="150" fill="#003e99" r="4"></circle>
+<text fill="#003e99" font-size="10" font-weight="bold" text-anchor="middle" x="400" y="130">v1.1 Feedback</text>
+<circle cx="800" cy="80" fill="#003e99" r="4"></circle>
+<text fill="#003e99" font-size="10" font-weight="bold" text-anchor="middle" x="800" y="60">v2.0 Retrained</text>
+<circle cx="1000" cy="50" fill="#003e99" r="6"></circle>
+<text fill="#003e99" font-size="10" font-weight="bold" text-anchor="end" x="1000" y="30">v2.1 Latest (Mar 26)</text>
+</svg>
+</div>
+</div>
+</div>
+<!-- 3. Prediction vs Outcome Card (40%) -->
+<div class="lg:col-span-4 bg-white rounded-xl p-7 border border-slate-200 shadow-sm flex flex-col">
+<h4 class="text-lg font-bold text-slate-900 tracking-tight mb-6">Prediction vs Outcome</h4>
+<div class="flex-1">
+<table class="w-full text-left">
+<thead class="border-b border-slate-100">
+<tr>
+<th class="py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider">AI Predicted</th>
+<th class="py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-right">Completed</th>
+<th class="py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-right">Dropped</th>
+<th class="py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-right">Accuracy</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr>
+<td class="py-4 font-semibold text-slate-700 text-sm">High <span class="text-xs text-slate-400 font-normal">&gt;80%</span></td>
+<td class="py-4 text-right text-sm font-medium">142</td>
+<td class="py-4 text-right text-sm font-medium text-slate-400">18</td>
+<td class="py-4 text-right"><span class="text-sm font-bold text-green-600">89%</span></td>
+</tr>
+<tr>
+<td class="py-4 font-semibold text-slate-700 text-sm">Medium <span class="text-xs text-slate-400 font-normal">60-80%</span></td>
+<td class="py-4 text-right text-sm font-medium">67</td>
+<td class="py-4 text-right text-sm font-medium text-slate-400">28</td>
+<td class="py-4 text-right"><span class="text-sm font-bold text-amber-600">71%</span></td>
+</tr>
+<tr>
+<td class="py-4 font-semibold text-slate-700 text-sm">Low <span class="text-xs text-slate-400 font-normal">&lt;60%</span></td>
+<td class="py-4 text-right text-sm font-medium">12</td>
+<td class="py-4 text-right text-sm font-medium text-slate-400">31</td>
+<td class="py-4 text-right"><span class="text-sm font-bold text-green-600">72%</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-6 p-4 bg-blue-50 rounded-lg flex gap-3 items-start border border-blue-100">
+<span class="material-symbols-outlined text-blue-700 text-xl">verified</span>
+<p class="text-xs text-blue-900 leading-relaxed">
+<strong>Insight:</strong> Model strongest at identifying high-suitability candidates (89%). This allows for automated fast-tracking for top-tier profiles.
+                        </p>
+</div>
+</div>
+</div>
+<!-- ROW 2 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- 4. Override Rate Card -->
+<div class="bg-white rounded-xl p-7 border border-slate-200 shadow-sm flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1 space-y-2 text-center md:text-left">
+<h4 class="text-lg font-bold text-slate-900 tracking-tight">Override Rate</h4>
+<p class="text-5xl font-extrabold text-blue-900 tracking-tighter">18%</p>
+<p class="text-xs font-medium text-slate-500 flex items-center justify-center md:justify-start gap-1">
+<span class="material-symbols-outlined text-green-500 text-sm">arrow_downward</span>
+                            Down from 31% at launch
+                        </p>
+<div class="pt-4 space-y-3">
+<div class="flex justify-between items-center text-xs">
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-600"></span>Approved as-is</span>
+<span class="font-bold">82%</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-teal-500"></span>Course override</span>
+<span class="font-bold">12%</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Score adjustment</span>
+<span class="font-bold">4%</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span>Rejected</span>
+<span class="font-bold">2%</span>
+</div>
+</div>
+</div>
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-slate-100" cx="96" cy="96" fill="transparent" r="70" stroke="currentColor" stroke-width="20"></circle>
+<circle class="text-blue-600" cx="96" cy="96" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="79" stroke-width="20"></circle>
+<circle class="text-teal-500" cx="96" cy="96" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="387" stroke-width="20"></circle>
+</svg>
+<div class="absolute text-center">
+<span class="material-symbols-outlined text-slate-300 block">psychology</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Trust level</span>
+</div>
+</div>
+</div>
+<!-- 5. Programme Accuracy Card -->
+<div class="bg-white rounded-xl p-7 border border-slate-200 shadow-sm">
+<h4 class="text-lg font-bold text-slate-900 tracking-tight mb-6">Programme Performance</h4>
+<div class="space-y-1">
+<!-- Row 1 -->
+<div class="flex items-center justify-between py-4 border-b border-slate-50 group hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-800">ICT Career Conversion</p>
+<p class="text-[10px] text-slate-500">High volume specialisation</p>
+</div>
+<div class="w-24 px-4">
+<p class="text-lg font-extrabold text-blue-900">87%</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center text-green-600 bg-green-50 px-2 py-0.5 rounded text-[10px] font-bold">
+<span class="material-symbols-outlined text-xs mr-1">trending_up</span>
+                                    IMPROVING
+                                </div>
+<div class="w-12 h-6 flex items-end gap-0.5">
+<div class="w-1.5 h-[60%] bg-slate-200"></div>
+<div class="w-1.5 h-[65%] bg-slate-200"></div>
+<div class="w-1.5 h-[80%] bg-green-500"></div>
+</div>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="flex items-center justify-between py-4 border-b border-slate-50 group hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-800">Business Analyst Cert</p>
+<p class="text-[10px] text-slate-500">Manual review mandatory</p>
+</div>
+<div class="w-24 px-4">
+<p class="text-lg font-extrabold text-blue-900">84%</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center text-blue-600 bg-blue-50 px-2 py-0.5 rounded text-[10px] font-bold">
+<span class="material-symbols-outlined text-xs mr-1">trending_flat</span>
+                                    STABLE
+                                </div>
+<div class="w-12 h-6 flex items-end gap-0.5">
+<div class="w-1.5 h-[85%] bg-slate-200"></div>
+<div class="w-1.5 h-[84%] bg-blue-500"></div>
+<div class="w-1.5 h-[84%] bg-blue-500"></div>
+</div>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="flex items-center justify-between py-4 group hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-800">Digital Marketing</p>
+<p class="text-[10px] text-slate-500">Creative baseline drift</p>
+</div>
+<div class="w-24 px-4">
+<p class="text-lg font-extrabold text-blue-900">81%</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center text-green-600 bg-green-50 px-2 py-0.5 rounded text-[10px] font-bold">
+<span class="material-symbols-outlined text-xs mr-1">trending_up</span>
+                                    IMPROVING
+                                </div>
+<div class="w-12 h-6 flex items-end gap-0.5">
+<div class="w-1.5 h-[50%] bg-slate-200"></div>
+<div class="w-1.5 h-[65%] bg-slate-200"></div>
+<div class="w-1.5 h-[72%] bg-green-500"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ROW 3: Feedback Impact Timeline -->
+<section class="bg-white rounded-xl border border-slate-200 shadow-sm">
+<div class="p-7 border-b border-slate-100 flex justify-between items-center">
+<div>
+<h4 class="text-lg font-bold text-slate-900 tracking-tight">Feedback Impact Timeline</h4>
+<p class="text-xs text-slate-500">Tracking how human signals retrain the core model</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">timeline</span>
+</div>
+<div class="p-8">
+<div class="relative flex justify-between">
+<!-- Connecting Line -->
+<div class="absolute top-4 left-0 w-full h-0.5 bg-slate-100 z-0"></div>
+<!-- Node 1 -->
+<div class="relative z-10 w-1/4 flex flex-col items-center text-center px-4">
+<div class="w-8 h-8 rounded-full bg-amber-100 border-4 border-white shadow-sm flex items-center justify-center mb-4">
+<div class="w-2.5 h-2.5 bg-amber-500 rounded-full"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Oct 2025</p>
+<p class="text-xs font-semibold text-slate-800 mb-2">Pattern Flagged</p>
+<p class="text-[11px] text-slate-500 leading-relaxed italic">"5 coordinators overrode ICT→BA. Logic drift identified."</p>
+</div>
+<!-- Node 2 -->
+<div class="relative z-10 w-1/4 flex flex-col items-center text-center px-4">
+<div class="w-8 h-8 rounded-full bg-blue-100 border-4 border-white shadow-sm flex items-center justify-center mb-4">
+<div class="w-2.5 h-2.5 bg-blue-500 rounded-full"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Nov 2025</p>
+<p class="text-xs font-semibold text-slate-800 mb-2">Model Retrained</p>
+<p class="text-[11px] text-slate-500 leading-relaxed">Infused with retail-to-BA career transfer datasets.</p>
+</div>
+<!-- Node 3 -->
+<div class="relative z-10 w-1/4 flex flex-col items-center text-center px-4">
+<div class="w-8 h-8 rounded-full bg-green-100 border-4 border-white shadow-sm flex items-center justify-center mb-4">
+<div class="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Jan 2026</p>
+<p class="text-xs font-semibold text-slate-800 mb-2">Validation Success</p>
+<p class="text-[11px] text-slate-500 leading-relaxed">Retail background accuracy jumped: <span class="font-bold text-green-600">68%→84%</span></p>
+</div>
+<!-- Node 4 -->
+<div class="relative z-10 w-1/4 flex flex-col items-center text-center px-4">
+<div class="w-8 h-8 rounded-full bg-green-500 border-4 border-white shadow-lg flex items-center justify-center mb-4">
+<div class="w-2.5 h-2.5 bg-white rounded-full"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Mar 2026</p>
+<p class="text-xs font-semibold text-slate-800 mb-2">v2.1 Deployed</p>
+<p class="text-[11px] text-slate-500 leading-relaxed">Override rate dropped to 18% record low.</p>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 px-8 py-4 rounded-b-xl flex justify-between items-center">
+<div class="flex items-center gap-6">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of an asian woman smiling in a corporate setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR18brsi6UE6OOVlRY1Z1ZNzVBEEKNp1eRKYTqoy3Vm0ZsM4WQawztEWN5IF7SZhpLkhp5Az9uGwM0U5bH4ADk3_iYzeDYL6_ezgrXPwZsbFanTGf-jRj-UvIYYUez3wU-M0g82XVDqWjT8BecNaU_x_GOfLDcb47Pj8XaG2MmEccnWiBcOzbt4U7B6b1irOO_MvdQ-uAjInOG-DK4gWnRvcDdqAAbsYImuoCWodgnbpDzqZA9YzvtUZCD_RFuko5PH2LuZXExOF4"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a man in a white shirt and glasses looking focused" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZicvWcOrc9W6IO_AtrQlH3PUR4-BBIgnOi4AwXscItXJJNTgphBAAz6i0wtg5Snu4qs2yQuibKwmscaQpjHMYUPd2iIy-sZWrOXDizACjVpBySNbClPLgoxNg29Fdc4Vk7CdY6CSxB22t0RlKGZA7qMm7AzPvocvXuZp2nDL1n--pHXdgPzoI-qnMN0gt4V0FmIG45EiZ3QsC_yTMhV7yygt6zQ2WXoReIfv1RQfasZZbvbHmlSDPsiWdRoH7j-_hALhvlSaCPEY"/>
+</div>
+</div>
+<p class="text-[11px] text-slate-500">
+<strong>Top Contributors:</strong> <span class="text-slate-900 font-bold">Sarah Tan</span> (45 signals), <span class="text-slate-900 font-bold">James Lim</span> (32 signals)
+                        </p>
+</div>
+<button class="text-[11px] font-bold text-blue-800 uppercase tracking-widest hover:underline">View Full Logs</button>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t-0 py-3 px-6 flex justify-between items-center z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.06)]">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-slate-400">dashboard</span>
+<span class="text-[10px] font-medium text-slate-400">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-slate-400">account_tree</span>
+<span class="text-[10px] font-medium text-slate-400">Progs</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-blue-800">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="text-[10px] font-bold">Insights</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">description</span>
+<span class="text-[10px] font-medium">Docs</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Set</span>
+</div>
+</nav>
+</body></html>

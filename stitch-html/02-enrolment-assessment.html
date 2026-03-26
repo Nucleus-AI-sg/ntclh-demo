@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-gray-50" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enrolment &amp; AI Assessment | Nucleus AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="h-full overflow-hidden flex">
+<!-- SideNavBar Component (Fixed Left) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col overflow-y-auto bg-white dark:bg-gray-900 h-screen w-64 border-r border-gray-200 dark:border-gray-800 z-50">
+<div class="p-6">
+<span class="text-lg font-black text-blue-600 dark:text-blue-400 tracking-tighter">NUCLEUS AI</span>
+</div>
+<nav class="flex-1 px-4 space-y-8">
+<!-- OPERATIONS GROUP -->
+<div>
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">OPERATIONS</p>
+<div class="space-y-1">
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+                        Dashboard
+                    </a>
+<a class="flex items-center px-3 py-2 text-sm rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-4 border-blue-600 font-bold hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="how_to_reg">how_to_reg</span>
+                        Enrolment
+                    </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="location_searching">location_searching</span>
+                        Tracking
+                    </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="handshake">handshake</span>
+                        Matching
+                    </a>
+</div>
+</div>
+<!-- MANAGEMENT GROUP -->
+<div>
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">MANAGEMENT</p>
+<div class="space-y-1">
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="account_tree">account_tree</span>
+                        Programmes
+                    </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="domain">domain</span>
+                        Employers
+                    </a>
+</div>
+</div>
+<!-- INTELLIGENCE GROUP -->
+<div>
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">INTELLIGENCE</p>
+<div class="space-y-1">
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="analytics">analytics</span>
+                        Analytics
+                    </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="psychology">psychology</span>
+                        AI Insights
+                    </a>
+</div>
+</div>
+</nav>
+<div class="p-4 border-t border-gray-200 dark:border-gray-800">
+<div class="flex items-center">
+<img alt="Sarah Tan" class="h-9 w-9 rounded-full bg-gray-200" data-alt="professional portrait of Sarah Tan, a Programme Coordinator with a confident expression and professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB68HaUqv_BMmNgTUNBHotT9oHaTVEDUXSUcrWDONw9ICAy_IzMQ6NKkxU48yvP8qUI67xqLSI_Zpw0EkvycLrALt395P_PkB7LbsDMDvp3P1z-b38jp9pp3nkcqfyNDJKMuR_P6_NrV-gfI1YZlLEvDqju1QQq3Ck5ucFvl9qZ_LAROnBcjpGlm2SIB7pnHGIp4Ph-FxWXEw_QVwFcMF4JjcqFLN12voESEL2Q3X5SgMAZNWsuxBTzCKCKs1ur_B_6JGpdhXhgkDg"/>
+<div class="ml-3">
+<p class="text-sm font-bold text-gray-900 dark:text-white">Sarah Tan</p>
+<p class="text-xs text-gray-500">Programme Coordinator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 ml-64 flex flex-col h-screen">
+<!-- TopAppBar Component -->
+<header class="sticky top-0 z-40 flex items-center justify-between px-8 h-16 w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+<div class="flex flex-col">
+<nav aria-label="Breadcrumb" class="flex text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+<ol class="flex items-center space-x-2">
+<li>DASHBOARD</li>
+<li class="flex items-center">
+<span class="material-symbols-outlined text-[14px] mx-1">chevron_right</span>
+<span class="text-blue-600">ENROLMENT</span>
+</li>
+</ol>
+</nav>
+<h1 class="text-xl font-bold text-gray-900 dark:text-white leading-tight">Enrolment &amp; AI Assessment</h1>
+</div>
+<div class="flex items-center space-x-3">
+<button class="px-4 py-2 text-sm font-semibold text-blue-600 border border-blue-600 rounded hover:bg-blue-50 transition-colors">
+                    Export Queue
+                </button>
+<button class="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700 shadow-sm transition-colors">
+                    Bulk Actions
+                </button>
+<div class="h-6 w-px bg-gray-200 mx-2"></div>
+<button class="p-2 text-gray-400 hover:text-gray-600">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-gray-600">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+</header>
+<!-- Master-Detail Canvas -->
+<div class="flex-1 flex overflow-hidden">
+<!-- LEFT PANEL: Application Queue (30%) -->
+<section class="w-1/3 flex flex-col border-r border-gray-200 bg-gray-50/50 overflow-y-auto">
+<div class="p-4 border-b border-gray-200 bg-white flex justify-between items-center">
+<h2 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Application Queue</h2>
+<span class="text-xs font-medium text-gray-400">12 Pending</span>
+</div>
+<div class="divide-y divide-gray-200">
+<!-- Selected Card: Marcus Lee -->
+<div class="p-4 bg-white border-l-4 border-blue-600 shadow-sm relative cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-gray-900">Marcus Lee</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 uppercase">NEW</span>
+</div>
+<div class="flex items-center text-xs text-gray-500 mb-3">
+<span class="material-symbols-outlined text-sm mr-1">calendar_today</span> 1 Feb 2026
+                            <span class="mx-2">•</span> ICT Sector
+                        </div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<span class="text-sm font-black text-green-600 bg-green-50 px-2 py-1 rounded">82</span>
+<span class="text-[10px] text-gray-400 ml-2 uppercase font-bold">AI Score</span>
+</div>
+<span class="material-symbols-outlined text-blue-600">chevron_right</span>
+</div>
+</div>
+<!-- Card: Jennifer Ng -->
+<div class="p-4 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-gray-700 group-hover:text-gray-900">Jennifer Ng</h3>
+</div>
+<div class="flex items-center text-xs text-gray-500 mb-3">
+<span class="material-symbols-outlined text-sm mr-1">calendar_today</span> 31 Jan 2026
+                            <span class="mx-2">•</span> Finance
+                        </div>
+<div class="flex items-center">
+<span class="text-sm font-black text-green-600 bg-green-50 px-2 py-1 rounded">91</span>
+<span class="text-[10px] text-gray-400 ml-2 uppercase font-bold">AI Score</span>
+</div>
+</div>
+<!-- Card: Kumar Raj -->
+<div class="p-4 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-gray-700 group-hover:text-gray-900">Kumar Raj</h3>
+</div>
+<div class="flex items-center text-xs text-gray-500 mb-3">
+<span class="material-symbols-outlined text-sm mr-1">calendar_today</span> 30 Jan 2026
+                            <span class="mx-2">•</span> Logistics
+                        </div>
+<div class="flex items-center">
+<span class="text-sm font-black text-amber-600 bg-amber-50 px-2 py-1 rounded">74</span>
+<span class="text-[10px] text-gray-400 ml-2 uppercase font-bold">AI Score</span>
+</div>
+</div>
+<!-- Card: Amy Lim -->
+<div class="p-4 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-gray-700 group-hover:text-gray-900">Amy Lim</h3>
+</div>
+<div class="flex items-center text-xs text-gray-500 mb-3">
+<span class="material-symbols-outlined text-sm mr-1">calendar_today</span> 30 Jan 2026
+                            <span class="mx-2">•</span> Healthcare
+                        </div>
+<div class="flex items-center">
+<span class="text-sm font-black text-green-600 bg-green-50 px-2 py-1 rounded">88</span>
+<span class="text-[10px] text-gray-400 ml-2 uppercase font-bold">AI Score</span>
+</div>
+</div>
+<!-- Card: David Ong -->
+<div class="p-4 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-gray-700 group-hover:text-gray-900">David Ong</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700 uppercase">FOLLOW-UP</span>
+</div>
+<div class="flex items-center text-xs text-gray-500 mb-3">
+<span class="material-symbols-outlined text-sm mr-1">calendar_today</span> 29 Jan 2026
+                            <span class="mx-2">•</span> Retail
+                        </div>
+<div class="flex items-center">
+<span class="text-sm font-black text-red-600 bg-red-50 px-2 py-1 rounded">52</span>
+<span class="text-[10px] text-gray-400 ml-2 uppercase font-bold">AI Score</span>
+</div>
+</div>
+<!-- Card: Mei Lin -->
+<div class="p-4 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-gray-700 group-hover:text-gray-900">Mei Lin</h3>
+</div>
+<div class="flex items-center text-xs text-gray-500 mb-3">
+<span class="material-symbols-outlined text-sm mr-1">calendar_today</span> 28 Jan 2026
+                            <span class="mx-2">•</span> Manufacturing
+                        </div>
+<div class="flex items-center">
+<span class="text-sm font-black text-amber-600 bg-amber-50 px-2 py-1 rounded">79</span>
+<span class="text-[10px] text-gray-400 ml-2 uppercase font-bold">AI Score</span>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT PANEL: Detail View (70%) -->
+<section class="flex-1 overflow-y-auto bg-white">
+<div class="max-w-5xl mx-auto p-8">
+<!-- Detail Header -->
+<div class="flex justify-between items-start mb-8">
+<div class="flex items-center">
+<img alt="Marcus Lee" class="h-16 w-16 rounded-xl object-cover shadow-md" data-alt="professional headshot of a middle-aged Asian man with glasses and a friendly smile, Marcus Lee" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2tnRQ7ljmu3XnM5XrWwU_YrsPrCHinZl_bGINZKKb99EGd_79jv7wTEoPqqOSC5KqU4kMZ7gjvrTLz0RSA161VajTqPzvgXCOIhfZykL3PhNmq8ClqzOazfXGe0DhR0C61q0LWemBagKHLGa7J4Hvc3l2KxZprcNRG7g61gGTREJ-O6yb5OAYX1xpf_zext-0tERbZXyDuzwj8pfpr_KZF0xEyBROEHXEO-jiOmVHqxmpCPg2KihnwgFq8sQFNN_5K7nOvTbXxck"/>
+<div class="ml-5">
+<div class="flex items-center">
+<h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Marcus Lee</h2>
+<span class="ml-3 flex items-center px-2 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100">
+<span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                        SingPass Verified
+                                    </span>
+</div>
+<div class="flex items-center mt-2 text-sm text-gray-500 font-medium">
+<span>Age 35</span>
+<span class="mx-2">•</span>
+<span>Contact: +65 **** 8829</span>
+<span class="mx-2">•</span>
+<span class="flex items-center"><span class="material-symbols-outlined text-sm mr-1">location_on</span> Tampines, Singapore</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Application ID</p>
+<p class="font-mono text-sm font-bold text-gray-900">#NUC-2026-04221</p>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-6">
+<!-- Section 1: Background Summary -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+<h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center">
+<span class="material-symbols-outlined text-sm mr-2 text-blue-600">history_edu</span>
+                                    Background
+                                </h3>
+<div class="space-y-4">
+<div>
+<p class="text-[10px] font-bold text-gray-400 uppercase">Education</p>
+<p class="text-sm font-semibold text-gray-800">SIM University (2013)</p>
+<p class="text-xs text-gray-500">Bachelor of Business Admin</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-gray-400 uppercase">Experience</p>
+<p class="text-sm font-semibold text-gray-800">Retail Manager</p>
+<p class="text-xs text-gray-500">NTUC FairPrice • 10 years</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-gray-400 uppercase">Transition Goals</p>
+<p class="text-sm font-medium text-gray-700 leading-relaxed italic">"Seeking to pivot into Tech/Data analytics role to future-proof career."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: AI Assessment Panel -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-blue-50/50 border border-blue-100 rounded-xl p-6 relative overflow-hidden">
+<!-- Background Texture Decor -->
+<div class="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+<div class="flex items-start justify-between relative z-10">
+<div>
+<h3 class="text-xs font-black text-blue-700 uppercase tracking-widest mb-4 flex items-center">
+<span class="material-symbols-outlined text-sm mr-2" style="font-variation-settings: 'FILL' 1;">psychology</span>
+                                            AI Assessment Detail
+                                        </h3>
+<p class="text-sm font-bold text-gray-900 mb-1">Recommended Track:</p>
+<p class="text-2xl font-black text-blue-800">Business Analyst Certification</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="relative flex items-center justify-center w-24 h-24">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-blue-100" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-blue-600" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="45.2" stroke-width="8"></circle>
+</svg>
+<span class="absolute text-xl font-black text-blue-700">82</span>
+</div>
+<span class="mt-2 text-[10px] font-bold text-blue-600 bg-white px-2 py-0.5 rounded shadow-sm">HIGH CONFIDENCE</span>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-6 relative z-10">
+<div>
+<p class="text-[10px] font-bold text-blue-700 uppercase mb-2">AI Reasoning</p>
+<ul class="space-y-2">
+<li class="flex items-start text-xs text-gray-700">
+<span class="material-symbols-outlined text-blue-500 text-[14px] mt-0.5 mr-2">check_circle</span>
+                                                Strong operational oversight experience translates well to process mapping.
+                                            </li>
+<li class="flex items-start text-xs text-gray-700">
+<span class="material-symbols-outlined text-blue-500 text-[14px] mt-0.5 mr-2">check_circle</span>
+                                                10-year tenure at FairPrice indicates high reliability and domain knowledge.
+                                            </li>
+</ul>
+</div>
+<div>
+<p class="text-[10px] font-bold text-blue-700 uppercase mb-2">Transferable Skills</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-white border border-blue-100 rounded text-[10px] font-semibold text-blue-700 uppercase tracking-tight">Stakeholder Mgmt</span>
+<span class="px-2 py-1 bg-white border border-blue-100 rounded text-[10px] font-semibold text-blue-700 uppercase tracking-tight">Inventory Logic</span>
+<span class="px-2 py-1 bg-white border border-blue-100 rounded text-[10px] font-semibold text-blue-700 uppercase tracking-tight">Team Leadership</span>
+<span class="px-2 py-1 bg-white border border-blue-100 rounded text-[10px] font-semibold text-blue-700 uppercase tracking-tight">Risk Assessment</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Career Roadmap Timeline -->
+<div class="col-span-12">
+<div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+<h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-8 flex items-center">
+<span class="material-symbols-outlined text-sm mr-2 text-teal-600">route</span>
+                                    Projected Career Roadmap
+                                </h3>
+<div class="relative px-4">
+<!-- Horizontal Line -->
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -translate-y-1/2"></div>
+<div class="relative flex justify-between">
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center max-w-[120px]">
+<div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold z-10 shadow-lg mb-3">1</div>
+<p class="text-[10px] font-bold text-gray-400 uppercase mb-1">Current</p>
+<p class="text-xs font-bold text-gray-800">Retail Manager</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center max-w-[120px]">
+<div class="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold z-10 shadow-lg mb-3">2</div>
+<p class="text-[10px] font-bold text-gray-400 uppercase mb-1">6-Month Goal</p>
+<p class="text-xs font-bold text-gray-800">BA Certification</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center max-w-[120px]">
+<div class="w-10 h-10 bg-gray-100 border-2 border-dashed border-gray-300 rounded-full flex items-center justify-center text-gray-400 font-bold z-10 mb-3">3</div>
+<p class="text-[10px] font-bold text-gray-400 uppercase mb-1">Target Role</p>
+<p class="text-xs font-bold text-gray-800">Junior BA</p>
+</div>
+<!-- Step 4: Salary Target -->
+<div class="bg-teal-50 border border-teal-100 rounded-lg p-4 self-center flex items-center">
+<div class="mr-4">
+<p class="text-[10px] font-black text-teal-700 uppercase tracking-tighter">Salary Target</p>
+<p class="text-xl font-black text-teal-800">$4,200 - $5,500</p>
+</div>
+<span class="material-symbols-outlined text-teal-500" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Actions -->
+<div class="col-span-12 mt-4 pt-8 border-t border-gray-100">
+<div class="flex items-center justify-end space-x-4">
+<button class="px-6 py-2.5 text-sm font-bold text-red-600 border-2 border-red-600 rounded hover:bg-red-50 transition-colors">
+                                    Reject
+                                </button>
+<button class="px-6 py-2.5 text-sm font-bold text-gray-500 bg-gray-100 rounded hover:bg-gray-200 transition-colors">
+                                    Request More Info
+                                </button>
+<button class="px-6 py-2.5 text-sm font-bold text-blue-600 border-2 border-blue-600 rounded hover:bg-blue-50 transition-colors">
+                                    Approve with Override
+                                </button>
+<button class="px-10 py-2.5 text-sm font-bold text-white bg-green-600 rounded shadow-md hover:bg-green-700 transition-colors flex items-center">
+<span class="material-symbols-outlined mr-2">check</span>
+                                    Approve Enrolment
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

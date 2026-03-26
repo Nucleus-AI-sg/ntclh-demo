@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nucleus AI - Communications Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#76d6d5",
+                        "surface-variant": "#e1e2ed",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "outline": "#727786",
+                        "secondary-container": "#90efef",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191b23",
+                        "on-surface-variant": "#424655",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dae2ff",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "outline-variant": "#c2c6d7",
+                        "tertiary": "#9f3c00",
+                        "on-tertiary-container": "#fffaff",
+                        "inverse-on-surface": "#eff0fc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#001946",
+                        "surface-tint": "#0057cf",
+                        "on-secondary-fixed": "#002020",
+                        "secondary-fixed": "#93f2f2",
+                        "primary-container": "#1a6cf4",
+                        "tertiary-container": "#c74d00",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d8d9e5",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-primary-fixed-variant": "#00419e",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "on-secondary-container": "#006e6e",
+                        "primary": "#0054c9",
+                        "secondary": "#006a6a",
+                        "surface-container": "#ecedf9",
+                        "surface": "#faf8ff",
+                        "inverse-primary": "#b1c5ff",
+                        "surface-container-low": "#f2f3fe",
+                        "background": "#faf8ff",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-background": "#191b23",
+                        "surface-container-highest": "#e1e2ed",
+                        "surface-container-high": "#e6e7f3",
+                        "surface-bright": "#faf8ff",
+                        "inverse-surface": "#2e3039",
+                        "on-primary-container": "#fdfbff"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- SIDEBAR -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900 flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-black tracking-tighter text-blue-700 dark:text-blue-400">NUCLEUS AI</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-1">Enterprise Hub</p>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+<span class="text-sm font-medium">Programmes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="business">business</span>
+<span class="text-sm font-medium">Employers</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2 text-blue-700 dark:text-blue-400 font-bold border-r-4 border-blue-700 bg-blue-50 dark:bg-blue-900/20 rounded-l-lg" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-sm">Communications</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-sm font-medium">Documents</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="text-sm font-medium">Intelligence</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm font-medium">System</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<div class="flex items-center gap-3 p-2 bg-slate-100 dark:bg-slate-800/50 rounded-xl">
+<img alt="Sarah Tan" class="w-8 h-8 rounded-full object-cover" data-alt="professional portrait of a confident Asian business woman with glasses in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhwO2MabqaUmuE0BnRcDCKCyI5ylugMEKYL-zU2srTSlELC-e_pMyroYCJRUR703OBVk7pZHpaveIWtfU8Czh97iZBsvPIpxL_vDEyupWT1J2mooLbM9bW__0SuhI4X8-P1qAc9apcc2NHy3_Y3WXh6ydhRKQMPLyiRDvKC3AGkI_i4nOR0PyZoMnFiGO-YDXRkGoIvoi5B-EsLbzuWcTg3PpijnXzHTENp1hv99D1coNdezUpPiu5Oq4ysxQ7Sy0QPGuw870Oisc"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Sarah Tan</p>
+<p class="text-[10px] text-slate-500 truncate">Program Director</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN CANVAS -->
+<main class="ml-64 min-h-screen">
+<!-- TOP APP BAR -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800/50 flex justify-between items-center h-16 px-8">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 text-[10px] font-bold text-slate-400 tracking-widest uppercase">
+<span>Dashboard</span>
+<span class="material-symbols-outlined text-[12px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-blue-700">Communications</span>
+</div>
+<h2 class="text-lg font-extrabold tracking-tight text-on-surface">Communications Hub</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm" data-icon="search">search</span>
+<input class="w-full bg-surface-container-highest border-none rounded-full py-1.5 pl-10 pr-4 text-xs focus:ring-2 focus:ring-primary/20" placeholder="Search interactions..." type="text"/>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2 rounded-xl text-sm font-bold shadow-sm hover:opacity-90 transition-opacity">
+                    Create Campaign
+                </button>
+</div>
+</header>
+<!-- CONTENT AREA -->
+<div class="pt-24 pb-12 px-8">
+<!-- TABS -->
+<div class="flex gap-8 border-b border-surface-container-high mb-8">
+<button class="pb-4 text-sm font-bold border-b-2 border-primary text-primary">Activity Feed</button>
+<button class="pb-4 text-sm font-medium text-slate-400 hover:text-on-surface transition-colors">Automated Sequences</button>
+<button class="pb-4 text-sm font-medium text-slate-400 hover:text-on-surface transition-colors">Templates</button>
+<button class="pb-4 text-sm font-medium text-slate-400 hover:text-on-surface transition-colors">Campaigns</button>
+<button class="pb-4 text-sm font-medium text-slate-400 hover:text-on-surface transition-colors">Analytics</button>
+</div>
+<!-- ROW 1: CHANNEL SUMMARY -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+<!-- Email Card -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border-l-4 border-primary">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Email</span>
+<h3 class="text-2xl font-black text-on-surface">156 <span class="text-xs font-normal text-slate-400">Sent</span></h3>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Delivered</span>
+<span class="font-bold">95%</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Opened</span>
+<span class="font-bold">60%</span>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs font-bold text-primary">34% response rate</span>
+<div class="flex-1 h-1 bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[34%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- SMS Card -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border-l-4 border-green-500">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-green-50 p-2 rounded-lg text-green-600">
+<span class="material-symbols-outlined" data-icon="sms">sms</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">SMS</span>
+<h3 class="text-2xl font-black text-on-surface">82 <span class="text-xs font-normal text-slate-400">Sent</span></h3>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Delivered</span>
+<span class="font-bold">98%</span>
+</div>
+<div class="mt-8 flex items-center gap-2">
+<span class="text-xs font-bold text-green-600">45% response rate</span>
+<div class="flex-1 h-1 bg-green-100 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[45%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- WhatsApp Card -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border-l-4 border-secondary">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-secondary-container/30 p-2 rounded-lg text-secondary">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">WhatsApp</span>
+<h3 class="text-2xl font-black text-on-surface">64 <span class="text-xs font-normal text-slate-400">Sent</span></h3>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Opened</span>
+<span class="font-bold">94%</span>
+</div>
+<div class="mt-8 flex items-center gap-2">
+<span class="text-xs font-bold text-secondary">62% response rate</span>
+<div class="flex-1 h-1 bg-secondary-container/50 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[62%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Phone Card -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border-l-4 border-slate-400">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-slate-100 p-2 rounded-lg text-slate-500">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Phone</span>
+<h3 class="text-2xl font-black text-on-surface">12 <span class="text-xs font-normal text-slate-400">Calls</span></h3>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Completion</span>
+<span class="font-bold">100%</span>
+</div>
+<div class="mt-8 flex items-center gap-2">
+<span class="text-xs font-bold text-slate-500">83% response rate</span>
+<div class="flex-1 h-1 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-slate-400 w-[83%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ROW 2: FILTERS -->
+<div class="flex flex-wrap items-center gap-4 mb-6">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full text-xs font-bold text-on-surface">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                    Filters
+                </div>
+<select class="bg-surface-container-low border-none rounded-full text-xs font-medium px-4 py-2 focus:ring-primary/20">
+<option>Channel: All</option>
+<option>Email</option>
+<option>SMS</option>
+<option>WhatsApp</option>
+</select>
+<select class="bg-surface-container-low border-none rounded-full text-xs font-medium px-4 py-2 focus:ring-primary/20">
+<option>Status: All</option>
+<option>Delivered</option>
+<option>Failed</option>
+</select>
+<select class="bg-surface-container-low border-none rounded-full text-xs font-medium px-4 py-2 focus:ring-primary/20">
+<option>Recipient: All Types</option>
+<option>Candidate</option>
+<option>Employer</option>
+</select>
+<select class="bg-surface-container-low border-none rounded-full text-xs font-medium px-4 py-2 focus:ring-primary/20">
+<option>Trigger: All</option>
+<option>Automated</option>
+<option>Manual</option>
+<option>Campaign</option>
+</select>
+<div class="flex items-center gap-2 ml-auto px-4 py-2 bg-surface-container-low rounded-full text-xs font-medium">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
+                    Mar 14 - Mar 24, 2026
+                </div>
+</div>
+<!-- ROW 3: TIMELINE -->
+<div class="space-y-4">
+<!-- Timeline Header -->
+<div class="grid grid-cols-12 px-6 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+<div class="col-span-3">Recipient &amp; Subject</div>
+<div class="col-span-3">Status</div>
+<div class="col-span-2">Trigger</div>
+<div class="col-span-2">Channel</div>
+<div class="col-span-2 text-right">Timestamp</div>
+</div>
+<!-- 1. Marcus Lee -->
+<div class="grid grid-cols-12 items-center bg-surface-container-lowest p-6 rounded-xl hover:bg-white transition-all cursor-pointer group shadow-sm border border-transparent hover:border-outline-variant/20">
+<div class="col-span-3 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-sm">ML</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Marcus Lee</p>
+<p class="text-xs text-slate-500 truncate max-w-[200px]">Training schedule update - Module 3 starts Monday</p>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-4">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 rounded-full text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle">check_circle</span>
+                            DELIVERED
+                        </div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]" data-icon="visibility">visibility</span>
+                            OPENED
+                        </div>
+</div>
+<div class="col-span-2">
+<span class="text-xs font-semibold px-3 py-1 bg-slate-100 rounded-full text-slate-600">Automated</span>
+</div>
+<div class="col-span-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+<span class="text-xs font-medium">Email</span>
+</div>
+</div>
+<div class="col-span-2 text-right">
+<p class="text-xs font-bold text-on-surface">24 Mar 10:00</p>
+<p class="text-[10px] text-slate-400">Today</p>
+</div>
+</div>
+<!-- 2. Lisa Koh -->
+<div class="grid grid-cols-12 items-center bg-surface-container-lowest p-6 rounded-xl border border-tertiary/20">
+<div class="col-span-3 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 font-bold text-sm">LK</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Lisa Koh</p>
+<p class="text-xs text-slate-500 truncate max-w-[200px]">Reminder: Please submit your employment documents</p>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-4">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 rounded-full text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle">check_circle</span>
+                            DELIVERED
+                        </div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-tertiary-fixed text-tertiary font-black rounded-full text-[10px]">
+<span class="material-symbols-outlined text-[12px]" data-icon="warning">warning</span>
+                            NO RESPONSE (3RD)
+                        </div>
+</div>
+<div class="col-span-2">
+<span class="text-xs font-semibold px-3 py-1 bg-slate-100 rounded-full text-slate-600">Automated</span>
+</div>
+<div class="col-span-2">
+<div class="flex items-center gap-2 text-green-600">
+<span class="material-symbols-outlined text-lg" data-icon="sms">sms</span>
+<span class="text-xs font-medium">SMS</span>
+</div>
+</div>
+<div class="col-span-2 text-right">
+<p class="text-xs font-bold text-on-surface">22 Mar 14:00</p>
+<p class="text-[10px] text-slate-400">2 days ago</p>
+</div>
+</div>
+<!-- 3. David Ng -->
+<div class="grid grid-cols-12 items-center bg-surface-container-lowest p-6 rounded-xl">
+<div class="col-span-3 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary font-bold text-sm">DN</div>
+<div>
+<p class="text-sm font-bold text-on-surface">David Ng</p>
+<p class="text-xs text-slate-500 truncate max-w-[200px]">Hi David, just checking in on your document submission...</p>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-4">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 rounded-full text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]" data-icon="done_all">done_all</span>
+                            RESPONDED
+                        </div>
+</div>
+<div class="col-span-2">
+<span class="text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-700 rounded-full">Manual</span>
+</div>
+<div class="col-span-2">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-lg" data-icon="chat">chat</span>
+<span class="text-xs font-medium">WhatsApp</span>
+</div>
+</div>
+<div class="col-span-2 text-right">
+<p class="text-xs font-bold text-on-surface">20 Mar 16:30</p>
+<p class="text-[10px] text-slate-400">Last week</p>
+</div>
+</div>
+<!-- 4. Bulk - Jan 2026 Cohort -->
+<div class="grid grid-cols-12 items-center bg-surface-container-lowest p-6 rounded-xl">
+<div class="col-span-3 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">
+<span class="material-symbols-outlined text-base" data-icon="group">group</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Jan 2026 Cohort <span class="text-[10px] text-slate-400 ml-1">(22)</span></p>
+<p class="text-xs text-slate-500 truncate max-w-[200px]">Placement opportunities - March update</p>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-4">
+<div class="text-[10px] font-bold text-slate-500">
+                            20/22 <span class="text-green-600">DELIVERED</span>
+</div>
+<div class="text-[10px] font-bold text-slate-500">
+                            14/22 <span class="text-blue-600">OPENED</span>
+</div>
+</div>
+<div class="col-span-2">
+<span class="text-xs font-semibold px-3 py-1 bg-primary text-white rounded-full">Campaign</span>
+</div>
+<div class="col-span-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+<span class="text-xs font-medium">Email</span>
+</div>
+</div>
+<div class="col-span-2 text-right">
+<p class="text-xs font-bold text-on-surface">18 Mar 09:00</p>
+</div>
+</div>
+<!-- 5. TechCorp Pte Ltd -->
+<div class="grid grid-cols-12 items-center bg-surface-container-lowest p-6 rounded-xl">
+<div class="col-span-3 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold text-sm">
+<span class="material-symbols-outlined text-base" data-icon="apartment">apartment</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">TechCorp Pte Ltd</p>
+<p class="text-xs text-slate-500 truncate max-w-[200px]">Following up on submitted candidates</p>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-4">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 rounded-full text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle">check_circle</span>
+                            DELIVERED
+                        </div>
+</div>
+<div class="col-span-2">
+<span class="text-xs font-semibold px-3 py-1 bg-slate-100 rounded-full text-slate-600">Automated</span>
+</div>
+<div class="col-span-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+<span class="text-xs font-medium">Email</span>
+</div>
+</div>
+<div class="col-span-2 text-right">
+<p class="text-xs font-bold text-on-surface">17 Mar 10:00</p>
+</div>
+</div>
+<!-- 6. Kumar S. -->
+<div class="grid grid-cols-12 items-center bg-surface-container-lowest p-6 rounded-xl opacity-80">
+<div class="col-span-3 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 font-bold text-sm">KS</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Kumar S.</p>
+<p class="text-xs text-slate-500 truncate max-w-[200px]">Upload reminder - employment documents needed</p>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-4">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 rounded-full text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle">check_circle</span>
+                            DELIVERED
+                        </div>
+</div>
+<div class="col-span-2">
+<span class="text-xs font-semibold px-3 py-1 bg-slate-100 rounded-full text-slate-600">Automated</span>
+</div>
+<div class="col-span-2">
+<div class="flex items-center gap-2 text-green-600">
+<span class="material-symbols-outlined text-lg" data-icon="sms">sms</span>
+<span class="text-xs font-medium">SMS</span>
+</div>
+</div>
+<div class="col-span-2 text-right">
+<p class="text-xs font-bold text-on-surface">15 Mar 09:00</p>
+</div>
+</div>
+<!-- 7. Amy Chen -->
+<div class="grid grid-cols-12 items-center bg-surface-container-lowest p-6 rounded-xl">
+<div class="col-span-3 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary font-bold text-sm">AC</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Amy Chen</p>
+<p class="text-xs text-slate-500 truncate max-w-[200px]">Congratulations! Your employment has been verified</p>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-4">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]" data-icon="done_all" style="font-variation-settings: 'FILL' 1;">done_all</span>
+                            READ
+                        </div>
+</div>
+<div class="col-span-2">
+<span class="text-xs font-semibold px-3 py-1 bg-slate-100 rounded-full text-slate-600">Automated</span>
+</div>
+<div class="col-span-2">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-lg" data-icon="chat">chat</span>
+<span class="text-xs font-medium">WhatsApp</span>
+</div>
+</div>
+<div class="col-span-2 text-right">
+<p class="text-xs font-bold text-on-surface">14 Mar 11:00</p>
+</div>
+</div>
+</div>
+<!-- LOAD MORE -->
+<div class="mt-8 flex justify-center">
+<button class="px-6 py-2 rounded-full border border-outline-variant text-xs font-bold text-slate-500 hover:bg-surface-container-high transition-colors">
+                    Load Older Interactions
+                </button>
+</div>
+</div>
+</main>
+<!-- FLOATING ACTION BUTTON (Contextual) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</body></html>

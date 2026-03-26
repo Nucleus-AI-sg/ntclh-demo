@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nucleus AI - Programme Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#191b23",
+              "primary": "#0054c9",
+              "on-error": "#ffffff",
+              "on-secondary-fixed": "#001946",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#00419e",
+              "on-tertiary-fixed": "#001f28",
+              "secondary": "#455d96",
+              "outline": "#727786",
+              "surface-container-low": "#f2f3fe",
+              "on-primary-container": "#fdfbff",
+              "on-error-container": "#93000a",
+              "primary-container": "#1a6cf4",
+              "primary-fixed": "#dae2ff",
+              "tertiary": "#00647b",
+              "on-tertiary-fixed-variant": "#004e60",
+              "surface-tint": "#0057cf",
+              "on-secondary": "#ffffff",
+              "surface-dim": "#d8d9e5",
+              "surface-container-high": "#e6e7f3",
+              "secondary-fixed": "#dae2ff",
+              "on-tertiary": "#ffffff",
+              "on-secondary-container": "#334b83",
+              "tertiary-fixed-dim": "#86d1ec",
+              "on-surface": "#191b23",
+              "surface-container-highest": "#e1e2ed",
+              "on-tertiary-container": "#f8fcff",
+              "on-surface-variant": "#424655",
+              "error-container": "#ffdad6",
+              "inverse-on-surface": "#eff0fc",
+              "primary-fixed-dim": "#b1c5ff",
+              "on-primary-fixed": "#001946",
+              "surface-container": "#ecedf9",
+              "inverse-primary": "#b1c5ff",
+              "inverse-surface": "#2e3039",
+              "outline-variant": "#c2c6d7",
+              "background": "#faf8ff",
+              "error": "#ba1a1a",
+              "surface": "#faf8ff",
+              "tertiary-fixed": "#b6eaff",
+              "secondary-container": "#a6bdfd",
+              "surface-bright": "#faf8ff",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#2c457d",
+              "tertiary-container": "#2b7d96",
+              "secondary-fixed-dim": "#b1c5ff",
+              "surface-variant": "#e1e2ed"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- SideNavBar Component -->
+<aside class="w-64 h-screen fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900 flex flex-col h-full py-6 font-manrope antialiased tracking-tight z-50">
+<div class="px-6 mb-8">
+<span class="text-2xl font-black text-blue-700 dark:text-blue-400 tracking-tighter">NUCLEUS AI</span>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="px-6 py-2 text-xs font-bold text-slate-400 uppercase tracking-widest">Operations</div>
+<a class="flex items-center gap-3 py-2.5 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 text-slate-500 dark:text-slate-400 pl-4 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+<span>Operations</span>
+</a>
+<div class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Management</div>
+<a class="flex items-center gap-3 py-2.5 transition-colors duration-200 text-blue-700 dark:text-blue-400 font-bold border-l-4 border-blue-700 dark:border-blue-400 pl-3 scale-95 active:scale-90 transition-transform" href="/programmes">
+<span class="material-symbols-outlined" data-icon="business_center">business_center</span>
+<span>Programmes</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 text-slate-500 dark:text-slate-400 pl-4 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="corporate_fare">corporate_fare</span>
+<span>Employers</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 text-slate-500 dark:text-slate-400 pl-4 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span>Communications</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 text-slate-500 dark:text-slate-400 pl-4 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Documents</span>
+</a>
+<div class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Insights</div>
+<a class="flex items-center gap-3 py-2.5 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 text-slate-500 dark:text-slate-400 pl-4 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span>Intelligence</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 text-slate-500 dark:text-slate-400 pl-4 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>System</span>
+</a>
+</nav>
+<div class="mt-auto px-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img alt="Sarah Tan" class="w-10 h-10 rounded-full object-cover" data-alt="professional headshot of a smiling asian woman in business attire with soft corporate office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ2s9k3HFsntAFTzOjTT1KBQSB8tTnumlYTHAd2nRHb3i0kK3__5m-HXeUSf3uCiSN339HyySMMaiS-P-C5oAc6L8hRb_V3i5080sdLYF5IVi_pWfyaOSAZD_uD5TKsIGjLGobVEhshgigDrkowaJeuvjqcmld0vmzV83OR3ORkwhuFRLJnqV56WuOwUmBLrJBSjEv5b8JN7OD1VzMby-Tw6Py9qjg8BqmZNXQg7Weh5ZfSudmRgDOycH2h8YZ1dJ_hr5eJJxVDiw"/>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate text-on-surface">Sarah Tan</p>
+<p class="text-xs text-on-surface-variant truncate">Programme Coordinator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Component -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center px-8 z-40 shadow-sm dark:shadow-none font-manrope text-sm font-medium">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-slate-400">
+<span class="hover:text-blue-600 transition-colors cursor-pointer">DASHBOARD</span>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span class="text-blue-700 dark:text-blue-400 font-bold">PROGRAMMES</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary transition-all" placeholder="Search programmes..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2 rounded font-bold transition-transform hover:bg-primary-container active:scale-95">
+                Create New Cohort
+            </button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 p-8 min-h-screen">
+<div class="max-w-7xl mx-auto space-y-10">
+<!-- Page Title Section -->
+<div class="flex items-end justify-between">
+<div>
+<h1 class="text-3xl font-extrabold tracking-tight text-on-surface">Programme Management</h1>
+<p class="text-on-surface-variant mt-1">Strategic oversight and cohort performance tracking.</p>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant/15 rounded text-sm font-semibold hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                        Filter View
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant/15 rounded text-sm font-semibold hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                        Export Data
+                    </button>
+</div>
+</div>
+<!-- ROW 1: Programme Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded shadow-sm border-l-4 border-primary p-6 relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-bold text-lg leading-tight w-2/3">ICT Career Conversion (SCTP)</h3>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 font-bold rounded uppercase tracking-wider">ACTIVE</span>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Active Cohorts</p>
+<p class="text-xl font-headline font-extrabold">2 <span class="text-xs font-normal text-on-surface-variant font-body">Mar, Jun 2026</span></p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Enrolled</p>
+<p class="text-xl font-headline font-extrabold">38</p>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1.5">
+<span class="text-on-surface-variant">Capacity</span>
+<span class="font-bold">76%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 76%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant/10">
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-lg" data-icon="trending_up">trending_up</span>
+<span class="text-xs font-bold">75% Placement</span>
+</div>
+<div class="text-xs font-medium text-on-surface-variant">
+                                Next: <span class="text-on-surface font-bold">Jun 2026</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded shadow-sm border-l-4 border-tertiary p-6 relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-bold text-lg leading-tight w-2/3">Business Analyst Certification</h3>
+<span class="bg-tertiary/10 text-tertiary text-[10px] px-2 py-0.5 font-bold rounded uppercase tracking-wider">STEADY</span>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Active Cohorts</p>
+<p class="text-xl font-headline font-extrabold">2 <span class="text-xs font-normal text-on-surface-variant font-body">Mar, Jun 2026</span></p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Enrolled</p>
+<p class="text-xl font-headline font-extrabold">30</p>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1.5">
+<span class="text-on-surface-variant">Capacity</span>
+<span class="font-bold">80%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 80%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant/10">
+<div class="flex items-center gap-1 text-amber-600">
+<span class="material-symbols-outlined text-lg" data-icon="trending_flat">trending_flat</span>
+<span class="text-xs font-bold">70% Placement</span>
+</div>
+<div class="text-xs font-medium text-on-surface-variant">
+                                Next: <span class="text-on-surface font-bold">Jun 2026</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded shadow-sm border-l-4 border-secondary p-6 relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-bold text-lg leading-tight w-2/3">Digital Marketing Bootcamp</h3>
+<span class="bg-secondary/10 text-secondary text-[10px] px-2 py-0.5 font-bold rounded uppercase tracking-wider">NEW</span>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Active Cohorts</p>
+<p class="text-xl font-headline font-extrabold">1 <span class="text-xs font-normal text-on-surface-variant font-body">Mar 2026</span></p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Enrolled</p>
+<p class="text-xl font-headline font-extrabold">18</p>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1.5">
+<span class="text-on-surface-variant">Capacity</span>
+<span class="font-bold">72%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 72%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant/10">
+<div class="flex items-center gap-1 text-amber-600">
+<span class="material-symbols-outlined text-lg" data-icon="trending_flat">trending_flat</span>
+<span class="text-xs font-bold">68% Placement</span>
+</div>
+<div class="text-xs font-medium text-on-surface-variant">
+                                Next: <span class="text-on-surface font-bold">Sep 2026</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ROW 2: Cohort Timeline -->
+<section class="bg-surface-container-low rounded-xl p-8">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-extrabold tracking-tight">Cohort Timeline 2026</h2>
+<div class="flex gap-4 text-xs font-bold text-on-surface-variant uppercase">
+<div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-primary"></span> ICT</div>
+<div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-tertiary"></span> BA</div>
+<div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-secondary"></span> DM</div>
+</div>
+</div>
+<div class="relative pt-6">
+<!-- Months Header -->
+<div class="grid grid-cols-8 gap-0 border-b border-outline-variant/30 pb-4 text-[10px] font-black uppercase text-slate-400 tracking-widest text-center">
+<div>Jan</div><div>Feb</div><div>Mar</div><div>Apr</div><div>May</div><div>Jun</div><div>Jul</div><div>Aug</div>
+</div>
+<!-- Gantt Rows -->
+<div class="py-6 space-y-8">
+<!-- ICT Row -->
+<div class="relative h-6 flex items-center">
+<div class="absolute left-0 w-[12.5%] h-full bg-primary/40 rounded-sm"></div>
+<div class="absolute left-[25%] w-[12.5%] h-full bg-primary rounded-sm shadow-md ring-2 ring-primary/20"></div>
+<div class="absolute left-[62.5%] w-[37.5%] h-full bg-primary rounded-sm opacity-60"></div>
+</div>
+<!-- BA Row -->
+<div class="relative h-6 flex items-center">
+<div class="absolute left-0 w-[12.5%] h-full bg-tertiary/40 rounded-sm"></div>
+<div class="absolute left-[25%] w-[12.5%] h-full bg-tertiary rounded-sm shadow-md ring-2 ring-tertiary/20"></div>
+<div class="absolute left-[62.5%] w-[37.5%] h-full bg-tertiary rounded-sm opacity-60"></div>
+</div>
+<!-- DM Row -->
+<div class="relative h-6 flex items-center">
+<div class="absolute left-[25%] w-[12.5%] h-full bg-secondary rounded-sm shadow-md ring-2 ring-secondary/20"></div>
+</div>
+</div>
+<!-- Current Date Line (Simulated) -->
+<div class="absolute top-0 bottom-0 left-[35%] w-px bg-error/40 z-10 flex items-start justify-center">
+<span class="bg-error text-white text-[8px] font-black px-1 py-0.5 rounded -mt-2 uppercase tracking-tighter">Live</span>
+</div>
+</div>
+</section>
+<!-- ROW 3: Metric Comparison Table -->
+<section class="bg-surface-container-lowest rounded shadow-sm overflow-hidden">
+<div class="px-8 py-6 border-b border-outline-variant/15 flex justify-between items-center">
+<h2 class="text-xl font-extrabold tracking-tight">Cross-Programme Benchmarking</h2>
+<span class="text-xs font-medium text-on-surface-variant italic">Data updated: 14 May 2026</span>
+</div>
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-[10px] uppercase font-bold tracking-widest text-on-surface-variant text-left">
+<th class="px-8 py-4">Key Performance Metric</th>
+<th class="px-4 py-4">ICT Conversion</th>
+<th class="px-4 py-4">BA Cert</th>
+<th class="px-4 py-4">DM Bootcamp</th>
+<th class="px-4 py-4 bg-primary/5 text-primary">Global Avg</th>
+</tr>
+</thead>
+<tbody class="text-sm font-medium">
+<tr class="hover:bg-primary-fixed/30 transition-colors border-b border-outline-variant/10">
+<td class="px-8 py-4 text-on-surface-variant">Avg Completion Rate</td>
+<td class="px-4 py-4 font-bold">83%</td>
+<td class="px-4 py-4 font-bold text-on-surface-variant">85%</td>
+<td class="px-4 py-4 font-bold text-on-surface-variant">80%</td>
+<td class="px-4 py-4 font-extrabold text-primary bg-primary/5">83%</td>
+</tr>
+<tr class="bg-surface-container-low/30 hover:bg-primary-fixed/30 transition-colors border-b border-outline-variant/10">
+<td class="px-8 py-4 text-on-surface-variant">Avg Placement Rate</td>
+<td class="px-4 py-4 font-bold">75%</td>
+<td class="px-4 py-4 font-bold text-on-surface-variant">70%</td>
+<td class="px-4 py-4 font-bold text-on-surface-variant">68%</td>
+<td class="px-4 py-4 font-extrabold text-primary bg-primary/5">72%</td>
+</tr>
+<tr class="hover:bg-primary-fixed/30 transition-colors border-b border-outline-variant/10">
+<td class="px-8 py-4 text-on-surface-variant">Avg Time to Placement (Days)</td>
+<td class="px-4 py-4 font-bold">38</td>
+<td class="px-4 py-4 font-bold text-on-surface-variant">45</td>
+<td class="px-4 py-4 font-bold text-on-surface-variant">42</td>
+<td class="px-4 py-4 font-extrabold text-primary bg-primary/5">42</td>
+</tr>
+<tr class="bg-surface-container-low/30 hover:bg-primary-fixed/30 transition-colors">
+<td class="px-8 py-4 text-on-surface-variant">Enrolment Conversion</td>
+<td class="px-4 py-4 font-bold">78%</td>
+<td class="px-4 py-4 font-bold text-on-surface-variant">75%</td>
+<td class="px-4 py-4 font-bold text-on-surface-variant">70%</td>
+<td class="px-4 py-4 font-extrabold text-primary bg-primary/5">76%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ROW 4: Mixed Data Visuals -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Enrolment Pipeline Funnel -->
+<div class="bg-surface-container-lowest p-8 rounded shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h2 class="text-xl font-extrabold tracking-tight">June 2026 Pipeline</h2>
+<p class="text-xs text-on-surface-variant font-medium">Aggregated recruitment status</p>
+</div>
+<div class="text-right">
+<p class="text-2xl font-black text-primary">17</p>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Seats Remaining</p>
+</div>
+</div>
+<div class="space-y-3">
+<!-- Funnel Steps -->
+<div class="flex items-center gap-4">
+<div class="w-24 text-[10px] font-bold text-on-surface-variant uppercase text-right">Enquiries</div>
+<div class="flex-1 h-10 bg-primary/10 rounded flex items-center px-4 relative">
+<div class="absolute inset-0 bg-primary/5 rounded w-full"></div>
+<span class="relative font-extrabold text-primary">45</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-24 text-[10px] font-bold text-on-surface-variant uppercase text-right">Applications</div>
+<div class="flex-1 h-10 flex items-center px-4 relative">
+<div class="absolute inset-y-0 left-0 bg-primary/15 rounded w-[71%]"></div>
+<span class="relative font-extrabold text-primary">32</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-24 text-[10px] font-bold text-on-surface-variant uppercase text-right">Assessed</div>
+<div class="flex-1 h-10 flex items-center px-4 relative">
+<div class="absolute inset-y-0 left-0 bg-primary/25 rounded w-[71%]"></div>
+<span class="relative font-extrabold text-primary">32</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-24 text-[10px] font-bold text-on-surface-variant uppercase text-right">Approved</div>
+<div class="flex-1 h-10 flex items-center px-4 relative">
+<div class="absolute inset-y-0 left-0 bg-primary/40 rounded w-[40%]"></div>
+<span class="relative font-extrabold text-primary">18</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-24 text-[10px] font-bold text-on-surface-variant uppercase text-right">Enrolled</div>
+<div class="flex-1 h-10 flex items-center px-4 relative">
+<div class="absolute inset-y-0 left-0 bg-primary rounded w-[17%]"></div>
+<span class="relative font-extrabold text-on-primary">8</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sector Outcomes Donut -->
+<div class="bg-surface-container-lowest p-8 rounded shadow-sm flex flex-col">
+<h2 class="text-xl font-extrabold tracking-tight mb-8">Outcomes by Sector</h2>
+<div class="flex-1 flex items-center justify-around gap-8">
+<!-- Donut Chart -->
+<div class="relative w-48 h-48 rounded-full border-[16px] border-slate-100 flex items-center justify-center">
+<div class="absolute inset-[-16px] rounded-full" style="background: conic-gradient(#0054c9 0% 42%, #00647b 42% 65%, #455d96 65% 83%, #a6bdfd 83% 95%, #e1e2ed 95% 100%); mask: radial-gradient(circle at center, transparent 65%, black 66%); -webkit-mask: radial-gradient(circle at center, transparent 65%, black 66%);"></div>
+<div class="text-center">
+<p class="text-3xl font-black text-on-surface">116</p>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Placements</p>
+</div>
+</div>
+<!-- Legend -->
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="text-xs font-bold w-24">Tech</span>
+<span class="text-xs text-on-surface-variant">42%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-sm bg-tertiary"></span>
+<span class="text-xs font-bold w-24">Finance</span>
+<span class="text-xs text-on-surface-variant">23%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span class="text-xs font-bold w-24">Prof Svcs</span>
+<span class="text-xs text-on-surface-variant">18%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-sm bg-secondary-container"></span>
+<span class="text-xs font-bold w-24">Retail</span>
+<span class="text-xs text-on-surface-variant">12%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-sm bg-surface-variant"></span>
+<span class="text-xs font-bold w-24">Other</span>
+<span class="text-xs text-on-surface-variant">5%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
