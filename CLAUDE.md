@@ -105,6 +105,25 @@ The `stitch-html/` folder contains static HTML prototypes for each page. Use the
 - Colour-coded status badges: consistent colour mapping across all pages (green = verified/high, amber = pending/medium, red = flagged/low)
 - All AI scores display as percentages with colour coding (green >80%, amber 60-80%, red <60%)
 
+## Linear Workflow
+
+When working on Linear issues, only set issues to **In Progress**. Do not manually set issues to Done, Scheduled for Deploy, or Live - GitHub hooks handle all status transitions beyond In Progress.
+
+### Linear Task Workflow
+
+When starting work on a Linear task:
+1. **Fetch the branch name** - use the Linear MCP `get_issue` tool to retrieve the issue details, which includes the branch name
+2. **Checkout or create the branch**:
+   - **If the branch does not exist locally or on remote** - create it from an up-to-date `main`:
+     ```bash
+     git checkout main && git pull origin main && git checkout -b <branch-name>
+     ```
+   - **If the branch already exists** - check it out and merge latest `main` before starting:
+     ```bash
+     git checkout <branch-name> && git pull origin main
+     ```
+3. **Set the task to In Progress** - use `save_issue` to set the status to "In Progress" (status ID: `46a3c2f0-0764-4002-906a-dd787ea28878`)
+
 ## Constraints
 
 - No backend, database, or external API calls
