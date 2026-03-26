@@ -51,7 +51,7 @@ export function EmployerList({ employers, vacancies }: EmployerListProps) {
         <StatCard label="Open Vacancies" value={totalVacancies} icon={Briefcase} iconColour="teal" />
         <StatCard label="Total Placements" value={totalPlacements} icon={Handshake} iconColour="green" />
         <StatCard label="High Engagement" value={employers.filter((e) => e.engagementLevel === 'high').length} icon={TrendingUp} iconColour="indigo" />
-        <StatCard label="Active Candidates" value={18} icon={Users} iconColour="amber" />
+        <StatCard label="Active Candidates" value={vacancies.filter((v) => v.status === 'open').reduce((sum, v) => sum + v.candidatesSubmitted, 0)} icon={Users} iconColour="amber" />
       </div>
 
       <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">

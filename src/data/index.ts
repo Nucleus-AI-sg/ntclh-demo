@@ -13,7 +13,7 @@ export { outreachSequences } from './outreach-sequences'
 export { alerts } from './alerts'
 export { activityEvents } from './activity-events'
 export { moduleProgress } from './module-progress'
-export { auditEntries } from './audit-entries'
+export { auditEntries, employerAuditEntries } from './audit-entries'
 export { coordinatorNotes } from './coordinator-notes'
 export {
   monthlyMetrics,

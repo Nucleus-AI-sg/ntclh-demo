@@ -37,3 +37,30 @@ export const auditEntries: Record<string, AuditEntry[]> = {
     { id: 'aud-dn-06', action: 'Manual review required', actor: 'System', timestamp: '2026-05-15T16:46:00Z' },
   ],
 }
+
+/** Audit entries keyed by employerId */
+export const employerAuditEntries: Record<string, AuditEntry[]> = {
+  techcorp: [
+    { id: 'eaud-tc-01', action: 'Employer profile created', actor: 'Rachel Wong', timestamp: '2025-06-15T10:00:00Z' },
+    { id: 'eaud-tc-02', action: 'Primary contact set: Jennifer Loh (HR Manager)', actor: 'Rachel Wong', timestamp: '2025-06-15T10:05:00Z' },
+    { id: 'eaud-tc-03', action: 'Hiring preferences updated (AI-derived from placement history)', actor: 'Nucleus AI', timestamp: '2025-11-01T09:00:00Z' },
+    { id: 'eaud-tc-04', action: 'Vacancy added: Junior Software Developer', actor: 'Rachel Wong', timestamp: '2025-12-01T14:00:00Z' },
+    { id: 'eaud-tc-05', action: 'Amy Chen placed as Junior Software Developer', actor: 'Sarah Tan', timestamp: '2026-01-10T09:00:00Z' },
+    { id: 'eaud-tc-06', action: 'Vacancy added: Junior Business Analyst', actor: 'Rachel Wong', timestamp: '2026-03-05T11:00:00Z' },
+    { id: 'eaud-tc-07', action: 'Vacancy added: Data Analyst', actor: 'Rachel Wong', timestamp: '2026-03-10T09:30:00Z' },
+    { id: 'eaud-tc-08', action: 'Marcus Lee submitted for Junior BA role', actor: 'Sarah Tan', timestamp: '2026-03-10T14:00:00Z' },
+    { id: 'eaud-tc-09', action: 'Interview feedback received: Marcus Lee - 4.5/5', actor: 'Jennifer Loh', timestamp: '2026-03-18T16:00:00Z' },
+    { id: 'eaud-tc-10', action: 'Quarterly review meeting logged', actor: 'Rachel Wong', timestamp: '2026-03-22T10:00:00Z' },
+  ],
+  datainsights: [
+    { id: 'eaud-di-01', action: 'Employer profile created', actor: 'Rachel Wong', timestamp: '2025-09-01T10:00:00Z' },
+    { id: 'eaud-di-02', action: 'Vacancy added: Junior Data Analyst', actor: 'Rachel Wong', timestamp: '2025-10-15T11:00:00Z' },
+    { id: 'eaud-di-03', action: 'Ben Tan placed as Junior Data Analyst', actor: 'Sarah Tan', timestamp: '2025-11-20T09:00:00Z' },
+    { id: 'eaud-di-04', action: 'Hiring preferences updated manually', actor: 'Rachel Wong', timestamp: '2026-02-10T14:00:00Z' },
+  ],
+  greentech: [
+    { id: 'eaud-gt-01', action: 'Employer profile created', actor: 'Rachel Wong', timestamp: '2026-01-01T10:00:00Z' },
+    { id: 'eaud-gt-02', action: 'Vacancy added: Sustainability Data Analyst', actor: 'Rachel Wong', timestamp: '2026-01-15T11:00:00Z' },
+    { id: 'eaud-gt-03', action: 'Engagement flagged as low - no activity for 28 days', actor: 'System', timestamp: '2026-03-02T08:00:00Z' },
+  ],
+}
