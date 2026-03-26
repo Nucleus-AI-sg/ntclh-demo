@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Star } from 'lucide-react'
 import { StatusBadge } from '@/components/shared'
 import { cn } from '@/lib/utils'
@@ -66,7 +67,7 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
                     if (!trainee) return null
                     return (
                       <div key={p.id} className="bg-white rounded-lg border border-slate-200 p-3 shadow-sm">
-                        <p className="text-xs font-bold text-slate-900">{trainee.name}</p>
+                        <Link href={`/trainee/${trainee.id}`} className="text-xs font-bold text-slate-900 hover:text-blue-600">{trainee.name}</Link>
                         <p className="text-[10px] text-slate-500">{trainee.programmeId.toUpperCase()}</p>
                         <div className="flex items-center gap-1 mt-1">
                           <span className="text-[10px] font-bold text-green-600">{p.matchScore}% match</span>
@@ -138,7 +139,7 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
             {hiredPlacements.length === 0 && <tr><td colSpan={5} className="px-5 py-6 text-center text-slate-400">No hiring history</td></tr>}
             {hiredPlacements.map((p) => (
               <tr key={p.id} className="hover:bg-slate-50">
-                <td className="px-5 py-3 font-bold text-slate-900">{traineeMap[p.traineeId]?.name ?? p.traineeId}</td>
+                <td className="px-5 py-3 font-bold"><Link href={`/trainee/${p.traineeId}`} className="text-slate-900 hover:text-blue-600">{traineeMap[p.traineeId]?.name ?? p.traineeId}</Link></td>
                 <td className="px-5 py-3 text-slate-600">{traineeMap[p.traineeId]?.placedRole ?? '-'}</td>
                 <td className="px-5 py-3 text-center font-bold">{p.matchScore}%</td>
                 <td className="px-5 py-3 text-slate-500">{p.retentionMonths ? `${p.retentionMonths} months` : '-'}</td>

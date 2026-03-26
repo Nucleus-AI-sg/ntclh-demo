@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { ChevronDown, ChevronUp, MapPin, Send } from 'lucide-react'
 import { StatusBadge, AppRadarChart } from '@/components/shared'
 import { cn } from '@/lib/utils'
@@ -11,16 +12,18 @@ interface EmployerViewProps {
   vacancies: Vacancy[]
   matches: MatchResult[]
   trainees: Trainee[]
+  selectedEmployerId: string
+  onSelectEmployer: (id: string) => void
   onSubmit: (traineeName: string, employerName: string) => void
 }
 
-export function EmployerView({ employers, vacancies, matches, trainees, onSubmit }: EmployerViewProps) {
-  const [selectedEmployerId, setSelectedEmployerId] = useState(employers[0]?.id ?? '')
+export function EmployerView({ employers, vacancies, matches, trainees, selectedEmployerId, onSelectEmployer, onSubmit }: EmployerViewProps) {
   const [expandedMatch, setExpandedMatch] = useState<string | null>(null)
+  const [selectedVacancyId, setSelectedVacancyId] = useState<string | null>(null)
 
   const employer = employers.find((e) => e.id === selectedEmployerId)
   const employerVacancies = vacancies.filter((v) => v.employerId === selectedEmployerId)
-  const selectedVacancy = employerVacancies[0]
+  const selectedVacancy = employerVacancies.find((v) => v.id === selectedVacancyId) ?? employerVacancies[0]
   const vacancyMatches = selectedVacancy ? matches.filter((m) => m.vacancyId === selectedVacancy.id) : []
   const traineeMap = Object.fromEntries(trainees.map((t) => [t.id, t]))
 
@@ -34,7 +37,7 @@ export function EmployerView({ employers, vacancies, matches, trainees, onSubmit
           return (
             <button
               key={emp.id}
-              onClick={() => setSelectedEmployerId(emp.id)}
+              onClick={() => { onSelectEmployer(emp.id); setSelectedVacancyId(null) }}
               className={cn(
                 'w-full text-left p-3 rounded-xl border transition-all',
                 isSelected ? 'bg-white border-blue-500 ring-1 ring-blue-200 shadow-sm' : 'bg-slate-50 border-slate-100 hover:bg-white',
@@ -54,6 +57,22 @@ export function EmployerView({ employers, vacancies, matches, trainees, onSubmit
       <div className="flex-1 space-y-4">
         {selectedVacancy && employer && (
           <>
+            {employerVacancies.length > 1 && (
+              <div className="flex gap-2">
+                {employerVacancies.map((v) => (
+                  <button
+                    key={v.id}
+                    onClick={() => setSelectedVacancyId(v.id)}
+                    className={cn(
+                      'px-3 py-1.5 text-xs font-bold rounded-lg border transition-all',
+                      v.id === selectedVacancy.id ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50',
+                    )}
+                  >
+                    {v.title}
+                  </button>
+                ))}
+              </div>
+            )}
             <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
               <div className="flex justify-between items-start">
                 <div>
@@ -83,7 +102,7 @@ export function EmployerView({ employers, vacancies, matches, trainees, onSubmit
                       <div className="flex items-center gap-4">
                         <span className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center text-xs font-black">#{rank + 1}</span>
                         <div>
-                          <p className="text-sm font-bold text-slate-900">{trainee.name}</p>
+                          <Link href={`/trainee/${trainee.id}`} className="text-sm font-bold text-slate-900 hover:text-blue-600">{trainee.name}</Link>
                           <p className="text-[10px] text-slate-500">{trainee.programmeId.toUpperCase()} - {trainee.currentRole}</p>
                         </div>
                       </div>

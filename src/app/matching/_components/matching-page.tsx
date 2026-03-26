@@ -20,6 +20,7 @@ interface MatchingPageProps {
 
 export function MatchingPage({ employers, vacancies, trainees, programmes, matches, placements }: MatchingPageProps) {
   const [toast, setToast] = useState<string | null>(null)
+  const [selectedEmployerId, setSelectedEmployerId] = useState(employers[0]?.id ?? '')
 
   const showToast = useCallback((msg: string) => {
     setToast(msg)
@@ -56,13 +57,13 @@ export function MatchingPage({ employers, vacancies, trainees, programmes, match
         </TabsList>
 
         <TabsContent value="employer" className="mt-6">
-          <EmployerView employers={employers} vacancies={vacancies} matches={matches} trainees={trainees} onSubmit={(t, e) => showToast(`${t} submitted to ${e}`)} />
+          <EmployerView employers={employers} vacancies={vacancies} matches={matches} trainees={trainees} selectedEmployerId={selectedEmployerId} onSelectEmployer={setSelectedEmployerId} onSubmit={(t, e) => showToast(`${t} submitted to ${e}`)} />
         </TabsContent>
         <TabsContent value="trainee" className="mt-6">
           <TraineeMatchingView trainees={trainees} vacancies={vacancies} programmes={programmes} />
         </TabsContent>
         <TabsContent value="portal" className="mt-6">
-          <EmployerPortal employer={employers[0]} vacancies={vacancies.filter((v) => v.employerId === employers[0]?.id)} placements={placements} trainees={trainees} onAction={showToast} />
+          <EmployerPortal employer={employers.find((e) => e.id === selectedEmployerId)} vacancies={vacancies.filter((v) => v.employerId === selectedEmployerId)} placements={placements} trainees={trainees} onAction={showToast} />
         </TabsContent>
       </Tabs>
 
