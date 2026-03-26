@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import { ExternalLink, Mail, Phone } from 'lucide-react'
-import { SlideOverPanel } from '@/components/shared'
-import { StatusBadge } from '@/components/shared'
+import { SlideOverPanel, StatusBadge } from '@/components/shared'
 import type { Trainee, Programme } from '@/types'
 
 interface TraineeSlideOverProps {

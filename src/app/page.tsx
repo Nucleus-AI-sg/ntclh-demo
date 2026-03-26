@@ -98,13 +98,13 @@ export default function DashboardPage() {
                 <span className="flex items-center gap-2 text-slate-500">
                   <span className="w-2 h-2 rounded-full bg-blue-600" /> Successful
                 </span>
-                <span className="font-bold text-slate-900">142</span>
+                <span className="font-bold text-slate-900">{pipelineCounts.placed + pipelineCounts.verified}</span>
               </div>
               <div className="flex items-center justify-between text-xs">
                 <span className="flex items-center gap-2 text-slate-500">
                   <span className="w-2 h-2 rounded-full bg-slate-200" /> Target Gap
                 </span>
-                <span className="font-bold text-slate-900">58</span>
+                <span className="font-bold text-slate-900">{kpis.overallPlacementRate.target - kpis.overallPlacementRate.value}</span>
               </div>
             </div>
           </div>
