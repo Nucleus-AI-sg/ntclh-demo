@@ -25,12 +25,15 @@ interface PipelineProps {
 }
 
 export function PipelineBar({ counts, className }: PipelineProps) {
+  const maxCount = Math.max(1, ...stages.map(({ key }) => counts[key] ?? 0))
+
   return (
     <div className={cn('flex gap-4 min-w-[700px]', className)}>
       {stages.map(({ key, label }) => {
         const colours = stageColours[key]
         const count = counts[key] ?? 0
         const isVerified = key === LifecycleStage.Verified
+        const pct = Math.round((count / maxCount) * 100)
         return (
           <div
             key={key}
@@ -61,7 +64,7 @@ export function PipelineBar({ counts, className }: PipelineProps) {
               </span>
             </div>
             <div className="h-1 bg-slate-200 w-full rounded-full">
-              <div className={cn('h-full rounded-full', colours.bar)} style={{ width: '100%' }} />
+              <div className={cn('h-full rounded-full', colours.bar)} style={{ width: `${pct}%` }} />
             </div>
           </div>
         )
