@@ -1,11 +1,6 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { integrations, users } from '@/data'
+import { SettingsPage } from './_components/settings-page'
 
-export default function SettingsPage() {
-  return (
-    <PagePlaceholder
-      title="Integrations & Settings"
-      description="CRM sync status, data import/export, government portal connections, and channel configuration."
-      prd="PRD-14"
-    />
-  )
+export default function SettingsRoute() {
+  return <SettingsPage integrations={integrations} users={users} />
 }
