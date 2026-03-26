@@ -20,7 +20,8 @@ interface LineConfig {
 }
 
 interface AppLineChartProps {
-  data: Record<string, unknown>[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: Record<string, any>[]
   lines: LineConfig[]
   xKey?: string
   height?: number
