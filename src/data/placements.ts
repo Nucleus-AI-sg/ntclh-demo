@@ -43,9 +43,9 @@ export const placements: Placement[] = [
   // ─── ACTIVE PLACEMENTS ─────────────────────────────────────────────
 
   {
-    id: 'pl-amy-chen-techventures',
+    id: 'pl-amy-chen-techcorp',
     traineeId: 'amy-chen',
-    employerId: 'techventures',
+    employerId: 'techcorp',
     vacancyId: undefined,
     matchScore: 85,
     status: PlacementStatus.Hired,
@@ -55,9 +55,9 @@ export const placements: Placement[] = [
     satisfactionRating: undefined,
   },
   {
-    id: 'pl-raj-patel-startupxyz',
+    id: 'pl-raj-patel-cloudserve',
     traineeId: 'raj-patel',
-    employerId: 'startupxyz',
+    employerId: 'cloudserve',
     vacancyId: undefined,
     matchScore: 0,
     status: PlacementStatus.Hired,
@@ -79,7 +79,7 @@ export const placements: Placement[] = [
     traineeId: 'marcus-lee',
     employerId: 'datainsights',
     vacancyId: 'datainsights-ba',
-    matchScore: 76,
+    matchScore: 84,
     status: PlacementStatus.Available,
     submittedDate: '2026-03-12',
     source: PlacementSource.LhubMatched,

@@ -301,7 +301,7 @@ export const documents: Document[] = [
       fields: [
         {
           fieldName: 'Employer Name',
-          extractedValue: 'C—nstruct... Pte',
+          extractedValue: 'C-nstruct... Pte',
           confidence: 35,
           crossReferenceResult: 'unable_to_verify',
         },
