@@ -34,7 +34,7 @@ export function StatCard({
   className,
 }: StatCardProps) {
   const colour = iconColourMap[iconColour]
-  const TrendIcon = trend?.direction === 'up' ? TrendingUp : TrendingDown
+  const TrendIcon = trend?.direction === 'down' ? TrendingDown : TrendingUp
   const trendColour = trend?.direction === 'up' ? 'text-green-600' : 'text-red-600'
 
   return (
