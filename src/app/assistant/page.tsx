@@ -1,11 +1,6 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { chatScripts, fallbackResponse } from '@/data'
+import { ChatInterface } from './_components/chat-interface'
 
-export default function AssistantPage() {
-  return (
-    <PagePlaceholder
-      title="AI Chat Assistant"
-      description="Natural language queries against programme data with pre-scripted conversational responses."
-      prd="PRD-07"
-    />
-  )
+export default function AssistantRoute() {
+  return <ChatInterface scripts={chatScripts} fallback={fallbackResponse} />
 }
