@@ -1,11 +1,12 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { assessments, trainees, programmes } from '@/data'
+import { EnrolmentPage } from './_components/enrolment-page'
 
-export default function EnrolmentPage() {
+export default function EnrolmentRoute() {
   return (
-    <PagePlaceholder
-      title="Enrolment & AI Assessment"
-      description="AI-powered application processing, career roadmaps, and enrolment pipeline management."
-      prd="PRD-03"
+    <EnrolmentPage
+      assessments={assessments}
+      trainees={trainees}
+      programmes={programmes}
     />
   )
 }
