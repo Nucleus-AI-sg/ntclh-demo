@@ -1,11 +1,14 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { trainees, programmes, documents, communications, vacancies } from '@/data'
+import { TrackingPage } from './_components/tracking-page'
 
-export default function TrackingPage() {
+export default function TrackingRoute() {
   return (
-    <PagePlaceholder
-      title="Trainee Tracking & Verification"
-      description="Post-training lifecycle tracking, document verification, and trainee self-service view."
-      prd="PRD-04"
+    <TrackingPage
+      trainees={trainees}
+      programmes={programmes}
+      documents={documents}
+      communications={communications}
+      vacancies={vacancies}
     />
   )
 }
