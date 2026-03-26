@@ -11,6 +11,7 @@ export { documents } from './documents'
 export { communications } from './communications'
 export { outreachSequences } from './outreach-sequences'
 export { alerts } from './alerts'
+export { activityEvents } from './activity-events'
 export {
   monthlyMetrics,
   programmeMetrics,
