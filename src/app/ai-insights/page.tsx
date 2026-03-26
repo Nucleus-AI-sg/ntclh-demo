@@ -1,11 +1,18 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import {
+  aiPerformanceHistory, modelVersions, overridePatterns,
+  strategicInsights, assessmentFeatureImportance, matchingFeatureImportance,
+} from '@/data'
+import { AiInsightsPage } from './_components/ai-insights-page'
 
-export default function AIInsightsPage() {
+export default function AiInsightsRoute() {
   return (
-    <PagePlaceholder
-      title="AI Insights & Model Performance"
-      description="Model accuracy tracking, coordinator feedback loops, and strategic intelligence dashboards."
-      prd="PRD-13"
+    <AiInsightsPage
+      history={aiPerformanceHistory}
+      modelVersions={modelVersions}
+      overridePatterns={overridePatterns}
+      strategicInsights={strategicInsights}
+      assessmentFeatures={assessmentFeatureImportance}
+      matchingFeatures={matchingFeatureImportance}
     />
   )
 }
