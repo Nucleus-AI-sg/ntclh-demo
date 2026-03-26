@@ -19,14 +19,12 @@ export function VerificationQueue({ documents, onSelectDocument, selectedIds, on
   const [typeFilter, setTypeFilter] = useState('__all__')
   const [statusFilter, setStatusFilter] = useState('__all__')
 
-  const active = documents.filter((d) => !['manually_verified', 'rejected'].includes(d.status) || d.status === 'auto_verified')
-
   const filtered = useMemo(() => {
-    let result = active
+    let result = documents
     if (typeFilter !== '__all__') result = result.filter((d) => d.type === typeFilter)
     if (statusFilter !== '__all__') result = result.filter((d) => d.status === statusFilter)
     return result
-  }, [active, typeFilter, statusFilter])
+  }, [documents, typeFilter, statusFilter])
 
   const typeOptions = [
     { label: 'Pay Slip', value: 'pay_slip' },
