@@ -34,6 +34,8 @@ export {
   assessmentFeatureImportance,
   matchingFeatureImportance,
   overrideAnalysis,
+  predictionMatrix,
+  feedbackImpactTimeline,
   feedbackTimeline,
 } from './ai-performance'
 export { chatScripts, fallbackResponse } from './chat-scripts'
