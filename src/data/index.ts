@@ -23,6 +23,8 @@ export {
   placementFunnel,
   sectorBreakdown,
   reportTemplates,
+  reportHistory,
+  dataCompletenessChecks,
 } from './analytics'
 export {
   aiPerformanceHistory,

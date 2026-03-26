@@ -20,7 +20,7 @@ interface RadarConfig {
 }
 
 interface AppRadarChartProps {
-  data: Record<string, unknown>[]
+  data: object[]
   radars: RadarConfig[]
   angleKey?: string
   height?: number
