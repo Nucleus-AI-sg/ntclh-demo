@@ -48,7 +48,7 @@ export function TrackingPage({ trainees, programmes, documents, communications, 
         </TabsList>
 
         <TabsContent value="case" className="mt-6 space-y-6">
-          <StatusOverview activeFilter={statusFilter} onFilter={setStatusFilter} />
+          <StatusOverview trainees={trainees} documents={documents} activeFilter={statusFilter} onFilter={setStatusFilter} />
           <CaseTable
             trainees={trainees}
             programmes={programmes}

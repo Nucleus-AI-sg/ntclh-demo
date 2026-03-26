@@ -78,7 +78,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Upload Documents</h3>
         <div className="space-y-2 mb-4">
           {['Pay Slip', 'CPF Statement', 'Employment Letter'].map((docType) => {
-            const exists = documents.some((d) => d.type.replace(/_/g, ' ') === docType.toLowerCase().replace(/ /g, '_') || d.type.replace(/_/g, ' ').includes(docType.split(' ')[0].toLowerCase()))
+            const exists = documents.some((d) => d.type === docType.toLowerCase().replace(/ /g, '_'))
             return (
               <div key={docType} className="flex items-center justify-between text-xs p-2 bg-slate-50 rounded">
                 <span className="text-slate-700">{docType}</span>
