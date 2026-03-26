@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import {
   UserPlus,
   FileText,
@@ -20,7 +23,7 @@ const eventConfig: Record<
   training: { icon: GraduationCap, bg: 'bg-indigo-50', text: 'text-indigo-600' },
 }
 
-function relativeTime(timestamp: string): string {
+function computeRelativeTime(timestamp: string): string {
   const diff = Date.now() - new Date(timestamp).getTime()
   const minutes = Math.floor(diff / 60_000)
   if (minutes < 1) return 'Just now'
@@ -30,6 +33,17 @@ function relativeTime(timestamp: string): string {
   const days = Math.floor(hours / 24)
   if (days === 1) return 'Yesterday'
   return `${days}d ago`
+}
+
+function useRelativeTime(timestamp: string): string {
+  const [label, setLabel] = useState('')
+  useEffect(() => { setLabel(computeRelativeTime(timestamp)) }, [timestamp])
+  return label
+}
+
+function TimeLabel({ timestamp }: { timestamp: string }) {
+  const label = useRelativeTime(timestamp)
+  return <>{label}</>
 }
 
 interface ActivityFeedProps {
@@ -70,7 +84,7 @@ export function ActivityFeed({
                 {event.description}
               </p>
               <p className="text-[9px] font-bold text-slate-300 uppercase tracking-widest mt-0.5">
-                {relativeTime(event.timestamp)}
+                <TimeLabel timestamp={event.timestamp} />
               </p>
             </div>
           </div>
