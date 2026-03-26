@@ -238,6 +238,24 @@ export const overrideAnalysis = {
   ],
 }
 
+export const predictionMatrix: { x: string; y: string; value: number }[] = [
+  { x: 'ICT', y: 'Predicted High', value: 85 },
+  { x: 'BA', y: 'Predicted High', value: 82 },
+  { x: 'DM', y: 'Predicted High', value: 78 },
+  { x: 'ICT', y: 'Predicted Medium', value: 72 },
+  { x: 'BA', y: 'Predicted Medium', value: 68 },
+  { x: 'DM', y: 'Predicted Medium', value: 65 },
+  { x: 'ICT', y: 'Predicted Low', value: 45 },
+  { x: 'BA', y: 'Predicted Low', value: 42 },
+  { x: 'DM', y: 'Predicted Low', value: 38 },
+]
+
+export const feedbackImpactTimeline = [
+  { date: 'Nov 2025', event: 'Coordinator feedback on retail-to-BA transitions integrated', impact: '+4% accuracy for retail backgrounds' },
+  { date: 'Jan 2026', event: 'Retail-to-BA transfer learning model deployed (v2.0)', impact: '+8% accuracy for retail backgrounds' },
+  { date: 'Mar 2026', event: 'Jan 2026 cohort outcomes incorporated (v2.1)', impact: '+3% assessment, +5% matching accuracy' },
+]
+
 export const feedbackTimeline = [
   {
     date: '2025-10-15',

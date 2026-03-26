@@ -13,7 +13,7 @@ export { outreachSequences } from './outreach-sequences'
 export { alerts } from './alerts'
 export { activityEvents } from './activity-events'
 export { moduleProgress } from './module-progress'
-export { auditEntries } from './audit-entries'
+export { auditEntries, employerAuditEntries } from './audit-entries'
 export { coordinatorNotes } from './coordinator-notes'
 export {
   monthlyMetrics,
@@ -23,6 +23,8 @@ export {
   placementFunnel,
   sectorBreakdown,
   reportTemplates,
+  reportHistory,
+  dataCompletenessChecks,
 } from './analytics'
 export {
   aiPerformanceHistory,
@@ -32,6 +34,8 @@ export {
   assessmentFeatureImportance,
   matchingFeatureImportance,
   overrideAnalysis,
+  predictionMatrix,
+  feedbackImpactTimeline,
   feedbackTimeline,
 } from './ai-performance'
 export { chatScripts, fallbackResponse } from './chat-scripts'

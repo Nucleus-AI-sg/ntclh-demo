@@ -1,21 +1,10 @@
 import { AppLineChart, AppHeatmapChart, ScoreGauge } from '@/components/shared'
+import { predictionMatrix } from '@/data'
 import type { AiPerformanceSnapshot } from '@/types'
 
 interface AssessmentPerformanceProps {
   history: AiPerformanceSnapshot[]
 }
-
-const predictionMatrix: { x: string; y: string; value: number }[] = [
-  { x: 'ICT', y: 'Predicted High', value: 85 },
-  { x: 'BA', y: 'Predicted High', value: 82 },
-  { x: 'DM', y: 'Predicted High', value: 78 },
-  { x: 'ICT', y: 'Predicted Medium', value: 72 },
-  { x: 'BA', y: 'Predicted Medium', value: 68 },
-  { x: 'DM', y: 'Predicted Medium', value: 65 },
-  { x: 'ICT', y: 'Predicted Low', value: 45 },
-  { x: 'BA', y: 'Predicted Low', value: 42 },
-  { x: 'DM', y: 'Predicted Low', value: 38 },
-]
 
 export function AssessmentPerformance({ history }: AssessmentPerformanceProps) {
   const latest = history[history.length - 1]

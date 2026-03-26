@@ -1,4 +1,5 @@
 import { AppPieChart, AppLineChart } from '@/components/shared'
+import { feedbackImpactTimeline } from '@/data'
 import type { OverridePattern, AiPerformanceSnapshot } from '@/types'
 
 interface FeedbackOverridesProps {
@@ -30,7 +31,7 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
         <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Override Breakdown</h3>
           <AppPieChart data={pieData} innerRadius={60} height={250} />
-          <p className="text-xs text-slate-500 mt-2 text-center">{totalOverrides} total overrides, AI was correct in {aiCorrect} cases ({Math.round((aiCorrect / totalOverrides) * 100)}%)</p>
+          <p className="text-xs text-slate-500 mt-2 text-center">{totalOverrides} total overrides, AI was correct in {aiCorrect} cases ({totalOverrides > 0 ? Math.round((aiCorrect / totalOverrides) * 100) : 0}%)</p>
         </div>
 
         {/* Override Patterns Table */}
@@ -60,11 +61,7 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
       <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Feedback Impact Timeline</h3>
         <div className="space-y-3">
-          {[
-            { date: 'Nov 2025', event: 'Coordinator feedback on retail-to-BA transitions integrated', impact: '+4% accuracy for retail backgrounds' },
-            { date: 'Jan 2026', event: 'Retail-to-BA transfer learning model deployed (v2.0)', impact: '+8% accuracy for retail backgrounds' },
-            { date: 'Mar 2026', event: 'Jan 2026 cohort outcomes incorporated (v2.1)', impact: '+3% assessment, +5% matching accuracy' },
-          ].map((item, i) => (
+          {feedbackImpactTimeline.map((item, i) => (
             <div key={i} className="flex gap-4 p-3 bg-slate-50 rounded-lg">
               <span className="text-[10px] font-bold text-blue-600 flex-shrink-0 w-16">{item.date}</span>
               <div>
