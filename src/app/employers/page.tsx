@@ -1,11 +1,6 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { employers, vacancies } from '@/data'
+import { EmployerList } from './_components/employer-list'
 
-export default function EmployersPage() {
-  return (
-    <PagePlaceholder
-      title="Employer Management"
-      description="CRM-like employer list with relationship health scores, vacancies, and engagement tracking."
-      prd="PRD-09"
-    />
-  )
+export default function EmployersRoute() {
+  return <EmployerList employers={employers} vacancies={vacancies} />
 }
