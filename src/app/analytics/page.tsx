@@ -1,11 +1,15 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { monthlyMetrics, programmeMetrics, placementFunnel, reportTemplates, programmes, cohorts } from '@/data'
+import { AnalyticsPage } from './_components/analytics-page'
 
-export default function AnalyticsPage() {
+export default function AnalyticsRoute() {
   return (
-    <PagePlaceholder
-      title="Analytics & Reporting"
-      description="KPI dashboards, trend analysis, and compliance report generation for SSG and WSG."
-      prd="PRD-06"
+    <AnalyticsPage
+      monthlyMetrics={monthlyMetrics}
+      programmeMetrics={programmeMetrics}
+      placementFunnel={placementFunnel}
+      reportTemplates={reportTemplates}
+      programmes={programmes}
+      cohorts={cohorts}
     />
   )
 }

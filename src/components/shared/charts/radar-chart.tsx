@@ -20,7 +20,8 @@ interface RadarConfig {
 }
 
 interface AppRadarChartProps {
-  data: Record<string, unknown>[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: Record<string, any>[]
   radars: RadarConfig[]
   angleKey?: string
   height?: number
