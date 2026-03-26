@@ -1,11 +1,15 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { employers, vacancies, trainees, programmes, matchResults, placements } from '@/data'
+import { MatchingPage } from './_components/matching-page'
 
-export default function MatchingPage() {
+export default function MatchingRoute() {
   return (
-    <PagePlaceholder
-      title="Placement Matching"
-      description="AI-ranked trainee-to-employer matching with employer pipeline and recommendation engine."
-      prd="PRD-05"
+    <MatchingPage
+      employers={employers}
+      vacancies={vacancies}
+      trainees={trainees}
+      programmes={programmes}
+      matches={matchResults}
+      placements={placements}
     />
   )
 }
