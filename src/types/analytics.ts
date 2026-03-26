@@ -49,6 +49,19 @@ export interface ReportTemplate {
   status: 'ready' | 'pending_data' | 'overdue'
 }
 
+export interface ReportHistoryEntry {
+  name: string
+  generated: string
+  by: string
+  status: string
+}
+
+export interface DataCompletenessCheck {
+  label: string
+  status: 'complete' | 'partial'
+  count: string
+}
+
 export interface FeatureImportance {
   feature: string
   weight: number

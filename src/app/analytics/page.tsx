@@ -1,4 +1,4 @@
-import { monthlyMetrics, programmeMetrics, placementFunnel, reportTemplates, programmes, cohorts } from '@/data'
+import { monthlyMetrics, programmeMetrics, placementFunnel, reportTemplates, reportHistory, dataCompletenessChecks, programmes, cohorts } from '@/data'
 import { AnalyticsPage } from './_components/analytics-page'
 
 export default function AnalyticsRoute() {
@@ -8,6 +8,8 @@ export default function AnalyticsRoute() {
       programmeMetrics={programmeMetrics}
       placementFunnel={placementFunnel}
       reportTemplates={reportTemplates}
+      reportHistory={reportHistory}
+      dataCompletenessChecks={dataCompletenessChecks}
       programmes={programmes}
       cohorts={cohorts}
     />
