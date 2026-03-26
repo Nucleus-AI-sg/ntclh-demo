@@ -30,6 +30,7 @@ export type StatusVariant =
   | 'placed'
   | 'planned'
   | 'not_submitted'
+  | 'on_track'
 
 interface ColourSet {
   bg: string
@@ -53,6 +54,7 @@ export const statusColours: Record<StatusVariant, ColourSet> = {
   approved: green,
   hired: green,
   open: green,
+  on_track: green,
   // Amber - pending/warning
   pending: amber,
   medium: amber,

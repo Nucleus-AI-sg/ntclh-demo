@@ -23,9 +23,9 @@ const riskOptions = [
 ]
 
 export function TraineeTableSection({ trainees, programmes }: TraineeTableSectionProps) {
-  const [progFilter, setProgFilter] = useState('__all__')
-  const [stageFilter, setStageFilter] = useState('__all__')
-  const [riskFilter, setRiskFilter] = useState('__all__')
+  const [progFilter, setProgFilter] = useState('all')
+  const [stageFilter, setStageFilter] = useState('all')
+  const [riskFilter, setRiskFilter] = useState('all')
   const [search, setSearch] = useState('')
   const [selected, setSelected] = useState<Trainee | null>(null)
 
@@ -33,9 +33,9 @@ export function TraineeTableSection({ trainees, programmes }: TraineeTableSectio
 
   const filtered = useMemo(() => {
     let result = trainees
-    if (progFilter !== '__all__') result = result.filter((t) => t.programmeId === progFilter)
-    if (stageFilter !== '__all__') result = result.filter((t) => t.lifecycleStage === stageFilter)
-    if (riskFilter !== '__all__') result = result.filter((t) => t.riskLevel === riskFilter)
+    if (progFilter !== 'all') result = result.filter((t) => t.programmeId === progFilter)
+    if (stageFilter !== 'all') result = result.filter((t) => t.lifecycleStage === stageFilter)
+    if (riskFilter !== 'all') result = result.filter((t) => t.riskLevel === riskFilter)
     if (search) {
       const q = search.toLowerCase()
       result = result.filter((t) => t.name.toLowerCase().includes(q))
