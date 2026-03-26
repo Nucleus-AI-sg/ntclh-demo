@@ -1,11 +1,6 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { documents } from '@/data'
+import { DocumentsPage } from './_components/documents-page'
 
-export default function DocumentsPage() {
-  return (
-    <PagePlaceholder
-      title="Document Centre"
-      description="OCR verification queue, document archive, processing analytics, and automated extraction."
-      prd="PRD-12"
-    />
-  )
+export default function DocumentsRoute() {
+  return <DocumentsPage documents={documents} />
 }
