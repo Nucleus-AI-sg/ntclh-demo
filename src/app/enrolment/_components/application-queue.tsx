@@ -147,7 +147,7 @@ export function ApplicationQueue({ assessments, trainees, selectedId, onSelect }
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <span className={cn('text-sm font-black px-2 py-1 rounded', colour.text, assessment.overallScore >= 80 ? 'bg-green-50' : assessment.overallScore >= 60 ? 'bg-amber-50' : 'bg-red-50')}>
-                    {assessment.overallScore || '\u2014'}
+                    {assessment.overallScore || '-'}
                   </span>
                   <span className="text-[10px] text-slate-400 ml-2 uppercase font-bold">AI Score</span>
                 </div>

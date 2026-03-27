@@ -58,7 +58,7 @@ export function EnrolmentPage({ assessments: initial, trainees, programmes }: En
     closeModal()
   }, [selected, trainee, showToast, closeModal])
 
-  const handleRejectConfirm = useCallback((reason: string) => {
+  const handleRejectConfirm = useCallback((reason: string, _notes: string) => {
     if (!selected) return
     setAssessments((prev) =>
       prev.map((a) => a.id === selected.id ? { ...a, status: ApplicationStatus.Rejected, processedBy: 'sarah-tan' } : a),

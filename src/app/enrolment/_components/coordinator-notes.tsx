@@ -14,10 +14,9 @@ interface Note {
 
 interface CoordinatorNotesProps {
   assessmentId: string
-  onNoteAdded?: () => void
 }
 
-export function CoordinatorNotes({ assessmentId, onNoteAdded }: CoordinatorNotesProps) {
+export function CoordinatorNotes({ assessmentId }: CoordinatorNotesProps) {
   const [notes, setNotes] = useState<Note[]>([])
   const [draft, setDraft] = useState('')
   const [isAdding, setIsAdding] = useState(false)
@@ -33,7 +32,6 @@ export function CoordinatorNotes({ assessmentId, onNoteAdded }: CoordinatorNotes
     setNotes((prev) => [note, ...prev])
     setDraft('')
     setIsAdding(false)
-    onNoteAdded?.()
   }
 
   return (
