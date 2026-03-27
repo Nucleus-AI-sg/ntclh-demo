@@ -38,8 +38,13 @@ export function AppFunnelChart({
       <ResponsiveContainer width="100%" height={height}>
         <RechartsFunnelChart>
           <Tooltip {...tooltipStyle} />
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          <Funnel dataKey="value" data={coloured} isAnimationActive onClick={onClick ? (entry: any) => onClick({ name: entry.name, value: entry.value }) : undefined} style={onClick ? { cursor: 'pointer' } : undefined}>
+          <Funnel
+            dataKey="value"
+            data={coloured}
+            isAnimationActive
+            onClick={onClick ? (data, _index, _e) => onClick({ name: String(data.name), value: Number(data.value) }) : undefined}
+            style={onClick ? { cursor: 'pointer' } : undefined}
+          >
             <LabelList
               dataKey="name"
               position="right"

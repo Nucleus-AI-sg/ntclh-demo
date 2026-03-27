@@ -5,6 +5,7 @@ import { Users, TrendingUp, Target, Clock, AlertTriangle } from 'lucide-react'
 import { StatCard, AppBarChart, AppLineChart, AppFunnelChart, ExportButton, DateRangePicker, useActionToast, ActionToast } from '@/components/shared'
 import type { MonthlyMetric, ProgrammeMetrics, Trainee } from '@/types'
 import { LifecycleStage } from '@/types'
+import { programmeNames } from '@/data'
 import { FunnelDrillDownModal } from './funnel-drill-down-modal'
 
 interface DashboardKpi { value: number; trend?: number; trendDirection?: 'up' | 'down' }
@@ -20,8 +21,6 @@ interface PerformanceOverviewProps {
     atRiskPlacements: DashboardKpi
   }
 }
-
-const programmeNames: Record<string, string> = { ict: 'ICT SCTP', ba: 'BA Cert', dm: 'DM Bootcamp' }
 
 const funnelStageMap: Record<string, LifecycleStage[]> = {
   'Applications Received': Object.values(LifecycleStage),
@@ -95,18 +94,42 @@ export function PerformanceOverview({ monthlyMetrics, programmeMetrics, placemen
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Placement Rate by Programme</h3>
-          <AppBarChart data={barData} bars={[{ key: 'rate', label: 'Placement Rate', colour: '#2563eb' }, { key: 'target', label: 'Target (80%)', colour: '#e2e8f0' }]} xKey="name" height={250} showLegend />
+          <AppBarChart
+            data={barData}
+            bars={[
+              { key: 'rate', label: 'Placement Rate', colour: '#2563eb' },
+              { key: 'target', label: 'Target (80%)', colour: '#e2e8f0' },
+            ]}
+            xKey="name"
+            height={250}
+            showLegend
+          />
         </div>
         <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Placement Funnel</h3>
-          <AppFunnelChart data={placementFunnel.map((s) => ({ name: `${s.stage} (${s.conversionRate}%)`, value: s.count }))} height={250} onClick={handleFunnelClick} />
+          <AppFunnelChart
+            data={placementFunnel.map((s) => ({ name: `${s.stage} (${s.conversionRate}%)`, value: s.count }))}
+            height={250}
+            onClick={handleFunnelClick}
+          />
         </div>
       </div>
 
       {/* Monthly Trends */}
       <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Monthly Trends (12 Months)</h3>
-        <AppLineChart data={monthlyMetrics} lines={[{ key: 'enrolments', label: 'Enrolments', colour: '#2563eb' }, { key: 'completions', label: 'Completions', colour: '#0d9488' }, { key: 'placements', label: 'Placements', colour: '#6366f1' }, { key: 'verifications', label: 'Verifications', colour: '#f59e0b' }]} xKey="month" height={280} showLegend />
+        <AppLineChart
+          data={monthlyMetrics}
+          lines={[
+            { key: 'enrolments', label: 'Enrolments', colour: '#2563eb' },
+            { key: 'completions', label: 'Completions', colour: '#0d9488' },
+            { key: 'placements', label: 'Placements', colour: '#6366f1' },
+            { key: 'verifications', label: 'Verifications', colour: '#f59e0b' },
+          ]}
+          xKey="month"
+          height={280}
+          showLegend
+        />
       </div>
 
       {/* At-Risk Alerts */}

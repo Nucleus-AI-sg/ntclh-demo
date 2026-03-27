@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { StatusBadge } from '@/components/shared'
 import type { Trainee } from '@/types'
+import { programmeNames } from '@/data'
 
 interface FunnelDrillDownModalProps {
   open: boolean
@@ -38,7 +39,7 @@ export function FunnelDrillDownModal({ open, onClose, stageName, trainees }: Fun
                       {t.name}
                     </Link>
                   </td>
-                  <td className="py-2 text-xs text-slate-500">{t.programmeId.toUpperCase()}</td>
+                  <td className="py-2 text-xs text-slate-500">{programmeNames[t.programmeId] ?? t.programmeId}</td>
                   <td className="py-2">
                     <StatusBadge
                       status={t.riskLevel === 'on_track' ? 'active' : t.riskLevel === 'at_risk' ? 'flagged' : 'pending'}

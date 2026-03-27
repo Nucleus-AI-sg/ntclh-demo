@@ -1,5 +1,5 @@
 export { staff } from './staff'
-export { programmes } from './programmes'
+export { programmes, programmeNames } from './programmes'
 export { cohorts } from './cohorts'
 export { employers } from './employers'
 export { trainees } from './trainees'

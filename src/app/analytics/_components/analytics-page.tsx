@@ -1,14 +1,12 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import type { MonthlyMetric, ProgrammeMetrics, ReportTemplate, ReportHistoryEntry, DataCompletenessCheck, Programme, Cohort, Trainee, EmployerPerformanceEntry } from '@/types'
+import type { MonthlyMetric, ProgrammeMetrics, ReportTemplate, ReportHistoryEntry, DataCompletenessCheck, Programme, Cohort, Trainee, EmployerPerformanceEntry, SectorEntry } from '@/types'
 import { PerformanceOverview } from './performance-overview'
 import { ProgrammeDeepDive } from './programme-deep-dive'
 import { ComplianceReports } from './compliance-reports'
 
 interface DashboardKpi { value: number; trend?: number; trendDirection?: 'up' | 'down' }
-
-interface SectorEntry { sector: string; percentage: number }
 
 interface AnalyticsPageProps {
   monthlyMetrics: MonthlyMetric[]

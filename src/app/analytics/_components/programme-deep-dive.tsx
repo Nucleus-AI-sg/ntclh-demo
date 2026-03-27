@@ -2,10 +2,8 @@
 
 import { useState } from 'react'
 import { AppBarChart, AppPieChart, FilterBar, ExportButton, useActionToast, ActionToast } from '@/components/shared'
-import type { Programme, Cohort, ProgrammeMetrics, EmployerPerformanceEntry } from '@/types'
+import type { Programme, Cohort, ProgrammeMetrics, EmployerPerformanceEntry, SectorEntry } from '@/types'
 import { EmployerHeatmap } from './employer-heatmap'
-
-interface SectorEntry { sector: string; percentage: number }
 
 interface ProgrammeDeepDiveProps {
   programmes: Programme[]
