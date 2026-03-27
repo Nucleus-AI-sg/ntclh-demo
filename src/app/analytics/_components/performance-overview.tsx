@@ -2,20 +2,29 @@ import { Users, TrendingUp, Target, Clock, AlertTriangle } from 'lucide-react'
 import { StatCard, AppBarChart, AppLineChart, AppFunnelChart } from '@/components/shared'
 import type { MonthlyMetric, ProgrammeMetrics } from '@/types'
 
+interface DashboardKpi { value: number; trend?: number; trendDirection?: 'up' | 'down' }
+
 interface PerformanceOverviewProps {
   monthlyMetrics: MonthlyMetric[]
   programmeMetrics: ProgrammeMetrics[]
   placementFunnel: { stage: string; count: number; conversionRate: number }[]
+  kpis: {
+    totalActiveTrainees: DashboardKpi
+    overallPlacementRate: DashboardKpi & { target: number }
+    atRiskPlacements: DashboardKpi
+  }
 }
 
 const programmeNames: Record<string, string> = { ict: 'ICT SCTP', ba: 'BA Cert', dm: 'DM Bootcamp' }
 
-export function PerformanceOverview({ monthlyMetrics, programmeMetrics, placementFunnel }: PerformanceOverviewProps) {
+export function PerformanceOverview({ monthlyMetrics, programmeMetrics, placementFunnel, kpis }: PerformanceOverviewProps) {
   const barData = programmeMetrics.map((pm) => ({
     name: programmeNames[pm.programmeId] ?? pm.programmeId,
     rate: pm.placementRate,
     target: 80,
   }))
+  const avgCompletion = programmeMetrics.length > 0 ? Math.round(programmeMetrics.reduce((s, m) => s + m.completionRate, 0) / programmeMetrics.length) : 0
+  const avgTimeToPlace = programmeMetrics.length > 0 ? Math.round(programmeMetrics.reduce((s, m) => s + m.avgTimeToPlacement, 0) / programmeMetrics.length) : 0
 
   const atRiskAlerts = [
     { risk: 'DM Bootcamp placement rate (68%) trending below 70% target', action: 'Review employer engagement for digital marketing roles' },
@@ -27,11 +36,11 @@ export function PerformanceOverview({ monthlyMetrics, programmeMetrics, placemen
     <div className="space-y-6">
       {/* KPI Cards */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        <StatCard label="Active Trainees" value={76} icon={Users} iconColour="blue" trend={{ value: '+8', direction: 'up' }} />
-        <StatCard label="Placement Rate" value="72%" icon={TrendingUp} iconColour="teal" trend={{ value: '+4%', direction: 'up' }} />
-        <StatCard label="Completion Rate" value="83%" icon={Target} iconColour="green" />
-        <StatCard label="Avg Time to Place" value="38 days" icon={Clock} iconColour="amber" />
-        <StatCard label="At-Risk Count" value={5} icon={AlertTriangle} iconColour="red" valueClassName="text-red-600" />
+        <StatCard label="Active Trainees" value={kpis.totalActiveTrainees.value} icon={Users} iconColour="blue" trend={{ value: `+${kpis.totalActiveTrainees.trend}`, direction: 'up' }} />
+        <StatCard label="Placement Rate" value={`${kpis.overallPlacementRate.value}%`} icon={TrendingUp} iconColour="teal" trend={{ value: `+${kpis.overallPlacementRate.trend}%`, direction: 'up' }} />
+        <StatCard label="Completion Rate" value={`${avgCompletion}%`} icon={Target} iconColour="green" />
+        <StatCard label="Avg Time to Place" value={`${avgTimeToPlace} days`} icon={Clock} iconColour="amber" />
+        <StatCard label="At-Risk Count" value={kpis.atRiskPlacements.value} icon={AlertTriangle} iconColour="red" valueClassName="text-red-600" />
       </div>
 
       {/* Charts Row */}
