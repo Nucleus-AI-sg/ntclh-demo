@@ -65,11 +65,12 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
 
   const confirmHire = () => {
     if (!hireConfirm) return
-    updateStatus(hireConfirm, PlacementStatus.Hired)
-    setCelebrated((prev) => new Set(prev).add(hireConfirm))
+    const placementId = hireConfirm
+    updateStatus(placementId, PlacementStatus.Hired)
+    setCelebrated((prev) => new Set(prev).add(placementId))
     onAction('Candidate hired! Placement confirmed.')
     setHireConfirm(null)
-    setTimeout(() => setCelebrated((prev) => { const next = new Set(prev); next.delete(hireConfirm); return next }), 3000)
+    setTimeout(() => setCelebrated((prev) => { const next = new Set(prev); next.delete(placementId); return next }), 3000)
   }
 
   const renderActions = (col: typeof kanbanCols[number], pId: string) => {
@@ -153,7 +154,7 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
           </div>
           <div>
             <label className="text-[10px] font-bold text-slate-500 uppercase">Monthly Salary ($)</label>
-            <input type="text" value={offerModal?.salary ?? ''} onChange={(e) => setOfferModal((prev) => prev ? { ...prev, salary: e.target.value } : null)} placeholder="e.g. 4500" className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="number" min="0" value={offerModal?.salary ?? ''} onChange={(e) => setOfferModal((prev) => prev ? { ...prev, salary: e.target.value } : null)} placeholder="e.g. 4500" className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
           <div>
             <label className="text-[10px] font-bold text-slate-500 uppercase">Start Date</label>

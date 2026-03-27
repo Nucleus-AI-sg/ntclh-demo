@@ -31,7 +31,7 @@ export function TraineeMatchingView({ trainees, vacancies, programmes }: Trainee
     return result
   }, [trainees, search, programmeFilter])
 
-  const uniqueProgIds = [...new Set(trainees.filter((t) => t.lifecycleStage === LifecycleStage.Completed && !t.placedEmployerId).map((t) => t.programmeId))]
+  const uniqueProgIds = useMemo(() => [...new Set(trainees.filter((t) => t.lifecycleStage === LifecycleStage.Completed && !t.placedEmployerId).map((t) => t.programmeId))], [trainees])
 
   return (
     <div className="space-y-4">

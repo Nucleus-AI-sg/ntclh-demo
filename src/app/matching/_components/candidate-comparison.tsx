@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { GitCompareArrows } from 'lucide-react'
 import { AppRadarChart, ConfirmationModal } from '@/components/shared'
 import { cn } from '@/lib/utils'
@@ -22,7 +22,7 @@ export function CandidateComparison({ matches, trainees, vacancies, onSubmit }: 
   const [selectedIds, setSelectedIds] = useState<string[]>([])
   const [submitModal, setSubmitModal] = useState<{ traineeName: string; vacancyTitle: string } | null>(null)
 
-  const traineeMap = Object.fromEntries(trainees.map((t) => [t.id, t]))
+  const traineeMap = useMemo(() => Object.fromEntries(trainees.map((t) => [t.id, t])), [trainees])
   const vacancy = vacancies.find((v) => v.id === selectedVacancyId)
   const vacancyMatches = matches.filter((m) => m.vacancyId === selectedVacancyId).sort((a, b) => b.score - a.score)
   const comparedMatches = vacancyMatches.filter((m) => selectedIds.includes(m.id))

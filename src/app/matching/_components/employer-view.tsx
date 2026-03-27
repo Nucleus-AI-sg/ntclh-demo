@@ -38,7 +38,7 @@ export function EmployerView({ employers, vacancies, matches, trainees, selected
   const employer = employers.find((e) => e.id === selectedEmployerId)
   const employerVacancies = vacancies.filter((v) => v.employerId === selectedEmployerId)
   const selectedVacancy = employerVacancies.find((v) => v.id === selectedVacancyId) ?? employerVacancies[0]
-  const traineeMap = Object.fromEntries(trainees.map((t) => [t.id, t]))
+  const traineeMap = useMemo(() => Object.fromEntries(trainees.map((t) => [t.id, t])), [trainees])
 
   const vacancyMatches = useMemo(() => {
     if (!selectedVacancy) return []
