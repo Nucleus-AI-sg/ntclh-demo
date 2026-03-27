@@ -76,7 +76,7 @@ export function EmployerProfile({ employer, vacancies, placements, communication
         <TabsContent value="vacancies" className="mt-6"><VacanciesTab vacancies={vacancies} /></TabsContent>
         <TabsContent value="preferences" className="mt-6"><PreferencesTab employer={employer} showToast={showToast} /></TabsContent>
         <TabsContent value="placements" className="mt-6"><PlacementsTab placements={placements} trainees={trainees} vacancies={vacancies} /></TabsContent>
-        <TabsContent value="communications" className="mt-6"><CommunicationsTab communications={communications} onCompose={() => setShowMessageModal(true)} /></TabsContent>
+        <TabsContent value="communications" className="mt-6"><CommunicationsTab communications={communications} onReply={() => setShowMessageModal(true)} /></TabsContent>
         <TabsContent value="audit" className="mt-6"><AuditTab entries={auditEntries} /></TabsContent>
       </Tabs>
 

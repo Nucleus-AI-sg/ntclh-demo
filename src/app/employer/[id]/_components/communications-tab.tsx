@@ -9,10 +9,10 @@ import { cn } from '@/lib/utils'
 
 interface CommunicationsTabProps {
   communications: Communication[]
-  onCompose: () => void
+  onReply: () => void
 }
 
-export function CommunicationsTab({ communications, onCompose }: CommunicationsTabProps) {
+export function CommunicationsTab({ communications, onReply }: CommunicationsTabProps) {
   const [search, setSearch] = useState('')
   const [channelFilter, setChannelFilter] = useState<string>('all')
 
@@ -42,7 +42,7 @@ export function CommunicationsTab({ communications, onCompose }: CommunicationsT
             </button>
           ))}
         </div>
-        <button onClick={onCompose} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+        <button onClick={onReply} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700">
           <MessageSquare className="h-3.5 w-3.5" /> Reply
         </button>
       </div>

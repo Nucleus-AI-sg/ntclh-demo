@@ -5,16 +5,17 @@ import Link from 'next/link'
 import { Building2, Briefcase, Clock, AlertTriangle, Handshake, Plus } from 'lucide-react'
 import { StatCard, DataTable, FilterBar, StatusBadge, ExportButton, ActionToast, useActionToast, ComposeMessageModal } from '@/components/shared'
 import type { Column } from '@/components/shared'
-import type { Employer, Vacancy, Staff } from '@/types'
+import type { Employer, Vacancy, Staff, Placement } from '@/types'
 import { AddEmployerModal } from './add-employer-modal'
 
 interface EmployerListProps {
   employers: Employer[]
   vacancies: Vacancy[]
+  placements: Placement[]
   staff: Staff[]
 }
 
-export function EmployerList({ employers, vacancies, staff }: EmployerListProps) {
+export function EmployerList({ employers, vacancies, placements, staff }: EmployerListProps) {
   const [sectorFilter, setSectorFilter] = useState('__all__')
   const [engagementFilter, setEngagementFilter] = useState('__all__')
   const [managerFilter, setManagerFilter] = useState('__all__')
@@ -39,8 +40,19 @@ export function EmployerList({ employers, vacancies, staff }: EmployerListProps)
   }, [employers, sectorFilter, engagementFilter, managerFilter, search])
 
   const totalOpenVacancies = vacancies.filter((v) => v.status === 'open' || v.status === 'screening' || v.status === 'interviewing').length
-  const placementsThisQuarter = 14
-  const avgTimeToFill = 28
+  const placementsThisQuarter = placements.filter((p) => {
+    const d = new Date(p.submittedDate)
+    const now = new Date()
+    return d.getFullYear() === now.getFullYear() && Math.floor(d.getMonth() / 3) === Math.floor(now.getMonth() / 3)
+  }).length
+  const filledVacancies = vacancies.filter((v) => v.status === 'filled')
+  const avgTimeToFill = filledVacancies.length > 0
+    ? Math.round(filledVacancies.reduce((sum, v) => {
+        const posted = new Date(v.postedDate).getTime()
+        const now = Date.now()
+        return sum + Math.round((now - posted) / (1000 * 60 * 60 * 24))
+      }, 0) / filledVacancies.length)
+    : 0
   const atRiskCount = employers.filter((e) => e.engagementLevel === 'low').length
 
   const columns: Column<Employer>[] = [

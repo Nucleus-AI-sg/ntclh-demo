@@ -1,7 +1,10 @@
 import Link from 'next/link'
 import { StatusBadge } from '@/components/shared'
+import { programmes } from '@/data'
 import type { Placement, Trainee, Vacancy } from '@/types'
 import { cn } from '@/lib/utils'
+
+const programmeMap = Object.fromEntries(programmes.map((p) => [p.id, p.shortName]))
 
 interface PlacementsTabProps {
   placements: Placement[]
@@ -53,7 +56,7 @@ export function PlacementsTab({ placements, trainees, vacancies }: PlacementsTab
                 </td>
                 <td className="px-5 py-3 text-xs text-slate-600">{vacancy?.title ?? trainee?.placedRole ?? '-'}</td>
                 <td className="px-5 py-3 text-xs text-slate-500">{trainee?.placedStartDate ?? p.submittedDate}</td>
-                <td className="px-5 py-3 text-xs text-slate-600">{trainee?.programmeId === 'ict' ? 'ICT SCTP' : trainee?.programmeId === 'ba' ? 'BA Cert' : trainee?.programmeId ?? '-'}</td>
+                <td className="px-5 py-3 text-xs text-slate-600">{trainee?.programmeId ? (programmeMap[trainee.programmeId] ?? trainee.programmeId) : '-'}</td>
                 <td className="px-5 py-3 text-center font-bold">{p.matchScore}%</td>
                 <td className="px-5 py-3"><StatusBadge status={p.status} /></td>
                 <td className="px-5 py-3">
