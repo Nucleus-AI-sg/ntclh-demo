@@ -1,15 +1,16 @@
 'use client'
 
-import { useMemo } from 'react'
-import { Mail, MessageSquare, Phone, Smartphone } from 'lucide-react'
+import { useState, useMemo } from 'react'
+import { Mail, MessageSquare, Phone, Smartphone, PenSquare } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { StatCard } from '@/components/shared'
+import { StatCard, ComposeMessageModal, useActionToast, ActionToast } from '@/components/shared'
 import type { Communication, OutreachSequence, MessageTemplate, Campaign } from '@/types'
 import { ActivityFeedTab } from './activity-feed-tab'
 import { SequencesTab } from './sequences-tab'
 import { TemplatesTab } from './templates-tab'
 import { CampaignsTab } from './campaigns-tab'
 import { AnalyticsTab } from './analytics-tab'
+import { NotificationCentre } from './notification-centre'
 
 interface CommunicationsPageProps {
   communications: Communication[]
@@ -27,6 +28,14 @@ const tabs = [
 ] as const
 
 export function CommunicationsPage({ communications, sequences, templates, campaigns }: CommunicationsPageProps) {
+  const [composeOpen, setComposeOpen] = useState(false)
+  const [toast, showToast] = useActionToast()
+
+  const failedCount = useMemo(
+    () => communications.filter((c) => c.status === 'failed' || c.status === 'bounced').length,
+    [communications],
+  )
+
   const channelStats = useMemo(() => {
     const stats = {
       email: { sent: 0, delivered: 0, opened: 0, responded: 0 },
@@ -52,6 +61,19 @@ export function CommunicationsPage({ communications, sequences, templates, campa
 
   return (
     <div className="space-y-6">
+      {/* Action bar */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setComposeOpen(true)}
+            className="flex items-center gap-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg transition-colors"
+          >
+            <PenSquare className="h-3.5 w-3.5" /> New Message
+          </button>
+          <NotificationCentre communications={communications} failedCount={failedCount} />
+        </div>
+      </div>
+
       {/* Channel Summary Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Email" value={`${channelStats.email.sent} sent`} icon={Mail} iconColour="blue" trend={{ value: `${responseRate('email')}% response`, direction: 'up' }} subtitle={`${channelStats.email.delivered} dlvd, ${channelStats.email.opened} opened`} />
@@ -84,6 +106,13 @@ export function CommunicationsPage({ communications, sequences, templates, campa
           <AnalyticsTab sequences={sequences} />
         </TabsContent>
       </Tabs>
+
+      <ComposeMessageModal
+        open={composeOpen}
+        onClose={() => setComposeOpen(false)}
+        onSend={() => showToast('Message sent successfully')}
+      />
+      <ActionToast message={toast} />
     </div>
   )
 }
