@@ -1,4 +1,4 @@
-import { Mail, Phone } from 'lucide-react'
+import { Mail, Phone, Building2, MapPin, Hash, Users } from 'lucide-react'
 import { AppLineChart } from '@/components/shared'
 import type { Employer } from '@/types'
 
@@ -21,6 +21,29 @@ export function OverviewTab({ employer }: OverviewTabProps) {
 
   return (
     <div className="space-y-6">
+      {/* Company Details Card */}
+      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Company Details</h3>
+        <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <div className="flex items-start gap-2">
+            <Hash className="h-3.5 w-3.5 text-slate-400 mt-0.5 shrink-0" />
+            <div><dt className="text-[10px] font-bold text-slate-400 uppercase">UEN</dt><dd className="font-semibold text-slate-800">{employer.uen}</dd></div>
+          </div>
+          <div className="flex items-start gap-2">
+            <Building2 className="h-3.5 w-3.5 text-slate-400 mt-0.5 shrink-0" />
+            <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Industry</dt><dd className="font-semibold text-slate-800">{employer.sector}</dd></div>
+          </div>
+          <div className="flex items-start gap-2">
+            <Users className="h-3.5 w-3.5 text-slate-400 mt-0.5 shrink-0" />
+            <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Employees</dt><dd className="font-semibold text-slate-800">{employer.size}</dd></div>
+          </div>
+          <div className="flex items-start gap-2">
+            <MapPin className="h-3.5 w-3.5 text-slate-400 mt-0.5 shrink-0" />
+            <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Location</dt><dd className="font-semibold text-slate-800">{employer.location}</dd></div>
+          </div>
+        </dl>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Relationship Summary</h3>
@@ -37,6 +60,7 @@ export function OverviewTab({ employer }: OverviewTabProps) {
           <AppLineChart data={engagementData} lines={[{ key: 'score', label: 'Engagement Score', colour: '#2563eb' }]} xKey="month" height={200} />
         </div>
       </div>
+
       {contact && (
         <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Contacts</h3>

@@ -1,6 +1,6 @@
-import { employers, vacancies } from '@/data'
+import { employers, vacancies, staff } from '@/data'
 import { EmployerList } from './_components/employer-list'
 
 export default function EmployersRoute() {
-  return <EmployerList employers={employers} vacancies={vacancies} />
+  return <EmployerList employers={employers} vacancies={vacancies} staff={staff} />
 }
