@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { DataTable, FilterBar, StatusBadge } from '@/components/shared'
+import { DataTable, FilterBar, StatusBadge, BulkActionBar } from '@/components/shared'
 import type { Column } from '@/components/shared'
 import type { Trainee, Programme, Document } from '@/types'
 import { LifecycleStage } from '@/types'
@@ -15,6 +15,8 @@ interface CaseTableProps {
   onSelectTrainee: (trainee: Trainee) => void
   selectedIds: string[]
   onSelectionChange: (ids: string[]) => void
+  onBulkReminder: () => void
+  onBulkStatus: () => void
 }
 
 const postTrainingStages = new Set([
@@ -28,7 +30,19 @@ function getDocStatus(docs: Document[]): string {
   return 'submitted'
 }
 
-export function CaseTable({ trainees, programmes, documents, statusFilter, onSelectTrainee, selectedIds, onSelectionChange }: CaseTableProps) {
+function DocScoreBadge({ score }: { score: number | undefined }) {
+  if (score == null) return <span className="text-xs text-slate-400">-</span>
+  const colour = score >= 80 ? 'text-green-700 bg-green-50' : score >= 60 ? 'text-amber-700 bg-amber-50' : 'text-red-700 bg-red-50'
+  return <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${colour}`}>{score}%</span>
+}
+
+function RiskBadge({ assessment }: { assessment: Trainee['riskAssessment'] }) {
+  if (!assessment) return <span className="text-xs text-slate-400">-</span>
+  const colours = { low: 'text-green-700 bg-green-50', medium: 'text-amber-700 bg-amber-50', high: 'text-red-700 bg-red-50' }
+  return <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded capitalize ${colours[assessment.level]}`}>{assessment.level}</span>
+}
+
+export function CaseTable({ trainees, programmes, documents, statusFilter, onSelectTrainee, selectedIds, onSelectionChange, onBulkReminder, onBulkStatus }: CaseTableProps) {
   const [progFilter, setProgFilter] = useState('__all__')
   const [search, setSearch] = useState('')
 
@@ -39,10 +53,8 @@ export function CaseTable({ trainees, programmes, documents, statusFilter, onSel
     return map
   }, [documents])
 
-  const postTraining = trainees.filter((t) => postTrainingStages.has(t.lifecycleStage))
-
   const filtered = useMemo(() => {
-    let result = postTraining
+    let result = trainees.filter((t) => postTrainingStages.has(t.lifecycleStage))
     if (progFilter !== '__all__') result = result.filter((t) => t.programmeId === progFilter)
     if (search) { const q = search.toLowerCase(); result = result.filter((t) => t.name.toLowerCase().includes(q)) }
     if (statusFilter) {
@@ -58,7 +70,7 @@ export function CaseTable({ trainees, programmes, documents, statusFilter, onSel
       })
     }
     return result
-  }, [postTraining, progFilter, search, statusFilter, docsByTrainee])
+  }, [trainees, progFilter, search, statusFilter, docsByTrainee])
 
   const programmeOptions = programmes.map((p) => ({ label: p.shortName, value: p.id }))
 
@@ -72,17 +84,17 @@ export function CaseTable({ trainees, programmes, documents, statusFilter, onSel
       ),
     },
     { key: 'programmeId', header: 'Programme', sortable: true, render: (row) => <span className="text-xs text-slate-600">{progMap[row.programmeId] ?? row.programmeId}</span> },
-    { key: 'completionDate', header: 'Completed', sortable: true, render: (row) => <span className="text-xs text-slate-500">{row.completionDate ?? '-'}</span> },
-    { key: 'lifecycleStage', header: 'Status', sortable: true, render: (row) => <StatusBadge status={row.lifecycleStage} /> },
-    { key: 'placementSource', header: 'Source', sortable: true, render: (row) => <span className="text-xs text-slate-500 capitalize">{row.placementSource?.replace(/_/g, ' ') ?? '-'}</span> },
+    { key: 'employmentStatus', header: 'Emp. Status', sortable: true, render: (row) => row.employmentStatus ? <StatusBadge status={row.employmentStatus} /> : <span className="text-xs text-slate-400">-</span> },
     {
       key: 'documents', header: 'Documents', render: (row) => {
         const status = getDocStatus(docsByTrainee[row.id] ?? [])
         return <StatusBadge status={status === 'none' ? 'not_submitted' : status} />
       },
     },
+    { key: 'docVerificationScore', header: 'Doc Score', sortable: true, className: 'text-center', render: (row) => <DocScoreBadge score={row.docVerificationScore} /> },
+    { key: 'riskAssessment', header: 'Risk', render: (row) => <RiskBadge assessment={row.riskAssessment} /> },
     { key: 'daysInStage', header: 'Days', sortable: true, className: 'text-center', render: (row) => <span className={`text-xs font-bold ${row.daysInStage > 60 ? 'text-red-600' : 'text-slate-700'}`}>{row.daysInStage}</span> },
-    { key: 'lastActivity', header: 'Last Activity', sortable: true, render: (row) => <span className="text-xs text-slate-500">{row.lastActivity}</span> },
+    { key: 'lastActivity', header: 'Last Activity', sortable: true, render: (row) => <span className="text-xs text-slate-500 truncate max-w-[160px] block">{row.lastActivity}</span> },
   ]
 
   return (
@@ -96,15 +108,14 @@ export function CaseTable({ trainees, programmes, documents, statusFilter, onSel
           onSearchChange={setSearch}
         />
       </div>
-      {selectedIds.length > 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center justify-between">
-          <span className="text-xs font-bold text-blue-700">{selectedIds.length} selected</span>
-          <div className="flex gap-2">
-            <button className="px-3 py-1.5 text-xs font-bold text-blue-600 border border-blue-300 rounded hover:bg-blue-100">Send Reminder</button>
-            <button className="px-3 py-1.5 text-xs font-bold text-blue-600 border border-blue-300 rounded hover:bg-blue-100">Update Status</button>
-          </div>
-        </div>
-      )}
+      <BulkActionBar
+        selectedCount={selectedIds.length}
+        actions={[
+          { label: 'Send Reminder', onClick: onBulkReminder },
+          { label: 'Update Status', onClick: onBulkStatus },
+        ]}
+        onClear={() => onSelectionChange([])}
+      />
       <DataTable
         columns={columns}
         data={filtered}
