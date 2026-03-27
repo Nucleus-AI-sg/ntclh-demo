@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback, useRef, useEffect } from 'react'
-import { Send, Plus, Sparkles, Mic } from 'lucide-react'
+import { Send, Plus, Sparkles } from 'lucide-react'
 import type { ChatScript, ChatMessage, ChatContext, ChatAction } from '@/types'
 import { MessageBubble } from './message-bubble'
 import { ContextPanel } from './context-panel'
@@ -136,7 +136,7 @@ export function ChatInterface({ scripts, fallback }: ChatInterfaceProps) {
           )}
 
           {messages.map((msg, i) => (
-            <MessageBubble key={i} role={msg.role} content={msg.content} actions={msg.actions} />
+            <MessageBubble key={`${msg.role}-${i}`} role={msg.role} content={msg.content} actions={msg.actions} />
           ))}
 
           {typing && <TypingIndicator />}
@@ -156,7 +156,6 @@ export function ChatInterface({ scripts, fallback }: ChatInterfaceProps) {
         <div className="px-6 py-3 border-t border-slate-200 bg-white">
           <form onSubmit={(e) => { e.preventDefault(); if (input.trim() && !typing) sendMessage(input.trim()) }} className="flex items-center gap-2">
             <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask anything about your programmes, trainees, or placements..." disabled={typing} className="flex-1 px-4 py-2.5 bg-slate-100 border-none rounded-lg text-sm focus:ring-2 focus:ring-blue-500 disabled:opacity-50" />
-            <Mic className="h-4 w-4 text-slate-400" />
             <button type="submit" disabled={!input.trim() || typing} className="px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-30">
               <Send className="h-4 w-4" />
             </button>

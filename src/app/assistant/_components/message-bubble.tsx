@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { Sparkles, ArrowRight } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import type { ChatAction } from '@/types'
 
 /** Parse markdown tables into styled HTML. Other formatting is handled inline. */
@@ -122,7 +121,7 @@ export function MessageBubble({ role, content, actions }: MessageBubbleProps) {
       <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
         <Sparkles className="h-3.5 w-3.5 text-blue-600" />
       </div>
-      <div className={cn('max-w-[80%] space-y-2')}>
+      <div className="max-w-[80%] space-y-2">
         <div
           className="bg-white border border-slate-200 rounded-xl rounded-tl-sm px-4 py-3 shadow-sm prose prose-sm prose-slate max-w-none"
           dangerouslySetInnerHTML={{ __html: formatMarkdown(content) }}
@@ -133,12 +132,11 @@ export function MessageBubble({ role, content, actions }: MessageBubbleProps) {
               <Link
                 key={a.label}
                 href={a.href}
-                className={cn(
-                  'inline-flex items-center gap-1 text-xs font-semibold rounded-lg transition-colors',
+                className={`inline-flex items-center gap-1 text-xs font-semibold rounded-lg transition-colors ${
                   a.variant === 'outline'
                     ? 'px-3 py-1.5 border border-blue-300 text-blue-600 hover:bg-blue-50'
                     : 'text-blue-600 hover:underline'
-                )}
+                }`}
               >
                 {a.label}
                 <ArrowRight className="h-3 w-3" />
