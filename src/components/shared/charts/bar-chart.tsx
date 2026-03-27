@@ -20,7 +20,7 @@ interface BarConfig {
 }
 
 interface AppBarChartProps {
-  data: Record<string, unknown>[]
+  data: object[]
   bars: BarConfig[]
   xKey?: string
   height?: number

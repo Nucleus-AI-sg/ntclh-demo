@@ -20,7 +20,7 @@ interface LineConfig {
 }
 
 interface AppLineChartProps {
-  data: Record<string, unknown>[]
+  data: object[]
   lines: LineConfig[]
   xKey?: string
   height?: number

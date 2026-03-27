@@ -1,4 +1,4 @@
-import { MonthlyMetric, ProgrammeMetrics, ReportTemplate } from '@/types'
+import { DataCompletenessCheck, MonthlyMetric, ProgrammeMetrics, ReportHistoryEntry, ReportTemplate } from '@/types'
 
 export const monthlyMetrics: MonthlyMetric[] = [
   {
@@ -170,6 +170,21 @@ export const sectorBreakdown = [
   { sector: 'Professional Services', percentage: 18 },
   { sector: 'Retail & Commerce', percentage: 12 },
   { sector: 'Other', percentage: 5 },
+]
+
+export const reportHistory: ReportHistoryEntry[] = [
+  { name: 'SSG Training Grant Claim', generated: '2026-03-01', by: 'Sarah Tan', status: 'submitted' },
+  { name: 'WSG Monthly Placement Return', generated: '2026-03-01', by: 'Sarah Tan', status: 'submitted' },
+  { name: 'SSG Training Grant Claim', generated: '2026-02-01', by: 'Sarah Tan', status: 'submitted' },
+  { name: 'WSG Monthly Placement Return', generated: '2026-02-01', by: 'Sarah Tan', status: 'submitted' },
+  { name: 'IMDA Performance Summary', generated: '2026-01-01', by: 'James Lim', status: 'submitted' },
+]
+
+export const dataCompletenessChecks: DataCompletenessCheck[] = [
+  { label: 'Trainee Records', status: 'complete', count: '25/25' },
+  { label: 'Employment Verified', status: 'partial', count: '14/21' },
+  { label: 'Document Archive', status: 'complete', count: '30/30' },
+  { label: 'Employer Confirmations', status: 'partial', count: '6/8' },
 ]
 
 export const reportTemplates: ReportTemplate[] = [
