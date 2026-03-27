@@ -1,4 +1,4 @@
-import { AppLineChart } from '@/components/shared'
+import { AppLineChart, AppBarChart } from '@/components/shared'
 
 const accuracyData = [
   { month: 'Oct 2025', paySlip: 89, cpfStatement: 91, empLetter: 85 },
@@ -17,6 +17,15 @@ const fieldAccuracy = [
   { field: 'CPF Amounts', accuracy: '94%', commonError: 'Handwritten annotations cause misreads' },
 ]
 
+const processingTimeData = [
+  { range: '< 1 min', autoVerified: 18, manualReview: 0 },
+  { range: '1-2 min', autoVerified: 13, manualReview: 1 },
+  { range: '2-5 min', autoVerified: 0, manualReview: 3 },
+  { range: '5-10 min', autoVerified: 0, manualReview: 6 },
+  { range: '10-15 min', autoVerified: 0, manualReview: 4 },
+  { range: '> 15 min', autoVerified: 0, manualReview: 2 },
+]
+
 export function OcrPerformance() {
   return (
     <div className="space-y-6">
@@ -32,6 +41,21 @@ export function OcrPerformance() {
           ]}
           xKey="month"
           height={280}
+          showLegend
+        />
+      </div>
+
+      {/* Processing Time Distribution */}
+      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Processing Time Distribution</h3>
+        <AppBarChart
+          data={processingTimeData}
+          bars={[
+            { key: 'autoVerified', label: 'Auto-Verified', colour: '#22c55e' },
+            { key: 'manualReview', label: 'Manual Review', colour: '#f59e0b' },
+          ]}
+          xKey="range"
+          height={260}
           showLegend
         />
       </div>

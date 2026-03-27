@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ActionToast, useActionToast, ConfirmationModal } from '@/components/shared'
 import type { Document } from '@/types'
 import { ProcessingMetrics } from './processing-metrics'
 import { VerificationQueue } from './verification-queue'
@@ -20,17 +21,15 @@ const tabs = [
   { id: 'performance', label: 'OCR Performance' },
 ] as const
 
+type ConfirmAction = 'flag' | 'resubmit' | 'reject' | 'escalate' | null
+
 export function DocumentsPage({ documents: initial }: DocumentsPageProps) {
   const [documents, setDocuments] = useState(initial)
   const [selectedDoc, setSelectedDoc] = useState<Document | null>(null)
   const [selectedIds, setSelectedIds] = useState<string[]>([])
   const [activeTab, setActiveTab] = useState('queue')
-  const [toast, setToast] = useState<string | null>(null)
-
-  const showToast = useCallback((msg: string) => {
-    setToast(msg)
-    setTimeout(() => setToast(null), 3000)
-  }, [])
+  const [toast, showToast, clearToast] = useActionToast()
+  const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null)
 
   const handleSelectDoc = useCallback((doc: Document) => {
     setSelectedDoc(doc)
@@ -43,13 +42,53 @@ export function DocumentsPage({ documents: initial }: DocumentsPageProps) {
     showToast(`${selectedDoc.traineeName} - ${selectedDoc.type.replace(/_/g, ' ')} verified`)
   }, [selectedDoc, showToast])
 
+  const handleReject = useCallback(() => {
+    if (!selectedDoc) return
+    setDocuments((prev) => prev.map((d) => d.id === selectedDoc.id ? { ...d, status: 'rejected' as Document['status'] } : d))
+    showToast(`${selectedDoc.traineeName} - document rejected, resubmission requested`)
+  }, [selectedDoc, showToast])
+
+  const handleEscalate = useCallback(() => {
+    if (!selectedDoc) return
+    showToast(`${selectedDoc.traineeName} - escalated to supervisor`)
+  }, [selectedDoc, showToast])
+
   const handleBatchApprove = useCallback(() => {
     setDocuments((prev) => prev.map((d) => selectedIds.includes(d.id) ? { ...d, status: 'manually_verified' as Document['status'] } : d))
     showToast(`${selectedIds.length} documents approved`)
     setSelectedIds([])
   }, [selectedIds, showToast])
 
+  const handleBatchFlag = useCallback(() => {
+    setDocuments((prev) => prev.map((d) => selectedIds.includes(d.id) ? { ...d, status: 'flagged' as Document['status'] } : d))
+    showToast(`${selectedIds.length} documents flagged for review`)
+    setSelectedIds([])
+  }, [selectedIds, showToast])
+
+  const handleBatchResubmit = useCallback(() => {
+    setDocuments((prev) => prev.map((d) => selectedIds.includes(d.id) ? { ...d, status: 'rejected' as Document['status'] } : d))
+    showToast(`Resubmission requested for ${selectedIds.length} documents`)
+    setSelectedIds([])
+  }, [selectedIds, showToast])
+
+  const confirmLabels: Record<string, { title: string; desc: string; label: string; variant: 'default' | 'destructive' }> = {
+    flag: { title: 'Flag Selected Documents', desc: `Flag ${selectedIds.length} document(s) for manual review?`, label: 'Flag', variant: 'default' },
+    resubmit: { title: 'Request Resubmission', desc: `Request resubmission for ${selectedIds.length} document(s)? Trainees will be notified.`, label: 'Request Resubmission', variant: 'destructive' },
+    reject: { title: 'Reject Document', desc: `Reject this document and request resubmission from ${selectedDoc?.traineeName}?`, label: 'Reject', variant: 'destructive' },
+    escalate: { title: 'Escalate to Supervisor', desc: `Escalate ${selectedDoc?.traineeName}'s document for supervisor review?`, label: 'Escalate', variant: 'default' },
+  }
+
+  const onConfirm = () => {
+    if (confirmAction === 'flag') handleBatchFlag()
+    else if (confirmAction === 'resubmit') handleBatchResubmit()
+    else if (confirmAction === 'reject') handleReject()
+    else if (confirmAction === 'escalate') handleEscalate()
+    setConfirmAction(null)
+  }
+
   const active = documents.filter((d) => ['submitted', 'auto_verified', 'flagged'].includes(d.status))
+
+  const current = confirmAction ? confirmLabels[confirmAction] : null
 
   return (
     <div className="space-y-6">
@@ -69,10 +108,25 @@ export function DocumentsPage({ documents: initial }: DocumentsPageProps) {
         </TabsList>
 
         <TabsContent value="queue" className="mt-6">
-          <VerificationQueue documents={active} onSelectDocument={handleSelectDoc} selectedIds={selectedIds} onSelectionChange={setSelectedIds} onBatchApprove={handleBatchApprove} />
+          <VerificationQueue
+            documents={active}
+            onSelectDocument={handleSelectDoc}
+            selectedIds={selectedIds}
+            onSelectionChange={setSelectedIds}
+            onBatchApprove={handleBatchApprove}
+            onBatchFlag={() => setConfirmAction('flag')}
+            onBatchResubmit={() => setConfirmAction('resubmit')}
+          />
         </TabsContent>
         <TabsContent value="reviewer" className="mt-6">
-          <DocumentReviewer document={selectedDoc} documents={active} onNavigate={setSelectedDoc} onVerify={handleVerify} />
+          <DocumentReviewer
+            document={selectedDoc}
+            documents={active}
+            onNavigate={setSelectedDoc}
+            onVerify={handleVerify}
+            onReject={() => setConfirmAction('reject')}
+            onEscalate={() => setConfirmAction('escalate')}
+          />
         </TabsContent>
         <TabsContent value="archive" className="mt-6">
           <DocumentArchive documents={documents} />
@@ -82,11 +136,19 @@ export function DocumentsPage({ documents: initial }: DocumentsPageProps) {
         </TabsContent>
       </Tabs>
 
-      {toast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg text-sm font-bold">
-          {toast}
-        </div>
+      {current && (
+        <ConfirmationModal
+          open={!!confirmAction}
+          title={current.title}
+          description={current.desc}
+          confirmLabel={current.label}
+          variant={current.variant}
+          onConfirm={onConfirm}
+          onCancel={() => setConfirmAction(null)}
+        />
       )}
+
+      <ActionToast message={toast} onDismiss={clearToast} />
     </div>
   )
 }
