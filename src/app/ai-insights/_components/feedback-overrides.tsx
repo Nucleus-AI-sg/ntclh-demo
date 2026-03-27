@@ -30,7 +30,7 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
         <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Override Breakdown</h3>
           <AppPieChart data={pieData} innerRadius={60} height={250} />
-          <p className="text-xs text-slate-500 mt-2 text-center">{totalOverrides} total overrides, AI was correct in {aiCorrect} cases ({Math.round((aiCorrect / totalOverrides) * 100)}%)</p>
+          <p className="text-xs text-slate-500 mt-2 text-center">{totalOverrides} total overrides, AI was correct in {aiCorrect} cases ({totalOverrides > 0 ? Math.round((aiCorrect / totalOverrides) * 100) : 0}%)</p>
         </div>
 
         {/* Override Patterns Table */}

@@ -15,10 +15,9 @@ interface EmployerProfileProps {
   trainees: Trainee[]
 }
 
-const engagementData = [
-  { month: 'Oct', score: 65 }, { month: 'Nov', score: 70 }, { month: 'Dec', score: 72 },
-  { month: 'Jan', score: 78 }, { month: 'Feb', score: 82 }, { month: 'Mar', score: 85 },
-]
+const engagementBase: Record<string, number> = { high: 70, medium: 50, low: 30 }
+const buildEngagement = (level: string) =>
+  ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'].map((month, i) => ({ month, score: (engagementBase[level] ?? 50) + i * 3 }))
 
 const tabs = [
   { id: 'overview', label: 'Overview' },
@@ -83,7 +82,7 @@ export function EmployerProfile({ employer, vacancies, placements, communication
             </div>
             <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Engagement Trend</h3>
-              <AppLineChart data={engagementData} lines={[{ key: 'score', label: 'Engagement Score', colour: '#2563eb' }]} xKey="month" height={200} />
+              <AppLineChart data={buildEngagement(employer.engagementLevel)} lines={[{ key: 'score', label: 'Engagement Score', colour: '#2563eb' }]} xKey="month" height={200} />
             </div>
           </div>
           {contact && (

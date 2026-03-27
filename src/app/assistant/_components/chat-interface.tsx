@@ -45,7 +45,7 @@ export function ChatInterface({ scripts, fallback }: ChatInterfaceProps) {
       response = script.response
     } else if (activeScript && followUpIndex < activeScript.followUps.length) {
       const followUp = activeScript.followUps[followUpIndex]
-      if (text.toLowerCase().includes(followUp.prompt.toLowerCase().slice(0, 10))) {
+      if (text.toLowerCase() === followUp.prompt.toLowerCase()) {
         response = followUp.response
         setFollowUpIndex((i) => i + 1)
       } else {

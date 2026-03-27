@@ -51,6 +51,13 @@ const templates = [
   { id: 't5', name: 'Placement Confirmation', category: 'Placement', channel: 'email' },
 ]
 
+function responseRate(comms: Communication[], channel: string): string {
+  const byChannel = comms.filter((c) => c.channel === channel)
+  if (byChannel.length === 0) return '0%'
+  const responded = byChannel.filter((c) => c.status === 'responded').length
+  return `${Math.round((responded / byChannel.length) * 100)}%`
+}
+
 export function CommunicationsPage({ communications, sequences }: CommunicationsPageProps) {
   const [channelFilter, setChannelFilter] = useState('__all__')
   const [preview, setPreview] = useState<string | null>(null)
@@ -63,9 +70,9 @@ export function CommunicationsPage({ communications, sequences }: Communications
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard label="Email" value="34%" icon={Mail} iconColour="blue" subtitle="Response rate" />
-        <StatCard label="SMS" value="45%" icon={MessageSquare} iconColour="teal" subtitle="Response rate" />
-        <StatCard label="WhatsApp" value="62%" icon={Smartphone} iconColour="green" subtitle="Response rate" />
+        <StatCard label="Email" value={responseRate(communications, 'email')} icon={Mail} iconColour="blue" subtitle="Response rate" />
+        <StatCard label="SMS" value={responseRate(communications, 'sms')} icon={MessageSquare} iconColour="teal" subtitle="Response rate" />
+        <StatCard label="WhatsApp" value={responseRate(communications, 'whatsapp')} icon={Smartphone} iconColour="green" subtitle="Response rate" />
         <StatCard label="Total Sent (30d)" value={communications.length} icon={Send} iconColour="indigo" />
       </div>
 

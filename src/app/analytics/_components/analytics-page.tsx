@@ -6,6 +6,8 @@ import { PerformanceOverview } from './performance-overview'
 import { ProgrammeDeepDive } from './programme-deep-dive'
 import { ComplianceReports } from './compliance-reports'
 
+interface DashboardKpi { value: number; trend?: number; trendDirection?: 'up' | 'down' }
+
 interface AnalyticsPageProps {
   monthlyMetrics: MonthlyMetric[]
   programmeMetrics: ProgrammeMetrics[]
@@ -13,6 +15,11 @@ interface AnalyticsPageProps {
   reportTemplates: ReportTemplate[]
   programmes: Programme[]
   cohorts: Cohort[]
+  kpis: {
+    totalActiveTrainees: DashboardKpi
+    overallPlacementRate: DashboardKpi & { target: number }
+    atRiskPlacements: DashboardKpi
+  }
 }
 
 const tabs = [
@@ -30,7 +37,7 @@ export function AnalyticsPage(props: AnalyticsPageProps) {
         ))}
       </TabsList>
       <TabsContent value="performance" className="mt-6">
-        <PerformanceOverview monthlyMetrics={props.monthlyMetrics} programmeMetrics={props.programmeMetrics} placementFunnel={props.placementFunnel} />
+        <PerformanceOverview monthlyMetrics={props.monthlyMetrics} programmeMetrics={props.programmeMetrics} placementFunnel={props.placementFunnel} kpis={props.kpis} />
       </TabsContent>
       <TabsContent value="programme" className="mt-6">
         <ProgrammeDeepDive programmes={props.programmes} cohorts={props.cohorts} programmeMetrics={props.programmeMetrics} />

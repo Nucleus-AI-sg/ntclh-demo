@@ -78,8 +78,8 @@ export function ProgrammeDetail({ programme, cohorts, metrics }: ProgrammeDetail
               {expandedCohort === cohort.id && (
                 <div className="px-4 pb-4 border-t border-slate-100 pt-3">
                   <dl className="grid grid-cols-4 gap-4 text-sm">
-                    <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Completion Rate</dt><dd className="font-black text-slate-900">{cohort.completionRate ?? 'N/A'}%</dd></div>
-                    <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Placement Rate</dt><dd className="font-black text-slate-900">{cohort.placementRate ?? 'N/A'}%</dd></div>
+                    <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Completion Rate</dt><dd className="font-black text-slate-900">{cohort.completionRate != null ? `${cohort.completionRate}%` : 'N/A'}</dd></div>
+                    <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Placement Rate</dt><dd className="font-black text-slate-900">{cohort.placementRate != null ? `${cohort.placementRate}%` : 'N/A'}</dd></div>
                     <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Capacity</dt><dd className="font-black text-slate-900">{cohort.capacity}</dd></div>
                     <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Enrolled</dt><dd className="font-black text-slate-900">{cohort.enrolledCount}</dd></div>
                   </dl>
