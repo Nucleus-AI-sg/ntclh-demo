@@ -1,12 +1,18 @@
-import { StatusBadge } from '@/components/shared'
+'use client'
 
-const syncConfig = {
-  direction: 'Bidirectional',
-  frequency: 'Every 5 minutes',
-  entities: ['Trainees', 'Employers', 'Programmes', 'Placements'],
-  conflictResolution:
-    'Nucleus AI is master for programme data, CRM is master for contact details',
+import { StatusBadge } from '@/components/shared'
+import { EditableForm } from '@/components/shared/editable-form'
+
+interface CrmTabProps {
+  showToast: (msg: string) => void
 }
+
+const syncConfigFields = [
+  { label: 'Direction', value: 'Bidirectional', type: 'text' as const },
+  { label: 'Frequency', value: 'Every 5 minutes', type: 'text' as const },
+  { label: 'Entities Synced', value: 'Trainees, Employers, Programmes, Placements', type: 'text' as const },
+  { label: 'Conflict Resolution', value: 'Nucleus AI is master for programme data, CRM is master for contact details', type: 'text' as const },
+]
 
 const syncLog = [
   { message: 'Synced 3 new trainee records from Salesforce', time: '5 min ago' },
@@ -26,29 +32,12 @@ const fieldMappings = [
   { nucleusField: 'Placement Date', crmField: 'Opportunity.CloseDate', direction: 'Nucleus \u2192 CRM' },
 ]
 
-export function CrmTab() {
+export function CrmTab({ showToast }: CrmTabProps) {
   return (
     <div className="space-y-6">
       <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Sync Configuration</h3>
-        <dl className="grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <dt className="text-[10px] font-bold text-slate-400 uppercase">Direction</dt>
-            <dd className="font-bold text-slate-900">{syncConfig.direction}</dd>
-          </div>
-          <div>
-            <dt className="text-[10px] font-bold text-slate-400 uppercase">Frequency</dt>
-            <dd className="font-bold text-slate-900">{syncConfig.frequency}</dd>
-          </div>
-          <div>
-            <dt className="text-[10px] font-bold text-slate-400 uppercase">Entities Synced</dt>
-            <dd className="font-bold text-slate-900">{syncConfig.entities.join(', ')}</dd>
-          </div>
-          <div>
-            <dt className="text-[10px] font-bold text-slate-400 uppercase">Conflict Resolution</dt>
-            <dd className="text-slate-700">{syncConfig.conflictResolution}</dd>
-          </div>
-        </dl>
+        <EditableForm fields={syncConfigFields} onSave={() => showToast('Sync configuration saved')} />
       </div>
 
       <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">

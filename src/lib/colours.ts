@@ -36,6 +36,7 @@ export type StatusVariant =
   | 'opened'
   | 'responded'
   | 'bounced'
+  | 'inactive'
 
 interface ColourSet {
   bg: string
@@ -89,6 +90,7 @@ export const statusColours: Record<StatusVariant, ColourSet> = {
   completed: teal,
   // Slate - neutral
   applied: slate,
+  inactive: slate,
   not_submitted: slate,
   // Teal - placed/special
   placed: teal,
