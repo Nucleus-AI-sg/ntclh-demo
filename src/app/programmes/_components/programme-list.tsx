@@ -54,6 +54,8 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
     return result
   }, [programmes, search, durationFilter, sortKey])
 
+  const colourMap = useMemo(() => new Map(programmes.map((p, i) => [p.id, colours[i % colours.length]])), [programmes])
+
   const comparisonData = metrics.map((m) => {
     const prog = programmes.find((p) => p.id === m.programmeId)
     return { name: prog?.shortName ?? m.programmeId, completion: m.completionRate, placement: m.placementRate, conversion: m.enrolmentConversion }
@@ -78,14 +80,13 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
       {/* Programme Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {filtered.map((prog) => {
-          const i = programmes.indexOf(prog)
           const progCohorts = cohorts.filter((c) => c.programmeId === prog.id)
           const activeCohorts = progCohorts.filter((c) => c.status === 'active').length
           const m = metrics.find((pm) => pm.programmeId === prog.id)
           return (
             <Link key={prog.id} href={`/programme/${prog.id}`} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center gap-3 mb-3">
-                <div className={cn('w-3 h-3 rounded-full', colours[i % colours.length])} />
+                <div className={cn('w-3 h-3 rounded-full', colourMap.get(prog.id) ?? colours[0])} />
                 <h3 className="text-sm font-bold text-slate-900">{prog.name}</h3>
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">

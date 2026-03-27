@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { AppFunnelChart, StatusBadge } from '@/components/shared'
 import type { Trainee } from '@/types'
@@ -36,7 +34,6 @@ const pipelineData: Record<string, { name: string; value: number }[]> = {
 
 const earlyStages = new Set([
   LifecycleStage.Applied,
-  LifecycleStage.Enrolled,
 ])
 
 export function EnrolmentPipelineTab({ programmeId, trainees }: EnrolmentPipelineTabProps) {

@@ -47,7 +47,7 @@ export function CohortFormModal({ open, onClose, onSave, programme, cohort }: Co
       setCapacity(programme.cohortCapacity)
       setInstructor('')
     }
-  }, [cohort, programme.cohortCapacity])
+  }, [open, cohort, programme.cohortCapacity])
 
   useEffect(() => {
     if (startDate && !cohort) {

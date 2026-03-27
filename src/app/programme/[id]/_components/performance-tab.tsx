@@ -23,7 +23,7 @@ export function PerformanceTab({ cohorts, metrics, trainees, employers }: Perfor
     const counts: Record<string, number> = {}
     trainees.forEach((t) => {
       if (t.employmentType) {
-        const label = t.employmentType.replace(/([A-Z])/g, ' $1').trim()
+        const label = t.employmentType.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
         counts[label] = (counts[label] || 0) + 1
       }
     })
