@@ -12,6 +12,15 @@ export { communications } from './communications'
 export { outreachSequences } from './outreach-sequences'
 export { messageTemplates } from './templates'
 export { campaigns } from './campaigns'
+export {
+  responseRateTrends,
+  bestTimesHeatmap,
+  segmentEffectiveness,
+  sequenceFunnelData,
+  stepResponseRates,
+  campaignRecipientStatus,
+  templateSampleData,
+} from './communications-analytics'
 export { alerts } from './alerts'
 export { activityEvents } from './activity-events'
 export { moduleProgress } from './module-progress'

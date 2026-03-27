@@ -1,37 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MessageSquare, ChevronDown, ChevronUp, Megaphone } from 'lucide-react'
+import { ChevronDown, ChevronUp, Megaphone } from 'lucide-react'
 import { StatusBadge, DataTable, type Column } from '@/components/shared'
-import type { Campaign, Communication } from '@/types'
-
-const channelIcon: Record<string, React.ReactNode> = {
-  email: <Mail className="h-3.5 w-3.5" />,
-  sms: <MessageSquare className="h-3.5 w-3.5" />,
-}
-
-/** Simulated per-recipient data for expanded campaign view. */
-const recipientStatus: Record<string, { name: string; status: string }[]> = {
-  'camp-mar-placement': [
-    { name: 'Priya Sharma', status: 'opened' },
-    { name: 'Chris Loh', status: 'delivered' },
-    { name: 'Wei Ming', status: 'responded' },
-    { name: 'Kumar S.', status: 'opened' },
-    { name: 'Raj Patel', status: 'opened' },
-    { name: 'Fiona Cheng', status: 'responded' },
-  ],
-  'camp-doc-reminder': [
-    { name: 'Wei Ming', status: 'responded' },
-    { name: 'Priya Sharma', status: 'delivered' },
-    { name: 'David Ng', status: 'responded' },
-    { name: 'Lisa Koh', status: 'delivered' },
-  ],
-  'camp-q1-employer': [
-    { name: 'TechCorp Pte Ltd', status: 'responded' },
-    { name: 'DataInsights Pte Ltd', status: 'opened' },
-    { name: 'FinanceFirst Pte Ltd', status: 'opened' },
-  ],
-}
+import { getChannelIcon } from '@/lib/channel-icons'
+import { campaignRecipientStatus } from '@/data'
+import type { Campaign } from '@/types'
+import { CampaignWizard } from './campaign-wizard'
 
 function pct(n: number | null, total: number) {
   if (n === null) return '-'
@@ -40,11 +15,11 @@ function pct(n: number | null, total: number) {
 
 interface CampaignsTabProps {
   campaigns: Campaign[]
-  communications: Communication[]
 }
 
 export function CampaignsTab({ campaigns }: CampaignsTabProps) {
   const [expanded, setExpanded] = useState<string | null>(null)
+  const [wizardOpen, setWizardOpen] = useState(false)
 
   const columns: Column<Campaign>[] = [
     {
@@ -53,7 +28,7 @@ export function CampaignsTab({ campaigns }: CampaignsTabProps) {
       render: (row) => (
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-500">
-            {channelIcon[row.channel] ?? <Megaphone className="h-3.5 w-3.5" />}
+            {getChannelIcon(row.channel) ?? <Megaphone className="h-3.5 w-3.5" />}
           </div>
           <div>
             <p className="text-xs font-bold text-slate-900">{row.name}</p>
@@ -84,7 +59,10 @@ export function CampaignsTab({ campaigns }: CampaignsTabProps) {
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <button className="flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 border border-blue-200 rounded-lg px-3 py-1.5 hover:bg-blue-50 transition-colors">
+        <button
+          onClick={() => setWizardOpen(true)}
+          className="flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 border border-blue-200 rounded-lg px-3 py-1.5 hover:bg-blue-50 transition-colors"
+        >
           <Megaphone className="h-3.5 w-3.5" /> Create Campaign
         </button>
       </div>
@@ -96,7 +74,7 @@ export function CampaignsTab({ campaigns }: CampaignsTabProps) {
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Per-Recipient Status</p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {(recipientStatus[expanded] ?? []).map((r, i) => (
+            {(campaignRecipientStatus[expanded] ?? []).map((r, i) => (
               <div key={i} className="bg-white rounded-lg border border-slate-100 px-3 py-2 flex items-center justify-between">
                 <span className="text-xs text-slate-700">{r.name}</span>
                 <StatusBadge status={r.status} />
@@ -105,6 +83,8 @@ export function CampaignsTab({ campaigns }: CampaignsTabProps) {
           </div>
         </div>
       )}
+
+      {wizardOpen && <CampaignWizard onClose={() => setWizardOpen(false)} />}
     </div>
   )
 }

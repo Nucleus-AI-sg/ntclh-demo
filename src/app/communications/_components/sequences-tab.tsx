@@ -1,28 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MessageSquare, Smartphone, Play, Pause, ArrowRight, Plus } from 'lucide-react'
+import { Play, Pause, ArrowRight, Plus } from 'lucide-react'
 import { StatusBadge } from '@/components/shared'
+import { getChannelIcon, channelColour } from '@/lib/channel-icons'
+import { stepResponseRates } from '@/data'
 import type { OutreachSequence } from '@/types'
-
-const channelIcon: Record<string, React.ReactNode> = {
-  email: <Mail className="h-3 w-3" />,
-  sms: <MessageSquare className="h-3 w-3" />,
-  whatsapp: <Smartphone className="h-3 w-3" />,
-}
-
-const channelColour: Record<string, string> = {
-  email: 'bg-blue-50 text-blue-600 border-blue-100',
-  sms: 'bg-teal-50 text-teal-600 border-teal-100',
-  whatsapp: 'bg-green-50 text-green-600 border-green-100',
-}
-
-/** Simulated per-step response rates for demo purposes. */
-const stepResponseRates: Record<string, number[]> = {
-  'seq-001': [85, 62, 45, 30, 0],
-  'seq-002': [95, 92],
-  'seq-003': [60, 48, 0],
-}
 
 interface SequencesTabProps {
   sequences: OutreachSequence[]
@@ -78,7 +61,7 @@ export function SequencesTab({ sequences }: SequencesTabProps) {
                   <div key={i} className="flex items-center gap-1 flex-shrink-0">
                     {i > 0 && <ArrowRight className="h-3.5 w-3.5 text-slate-300 flex-shrink-0" />}
                     <div className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border text-[10px] font-bold ${channelColour[step.channel] ?? 'bg-slate-50 text-slate-600 border-slate-100'}`}>
-                      {channelIcon[step.channel]}
+                      {getChannelIcon(step.channel, 'sm')}
                       <span>Day {step.day}</span>
                     </div>
                   </div>

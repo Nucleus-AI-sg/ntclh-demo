@@ -1,21 +1,37 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Mail, MessageSquare, Phone, Smartphone, ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 import { StatusBadge, FilterBar } from '@/components/shared'
+import { getChannelIcon } from '@/lib/channel-icons'
 import type { Communication } from '@/types'
-
-const channelIcon: Record<string, React.ReactNode> = {
-  email: <Mail className="h-3.5 w-3.5" />,
-  sms: <MessageSquare className="h-3.5 w-3.5" />,
-  whatsapp: <Smartphone className="h-3.5 w-3.5" />,
-  phone: <Phone className="h-3.5 w-3.5" />,
-}
 
 const triggerLabel: Record<string, string> = {
   automated: 'Automated',
   manual: 'Manual',
   bulk_campaign: 'Bulk Campaign',
+}
+
+const dateRangeOptions = [
+  { label: 'Last 7 days', value: '7' },
+  { label: 'Last 30 days', value: '30' },
+  { label: 'Last 90 days', value: '90' },
+]
+
+const programmeOptions = [
+  { label: 'Business Analyst', value: 'ba' },
+  { label: 'ICT Career Conversion', value: 'ict' },
+  { label: 'Digital Marketing', value: 'dm' },
+]
+
+/** Maps recipientId prefix to programme track for filtering. */
+const recipientProgramme: Record<string, string> = {
+  'marcus-lee': 'ba', 'john-tan': 'ba', 'vincent-chua': 'ba',
+  'amy-chen': 'ict', 'ahmad-ibrahim': 'ict', 'wei-ming': 'ict', 'rachel-goh': 'ict',
+  'lisa-koh': 'dm', 'michelle-tan': 'dm', 'mei-ling': 'dm',
+  'david-ng': 'ba', 'priya-sharma': 'ba', 'kumar-s': 'ba',
+  'raj-patel': 'ict', 'fiona-cheng': 'ict', 'chris-loh': 'ict',
+  'henry-koh': 'ba', 'diana-lee': 'dm', 'sarah-lim': 'ba',
 }
 
 function formatTimestamp(iso: string) {
@@ -33,6 +49,8 @@ export function ActivityFeedTab({ communications }: ActivityFeedTabProps) {
   const [statusFilter, setStatusFilter] = useState('__all__')
   const [recipientFilter, setRecipientFilter] = useState('__all__')
   const [triggerFilter, setTriggerFilter] = useState('__all__')
+  const [dateRange, setDateRange] = useState('__all__')
+  const [programmeFilter, setProgrammeFilter] = useState('__all__')
   const [search, setSearch] = useState('')
   const [expanded, setExpanded] = useState<string | null>(null)
 
@@ -42,18 +60,29 @@ export function ActivityFeedTab({ communications }: ActivityFeedTabProps) {
     if (statusFilter !== '__all__') result = result.filter((c) => c.status === statusFilter)
     if (recipientFilter !== '__all__') result = result.filter((c) => c.recipientType === recipientFilter)
     if (triggerFilter !== '__all__') result = result.filter((c) => c.trigger === triggerFilter)
+    if (dateRange !== '__all__') {
+      const days = Number(dateRange)
+      const cutoff = new Date()
+      cutoff.setDate(cutoff.getDate() - days)
+      result = result.filter((c) => new Date(c.timestamp) >= cutoff)
+    }
+    if (programmeFilter !== '__all__') {
+      result = result.filter((c) => recipientProgramme[c.recipientId] === programmeFilter)
+    }
     if (search) {
       const q = search.toLowerCase()
       result = result.filter((c) => c.recipientName.toLowerCase().includes(q) || c.subject.toLowerCase().includes(q))
     }
     return result.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-  }, [communications, channelFilter, statusFilter, recipientFilter, triggerFilter, search])
+  }, [communications, channelFilter, statusFilter, recipientFilter, triggerFilter, dateRange, programmeFilter, search])
 
   const filters = [
     { id: 'channel', label: 'All Channels', options: [{ label: 'Email', value: 'email' }, { label: 'SMS', value: 'sms' }, { label: 'WhatsApp', value: 'whatsapp' }, { label: 'Phone', value: 'phone' }], value: channelFilter, onChange: setChannelFilter },
     { id: 'status', label: 'All Statuses', options: [{ label: 'Sent', value: 'sent' }, { label: 'Delivered', value: 'delivered' }, { label: 'Opened', value: 'opened' }, { label: 'Responded', value: 'responded' }, { label: 'Failed', value: 'failed' }], value: statusFilter, onChange: setStatusFilter },
     { id: 'recipient', label: 'All Recipients', options: [{ label: 'Trainee', value: 'trainee' }, { label: 'Employer', value: 'employer' }], value: recipientFilter, onChange: setRecipientFilter },
     { id: 'trigger', label: 'All Triggers', options: [{ label: 'Automated', value: 'automated' }, { label: 'Manual', value: 'manual' }, { label: 'Bulk Campaign', value: 'bulk_campaign' }], value: triggerFilter, onChange: setTriggerFilter },
+    { id: 'dateRange', label: 'All Dates', options: dateRangeOptions, value: dateRange, onChange: setDateRange },
+    { id: 'programme', label: 'All Programmes', options: programmeOptions, value: programmeFilter, onChange: setProgrammeFilter },
   ]
 
   return (
@@ -70,7 +99,7 @@ export function ActivityFeedTab({ communications }: ActivityFeedTabProps) {
               className="w-full px-5 py-3 flex items-start gap-3 hover:bg-slate-50 text-left"
             >
               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 flex-shrink-0 mt-0.5">
-                {channelIcon[comm.channel]}
+                {getChannelIcon(comm.channel)}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">

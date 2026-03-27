@@ -78,7 +78,7 @@ export function CommunicationsPage({ communications, sequences, templates, campa
           <TemplatesTab templates={templates} />
         </TabsContent>
         <TabsContent value="campaigns" className="mt-6">
-          <CampaignsTab campaigns={campaigns} communications={communications} />
+          <CampaignsTab campaigns={campaigns} />
         </TabsContent>
         <TabsContent value="analytics" className="mt-6">
           <AnalyticsTab sequences={sequences} />

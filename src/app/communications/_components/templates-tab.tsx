@@ -1,15 +1,11 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Mail, MessageSquare, Smartphone, Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 import { FilterBar } from '@/components/shared'
+import { getChannelIcon } from '@/lib/channel-icons'
+import { templateSampleData } from '@/data'
 import type { MessageTemplate, TemplateCategory } from '@/types'
-
-const channelIcon: Record<string, React.ReactNode> = {
-  email: <Mail className="h-3.5 w-3.5" />,
-  sms: <MessageSquare className="h-3.5 w-3.5" />,
-  whatsapp: <Smartphone className="h-3.5 w-3.5" />,
-}
 
 const categoryLabels: Record<TemplateCategory, string> = {
   enrolment: 'Enrolment',
@@ -19,38 +15,8 @@ const categoryLabels: Record<TemplateCategory, string> = {
   administrative: 'Administrative',
 }
 
-const sampleData: Record<string, string> = {
-  trainee_name: 'Marcus Lee',
-  programme_name: 'Business Analyst Certification',
-  start_date: '3 Mar 2026',
-  venue: 'NTUC LearningHub, Level 5',
-  coordinator_name: 'Sarah Tan',
-  application_ref: 'APP-2026-0142',
-  module_name: 'Module 1: Business Fundamentals',
-  new_date: '10 Mar 2026',
-  score: '82',
-  grade: 'Merit',
-  additional_feedback: 'Strong analytical skills demonstrated in case study.',
-  document_deadline: '31 Mar 2026',
-  employer_name: 'TechCorp Pte Ltd',
-  contact_name: 'Jennifer Loh',
-  role_title: 'Junior Business Analyst',
-  match_score: '87',
-  available_date: '1 Apr 2026',
-  submission_date: '10 Mar 2026',
-  additional_count: '3',
-  interview_date: '18 Mar 2026',
-  status_change: 'Placed',
-  new_status: 'Placed - Verified',
-  reason: 'Employment verification documents confirmed.',
-  deadline_description: 'Employment document submission',
-  deadline_date: '31 Mar 2026',
-  pending_item: 'employment documents',
-  cohort_date: 'January 2026',
-}
-
 function renderMerged(text: string) {
-  return text.replace(/\{\{(\w+)\}\}/g, (_, key) => sampleData[key] ?? `{{${key}}}`)
+  return text.replace(/\{\{(\w+)\}\}/g, (_, key) => templateSampleData[key] ?? `{{${key}}}`)
 }
 
 interface TemplatesTabProps {
@@ -82,7 +48,7 @@ export function TemplatesTab({ templates }: TemplatesTabProps) {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500">
-                  {channelIcon[t.channel]}
+                  {getChannelIcon(t.channel)}
                 </div>
                 <div>
                   <p className="text-sm font-bold text-slate-900">{t.name}</p>
