@@ -1,17 +1,23 @@
 'use client'
 
 import { useState } from 'react'
-import { AppBarChart, AppPieChart, FilterBar } from '@/components/shared'
-import type { Programme, Cohort, ProgrammeMetrics } from '@/types'
+import { AppBarChart, AppPieChart, FilterBar, ExportButton, useActionToast, ActionToast } from '@/components/shared'
+import type { Programme, Cohort, ProgrammeMetrics, EmployerPerformanceEntry } from '@/types'
+import { EmployerHeatmap } from './employer-heatmap'
+
+interface SectorEntry { sector: string; percentage: number }
 
 interface ProgrammeDeepDiveProps {
   programmes: Programme[]
   cohorts: Cohort[]
   programmeMetrics: ProgrammeMetrics[]
+  sectorBreakdown: SectorEntry[]
+  employerPerformance: EmployerPerformanceEntry[]
 }
 
-export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics }: ProgrammeDeepDiveProps) {
+export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics, sectorBreakdown, employerPerformance }: ProgrammeDeepDiveProps) {
   const [selectedProg, setSelectedProg] = useState(programmes[0]?.id ?? '')
+  const [toast, showToast] = useActionToast()
 
   const prog = programmes.find((p) => p.id === selectedProg)
   const metrics = programmeMetrics.find((m) => m.programmeId === selectedProg)
@@ -25,13 +31,16 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics }: Pro
     placement: c.placementRate ?? 0,
   }))
 
-  const moduleData = prog?.modules.map((m) => ({ name: m.name.slice(0, 15), value: m.durationWeeks })) ?? []
+  const sectorData = sectorBreakdown.map((s) => ({ name: s.sector, value: s.percentage }))
 
   return (
     <div className="space-y-6">
-      <FilterBar
-        filters={[{ id: 'programme', label: 'Select Programme', options: programmeOptions, value: selectedProg, onChange: setSelectedProg }]}
-      />
+      <div className="flex items-center justify-between">
+        <FilterBar
+          filters={[{ id: 'programme', label: 'Select Programme', options: programmeOptions, value: selectedProg, onChange: setSelectedProg }]}
+        />
+        <ExportButton label="Export Deep Dive" showToast={showToast} />
+      </div>
 
       {prog && metrics && (
         <>
@@ -76,10 +85,10 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics }: Pro
               />
             </div>
 
-            {/* Module Breakdown */}
+            {/* Sector Breakdown */}
             <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Module Duration (weeks)</h3>
-              <AppPieChart data={moduleData} innerRadius={60} height={250} />
+              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Placement by Sector</h3>
+              <AppPieChart data={sectorData} innerRadius={60} height={250} />
             </div>
           </div>
 
@@ -105,8 +114,12 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics }: Pro
               </tbody>
             </table>
           </div>
+          {/* Employer Engagement Heatmap */}
+          <EmployerHeatmap data={employerPerformance} />
         </>
       )}
+
+      <ActionToast message={toast} />
     </div>
   )
 }

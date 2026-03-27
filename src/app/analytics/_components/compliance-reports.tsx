@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { FileText, Download, CheckCircle, Clock, AlertTriangle, Eye } from 'lucide-react'
-import { StatusBadge } from '@/components/shared'
+import { StatusBadge, ExportButton, useActionToast, ActionToast } from '@/components/shared'
 import { cn } from '@/lib/utils'
 import type { ReportTemplate, ReportHistoryEntry, DataCompletenessCheck } from '@/types'
 
@@ -20,16 +20,20 @@ const statusIcon: Record<string, React.ReactNode> = {
 
 export function ComplianceReports({ reportTemplates, reportHistory, dataCompletenessChecks }: ComplianceReportsProps) {
   const [preview, setPreview] = useState<string | null>(null)
-  const [toast, setToast] = useState<string | null>(null)
+  const [toast, showToast] = useActionToast()
 
   const handleGenerate = (name: string) => {
     setPreview(name)
-    setToast(`${name} generated successfully`)
-    setTimeout(() => setToast(null), 3000)
+    showToast(`${name} generated successfully`)
   }
 
   return (
     <div className="space-y-6">
+      {/* Header with Export */}
+      <div className="flex items-center justify-end">
+        <ExportButton label="Export Reports" showToast={showToast} />
+      </div>
+
       {/* Report Templates */}
       <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Government Report Templates</h3>
@@ -114,7 +118,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
         </table>
       </div>
 
-      {toast && <div className="fixed bottom-6 right-6 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg text-sm font-bold">{toast}</div>}
+      <ActionToast message={toast} />
     </div>
   )
 }

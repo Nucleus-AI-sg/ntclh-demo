@@ -1,12 +1,14 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import type { MonthlyMetric, ProgrammeMetrics, ReportTemplate, ReportHistoryEntry, DataCompletenessCheck, Programme, Cohort } from '@/types'
+import type { MonthlyMetric, ProgrammeMetrics, ReportTemplate, ReportHistoryEntry, DataCompletenessCheck, Programme, Cohort, Trainee, EmployerPerformanceEntry } from '@/types'
 import { PerformanceOverview } from './performance-overview'
 import { ProgrammeDeepDive } from './programme-deep-dive'
 import { ComplianceReports } from './compliance-reports'
 
 interface DashboardKpi { value: number; trend?: number; trendDirection?: 'up' | 'down' }
+
+interface SectorEntry { sector: string; percentage: number }
 
 interface AnalyticsPageProps {
   monthlyMetrics: MonthlyMetric[]
@@ -17,6 +19,9 @@ interface AnalyticsPageProps {
   dataCompletenessChecks: DataCompletenessCheck[]
   programmes: Programme[]
   cohorts: Cohort[]
+  trainees: Trainee[]
+  sectorBreakdown: SectorEntry[]
+  employerPerformance: EmployerPerformanceEntry[]
   kpis: {
     totalActiveTrainees: DashboardKpi
     overallPlacementRate: DashboardKpi & { target: number }
@@ -39,10 +44,10 @@ export function AnalyticsPage(props: AnalyticsPageProps) {
         ))}
       </TabsList>
       <TabsContent value="performance" className="mt-6">
-        <PerformanceOverview monthlyMetrics={props.monthlyMetrics} programmeMetrics={props.programmeMetrics} placementFunnel={props.placementFunnel} kpis={props.kpis} />
+        <PerformanceOverview monthlyMetrics={props.monthlyMetrics} programmeMetrics={props.programmeMetrics} placementFunnel={props.placementFunnel} trainees={props.trainees} kpis={props.kpis} />
       </TabsContent>
       <TabsContent value="programme" className="mt-6">
-        <ProgrammeDeepDive programmes={props.programmes} cohorts={props.cohorts} programmeMetrics={props.programmeMetrics} />
+        <ProgrammeDeepDive programmes={props.programmes} cohorts={props.cohorts} programmeMetrics={props.programmeMetrics} sectorBreakdown={props.sectorBreakdown} employerPerformance={props.employerPerformance} />
       </TabsContent>
       <TabsContent value="compliance" className="mt-6">
         <ComplianceReports reportTemplates={props.reportTemplates} reportHistory={props.reportHistory} dataCompletenessChecks={props.dataCompletenessChecks} />
