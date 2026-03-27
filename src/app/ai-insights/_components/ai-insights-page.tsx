@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import type { AiPerformanceSnapshot, ModelVersion, OverridePattern, StrategicInsight, FeatureImportance } from '@/types'
 import { AssessmentPerformance } from './assessment-performance'
 import { FeedbackOverrides } from './feedback-overrides'
+import { MatchingPerformance } from './matching-performance'
 import { StrategicInsights } from './strategic-insights'
 import { ModelTransparency } from './model-transparency'
 
@@ -19,6 +20,7 @@ interface AiInsightsPageProps {
 const tabs = [
   { id: 'assessment', label: 'Assessment Performance' },
   { id: 'feedback', label: 'Coordinator Feedback' },
+  { id: 'matching', label: 'Matching Performance' },
   { id: 'strategic', label: 'Strategic Intelligence' },
   { id: 'transparency', label: 'Model Transparency' },
 ] as const
@@ -36,6 +38,9 @@ export function AiInsightsPage(props: AiInsightsPageProps) {
       </TabsContent>
       <TabsContent value="feedback" className="mt-6">
         <FeedbackOverrides overridePatterns={props.overridePatterns} history={props.history} />
+      </TabsContent>
+      <TabsContent value="matching" className="mt-6">
+        <MatchingPerformance />
       </TabsContent>
       <TabsContent value="strategic" className="mt-6">
         <StrategicInsights insights={props.strategicInsights} />

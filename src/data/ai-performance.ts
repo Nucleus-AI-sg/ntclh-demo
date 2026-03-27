@@ -276,6 +276,56 @@ export const matchingPerformanceMetrics: MatchingPerformanceMetrics = {
   ],
 }
 
+export const matchScoreCalibration: { x: number; y: number; label: string }[] = [
+  { x: 92, y: 4.8, label: 'TechCorp - Software Eng' },
+  { x: 88, y: 4.5, label: 'DataViz Co - Analyst' },
+  { x: 85, y: 4.2, label: 'CloudFirst - DevOps' },
+  { x: 82, y: 4.0, label: 'FinServ - BA Consultant' },
+  { x: 78, y: 3.8, label: 'RetailPlus - Digital Mktg' },
+  { x: 76, y: 4.1, label: 'MediTech - Data Analyst' },
+  { x: 73, y: 3.5, label: 'LogiStar - Ops Manager' },
+  { x: 70, y: 3.2, label: 'EduTech - Trainer' },
+  { x: 68, y: 3.6, label: 'GreenEnergy - PM' },
+  { x: 65, y: 3.0, label: 'SmartBuild - QA' },
+  { x: 62, y: 2.8, label: 'FoodCo - Admin' },
+  { x: 58, y: 2.5, label: 'TravelHub - Support' },
+  { x: 55, y: 3.1, label: 'AutoDrive - Technician' },
+  { x: 50, y: 2.2, label: 'PrintMedia - Designer' },
+  { x: 45, y: 2.0, label: 'OldTech - Helpdesk' },
+]
+
+export const matchQualityMetrics = [
+  { metric: 'Candidates submitted that were hired', current: '62%', previous: '48%', improvement: '+14%' },
+  { metric: 'Employer satisfaction (avg rating)', current: '4.2/5', previous: '3.8/5', improvement: '+0.4' },
+  { metric: 'Time to fill (avg days)', current: '28', previous: '42', improvement: '-14 days' },
+  { metric: '6-month retention rate', current: '73%', previous: '65%', improvement: '+8%' },
+]
+
+export const matchingPatternsDiscovered = [
+  { pattern: 'Retail management to BA roles', successRate: 82, status: 'discovered' as const },
+  { pattern: 'Hospitality to Digital Marketing', successRate: 74, status: 'emerging' as const },
+  { pattern: 'Engineering to ICT', successRate: 91, status: 'established' as const },
+  { pattern: 'Finance to Data Analytics', successRate: 78, status: 'discovered' as const },
+  { pattern: 'Healthcare to Project Management', successRate: 68, status: 'emerging' as const },
+]
+
+export const employerFeedbackRanking = [
+  { employer: 'TechCorp Pte Ltd', feedbackCount: 24, matchImprovement: '+18%' },
+  { employer: 'DataViz Analytics', feedbackCount: 18, matchImprovement: '+12%' },
+  { employer: 'CloudFirst Solutions', feedbackCount: 15, matchImprovement: '+9%' },
+  { employer: 'FinServ Partners', feedbackCount: 11, matchImprovement: '+7%' },
+  { employer: 'MediTech Systems', feedbackCount: 8, matchImprovement: '+5%' },
+]
+
+export const recommendationStats = {
+  totalRecommendations: 847,
+  acceptanceRate: 67,
+  placementConversion: 42,
+  avgConfidenceScore: 78,
+  highConfidencePlacement: 84,
+  lowConfidencePlacement: 38,
+}
+
 export const feedbackTimeline = [
   {
     date: '2025-10-15',
