@@ -89,6 +89,11 @@ export interface MatchingPerformanceMetrics {
   matchesByProgramme: { programmeId: string; matches: number; acceptanceRate: number }[]
 }
 
+export interface SectorEntry {
+  sector: string
+  percentage: number
+}
+
 export interface EmployerPerformanceEntry {
   employerId: string
   employerName: string

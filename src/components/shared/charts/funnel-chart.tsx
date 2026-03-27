@@ -19,12 +19,14 @@ interface AppFunnelChartProps {
   data: FunnelDataItem[]
   height?: number
   className?: string
+  onClick?: (entry: FunnelDataItem) => void
 }
 
 export function AppFunnelChart({
   data,
   height = 300,
   className,
+  onClick,
 }: AppFunnelChartProps) {
   const coloured = data.map((d, i) => ({
     ...d,
@@ -36,7 +38,13 @@ export function AppFunnelChart({
       <ResponsiveContainer width="100%" height={height}>
         <RechartsFunnelChart>
           <Tooltip {...tooltipStyle} />
-          <Funnel dataKey="value" data={coloured} isAnimationActive>
+          <Funnel
+            dataKey="value"
+            data={coloured}
+            isAnimationActive
+            onClick={onClick ? (data, _index, _e) => onClick({ name: String(data.name), value: Number(data.value) }) : undefined}
+            style={onClick ? { cursor: 'pointer' } : undefined}
+          >
             <LabelList
               dataKey="name"
               position="right"

@@ -245,3 +245,7 @@ export const programmes: Programme[] = [
     placementRate: 68,
   },
 ]
+
+export const programmeNames: Record<string, string> = Object.fromEntries(
+  programmes.map((p) => [p.id, p.shortName]),
+)
