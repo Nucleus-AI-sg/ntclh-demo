@@ -3,9 +3,11 @@
 import { useState } from 'react'
 import { Building2, Mail, Phone, MapPin, Calendar, Plus, Edit } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { StatusBadge, AppLineChart } from '@/components/shared'
-import type { Employer, Vacancy, Placement, Communication, Trainee } from '@/types'
+import { StatusBadge } from '@/components/shared'
+import type { Employer, Vacancy, Placement, Communication, Trainee, AuditEntry } from '@/types'
 import { cn } from '@/lib/utils'
+import { OverviewTab } from './overview-tab'
+import { AuditTab } from './audit-tab'
 
 interface EmployerProfileProps {
   employer: Employer
@@ -13,11 +15,8 @@ interface EmployerProfileProps {
   placements: Placement[]
   communications: Communication[]
   trainees: Trainee[]
+  auditEntries: AuditEntry[]
 }
-
-const engagementBase: Record<string, number> = { high: 70, medium: 50, low: 30 }
-const buildEngagement = (level: string) =>
-  ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'].map((month, i) => ({ month, score: (engagementBase[level] ?? 50) + i * 3 }))
 
 const tabs = [
   { id: 'overview', label: 'Overview' },
@@ -25,12 +24,12 @@ const tabs = [
   { id: 'preferences', label: 'Preferences' },
   { id: 'placements', label: 'Placements' },
   { id: 'communications', label: 'Communications' },
+  { id: 'audit', label: 'Audit Trail' },
 ] as const
 
-export function EmployerProfile({ employer, vacancies, placements, communications, trainees }: EmployerProfileProps) {
+export function EmployerProfile({ employer, vacancies, placements, communications, trainees, auditEntries }: EmployerProfileProps) {
   const [toast, setToast] = useState<string | null>(null)
   const traineeMap = Object.fromEntries(trainees.map((t) => [t.id, t]))
-  const contact = employer.contacts.find((c) => c.isPrimary) ?? employer.contacts[0]
 
   return (
     <div className="space-y-6">
@@ -67,43 +66,8 @@ export function EmployerProfile({ employer, vacancies, placements, communication
           ))}
         </TabsList>
 
-        {/* Overview Tab */}
-        <TabsContent value="overview" className="mt-6 space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Relationship Summary</h3>
-              <dl className="grid grid-cols-2 gap-3 text-sm">
-                <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Partner Since</dt><dd className="font-semibold text-slate-800">{employer.partnerSince}</dd></div>
-                <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Total Placements</dt><dd className="font-semibold text-slate-800">{employer.totalPlacements}</dd></div>
-                <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Primary Contact</dt><dd className="font-semibold text-slate-800">{contact?.name ?? 'N/A'}</dd></div>
-                <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Last Contact</dt><dd className="font-semibold text-slate-800">{employer.lastContactDate}</dd></div>
-              </dl>
-              {employer.notes && <p className="text-xs text-slate-600 mt-4 italic border-t border-slate-100 pt-3">{employer.notes}</p>}
-            </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Engagement Trend</h3>
-              <AppLineChart data={buildEngagement(employer.engagementLevel)} lines={[{ key: 'score', label: 'Engagement Score', colour: '#2563eb' }]} xKey="month" height={200} />
-            </div>
-          </div>
-          {contact && (
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Contacts</h3>
-              <div className="space-y-2">
-                {employer.contacts.map((c) => (
-                  <div key={c.email} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                    <div>
-                      <p className="text-sm font-bold text-slate-900">{c.name} {c.isPrimary && <span className="text-[9px] text-blue-600 ml-1">PRIMARY</span>}</p>
-                      <p className="text-xs text-slate-500">{c.role}</p>
-                    </div>
-                    <div className="flex items-center gap-3 text-xs text-slate-500">
-                      <span className="flex items-center gap-1"><Mail className="h-3 w-3" />{c.email}</span>
-                      <span className="flex items-center gap-1"><Phone className="h-3 w-3" />{c.phone}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+        <TabsContent value="overview" className="mt-6">
+          <OverviewTab employer={employer} />
         </TabsContent>
 
         {/* Vacancies Tab */}
@@ -190,6 +154,10 @@ export function EmployerProfile({ employer, vacancies, placements, communication
               </div>
             ))}
           </div>
+        </TabsContent>
+
+        <TabsContent value="audit" className="mt-6">
+          <AuditTab entries={auditEntries} />
         </TabsContent>
       </Tabs>
 

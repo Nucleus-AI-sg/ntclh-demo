@@ -14,7 +14,10 @@ const categoryConfig: Record<string, { icon: React.ReactNode; colour: string; la
 }
 
 export function StrategicInsights({ insights }: StrategicInsightsProps) {
-  const grouped = Object.groupBy(insights, (i) => i.category)
+  const grouped: Partial<Record<StrategicInsight['category'], StrategicInsight[]>> = {}
+  for (const insight of insights) {
+    ;(grouped[insight.category] ??= []).push(insight)
+  }
 
   return (
     <div className="space-y-6">

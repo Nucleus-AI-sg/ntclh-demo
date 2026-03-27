@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { employers, vacancies, placements, communications, trainees } from '@/data'
+import { employers, vacancies, placements, communications, trainees, employerAuditEntries } from '@/data'
 import { EmployerProfile } from './_components/employer-profile'
 
 export default async function EmployerProfilePage({
@@ -22,6 +22,7 @@ export default async function EmployerProfilePage({
       placements={empPlacements}
       communications={empComms}
       trainees={trainees}
+      auditEntries={employerAuditEntries[employer.id] ?? []}
     />
   )
 }

@@ -20,8 +20,7 @@ interface BarConfig {
 }
 
 interface AppBarChartProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: Record<string, any>[]
+  data: object[]
   bars: BarConfig[]
   xKey?: string
   height?: number

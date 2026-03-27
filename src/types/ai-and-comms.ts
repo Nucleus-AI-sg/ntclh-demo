@@ -107,6 +107,37 @@ export interface OutreachSequence {
   isActive: boolean
 }
 
+export type TemplateCategory =
+  | 'enrolment'
+  | 'training'
+  | 'post_training'
+  | 'employer'
+  | 'administrative'
+
+export interface MessageTemplate {
+  id: string
+  name: string
+  category: TemplateCategory
+  channel: Channel
+  subject: string
+  body: string
+  mergeFields: string[]
+  lastUsed: string
+  usageCount: number
+}
+
+export interface Campaign {
+  id: string
+  name: string
+  recipientCount: number
+  recipientType: 'trainee' | 'employer'
+  channel: Channel
+  sent: number
+  opened: number | null
+  responded: number
+  date: string
+}
+
 export interface Alert {
   id: string
   message: string

@@ -31,6 +31,11 @@ export type StatusVariant =
   | 'planned'
   | 'not_submitted'
   | 'on_track'
+  | 'sent'
+  | 'delivered'
+  | 'opened'
+  | 'responded'
+  | 'bounced'
 
 interface ColourSet {
   bg: string
@@ -75,6 +80,11 @@ export const statusColours: Record<StatusVariant, ColourSet> = {
   training: blue,
   enrolled: blue,
   in_progress: blue,
+  sent: blue,
+  delivered: teal,
+  opened: green,
+  responded: green,
+  bounced: red,
   // Teal - completed
   completed: teal,
   // Slate - neutral

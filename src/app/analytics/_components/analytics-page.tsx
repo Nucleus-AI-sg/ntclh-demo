@@ -1,7 +1,7 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import type { MonthlyMetric, ProgrammeMetrics, ReportTemplate, Programme, Cohort } from '@/types'
+import type { MonthlyMetric, ProgrammeMetrics, ReportTemplate, ReportHistoryEntry, DataCompletenessCheck, Programme, Cohort } from '@/types'
 import { PerformanceOverview } from './performance-overview'
 import { ProgrammeDeepDive } from './programme-deep-dive'
 import { ComplianceReports } from './compliance-reports'
@@ -13,6 +13,8 @@ interface AnalyticsPageProps {
   programmeMetrics: ProgrammeMetrics[]
   placementFunnel: { stage: string; count: number; conversionRate: number }[]
   reportTemplates: ReportTemplate[]
+  reportHistory: ReportHistoryEntry[]
+  dataCompletenessChecks: DataCompletenessCheck[]
   programmes: Programme[]
   cohorts: Cohort[]
   kpis: {
@@ -43,7 +45,7 @@ export function AnalyticsPage(props: AnalyticsPageProps) {
         <ProgrammeDeepDive programmes={props.programmes} cohorts={props.cohorts} programmeMetrics={props.programmeMetrics} />
       </TabsContent>
       <TabsContent value="compliance" className="mt-6">
-        <ComplianceReports reportTemplates={props.reportTemplates} />
+        <ComplianceReports reportTemplates={props.reportTemplates} reportHistory={props.reportHistory} dataCompletenessChecks={props.dataCompletenessChecks} />
       </TabsContent>
     </Tabs>
   )
