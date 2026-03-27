@@ -1,11 +1,39 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { DataTable, FilterBar, StatusBadge } from '@/components/shared'
 import type { Column } from '@/components/shared'
 import type { Trainee, Programme } from '@/types'
 import { LifecycleStage, RiskLevel } from '@/types'
 import { TraineeSlideOver } from './trainee-slide-over'
+
+const STORAGE_KEY = 'dashboard-trainee-filters'
+
+function useSessionFilter(key: string, initial: string) {
+  const [value, setValue] = useState(() => {
+    if (typeof window === 'undefined') return initial
+    try {
+      const stored = sessionStorage.getItem(STORAGE_KEY)
+      if (stored) {
+        const parsed = JSON.parse(stored)
+        if (typeof parsed[key] === 'string') return parsed[key]
+      }
+    } catch { /* ignore */ }
+    return initial
+  })
+
+  const set = useCallback((next: string) => {
+    setValue(next)
+    try {
+      const stored = sessionStorage.getItem(STORAGE_KEY)
+      const obj = stored ? JSON.parse(stored) : {}
+      obj[key] = next
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(obj))
+    } catch { /* ignore */ }
+  }, [key])
+
+  return [value, set] as const
+}
 
 interface TraineeTableSectionProps {
   trainees: Trainee[]
@@ -23,10 +51,10 @@ const riskOptions = [
 ]
 
 export function TraineeTableSection({ trainees, programmes }: TraineeTableSectionProps) {
-  const [progFilter, setProgFilter] = useState('all')
-  const [stageFilter, setStageFilter] = useState('all')
-  const [riskFilter, setRiskFilter] = useState('all')
-  const [search, setSearch] = useState('')
+  const [progFilter, setProgFilter] = useSessionFilter('programme', 'all')
+  const [stageFilter, setStageFilter] = useSessionFilter('stage', 'all')
+  const [riskFilter, setRiskFilter] = useSessionFilter('risk', 'all')
+  const [search, setSearch] = useSessionFilter('search', '')
   const [selected, setSelected] = useState<Trainee | null>(null)
 
   const programmeOptions = programmes.map((p) => ({ label: p.shortName, value: p.id }))

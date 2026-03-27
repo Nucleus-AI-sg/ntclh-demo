@@ -8,11 +8,12 @@ import {
   activityEvents,
 } from '@/data'
 import { LifecycleStage } from '@/types'
-import { StatCard, PipelineBar, ScoreGauge, ActivityFeed } from '@/components/shared'
+import { StatCard, PipelineBar, ScoreGauge } from '@/components/shared'
 import { MorningAlerts } from './_components/morning-alerts'
 import { ProgrammeCards } from './_components/programme-cards'
 import { TraineeTableSection } from './_components/trainee-table-section'
 import { QuickActions } from './_components/quick-actions'
+import { ActivityFeedPanel } from './_components/activity-feed-panel'
 
 const kpis = dashboardKpis
 const pipeline: Partial<Record<LifecycleStage, number>> = {
@@ -110,18 +111,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Live Activity Feed */}
-          <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-widest">
-                Live Activity
-              </h3>
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
-              </span>
-            </div>
-            <ActivityFeed events={activityEvents} maxItems={5} showViewAll />
-          </div>
+          <ActivityFeedPanel events={activityEvents} />
 
           {/* Quick Actions */}
           <QuickActions />

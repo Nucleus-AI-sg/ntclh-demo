@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { UserPlus, Building2, Mail, BarChart3 } from 'lucide-react'
+import { UserPlus, FileText, Handshake, BarChart3 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 const actions: { icon: LucideIcon; label: string; href: string }[] = [
   { icon: UserPlus, label: 'Process\nEnrolments', href: '/enrolment' },
-  { icon: Building2, label: 'View\nEmployers', href: '/employers' },
-  { icon: Mail, label: 'Review\nDocuments', href: '/documents' },
+  { icon: FileText, label: 'Review\nDocuments', href: '/tracking' },
+  { icon: Handshake, label: 'View\nMatches', href: '/matching' },
   { icon: BarChart3, label: 'Generate\nReport', href: '/analytics' },
 ]
 
