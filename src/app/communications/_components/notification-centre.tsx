@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { Bell, AlertTriangle, XCircle, ChevronDown, ChevronUp } from 'lucide-react'
 import { StatusBadge } from '@/components/shared'
 import { getChannelIcon } from '@/lib/channel-icons'
@@ -19,6 +19,7 @@ function formatTimestamp(iso: string) {
 
 export function NotificationCentre({ communications, failedCount }: NotificationCentreProps) {
   const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const alerts = useMemo(() =>
     communications
@@ -28,8 +29,17 @@ export function NotificationCentre({ communications, failedCount }: Notification
     [communications],
   )
 
+  useEffect(() => {
+    if (!open) return
+    const handler = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [open])
+
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <button
         onClick={() => setOpen(!open)}
         className="relative flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 rounded-lg px-3 py-2 hover:bg-slate-50 transition-colors"

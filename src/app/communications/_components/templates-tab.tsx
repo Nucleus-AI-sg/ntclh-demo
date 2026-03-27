@@ -129,6 +129,7 @@ export function TemplatesTab({ templates }: TemplatesTabProps) {
       )}
 
       <TemplateEditorModal
+        key={editingTemplate?.id ?? 'new'}
         open={editorOpen}
         onClose={() => setEditorOpen(false)}
         template={editingTemplate}
