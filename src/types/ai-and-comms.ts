@@ -180,14 +180,3 @@ export interface CoordinatorNote {
   timestamp: string
 }
 
-export interface ChatMessage {
-  role: 'user' | 'assistant'
-  content: string
-}
-
-export interface ChatScript {
-  id: string
-  prompt: string
-  response: string
-  followUps: { prompt: string; response: string }[]
-}

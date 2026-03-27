@@ -15,6 +15,28 @@ export const chatScripts: ChatScript[] = [
 | Wei Ming | 14 Feb 2026 | 1 email sent, opened but no action | 5 Mar 2026 |
 
 3 of these trainees have not responded to any automated outreach. Would you like me to generate a priority follow-up list or draft personalised outreach messages?`,
+    context: {
+      trainees: [
+        { name: 'David Ng', id: 'david-ng' },
+        { name: 'Lisa Koh', id: 'lisa-koh' },
+        { name: 'Mei Ling', id: 'mei-ling' },
+        { name: 'Wei Ming', id: 'wei-ming' },
+      ],
+      dataSources: [
+        'Trainee Database',
+        'Outreach & CRM Log',
+        'ICT Programme Records',
+      ],
+      confidence: { level: 'High', label: 'Based on verified programme data' },
+    },
+    actions: [
+      { label: 'View in Tracking', href: '/tracking', variant: 'link' },
+      {
+        label: 'Draft Outreach Messages',
+        href: '/communications',
+        variant: 'outline',
+      },
+    ],
     followUps: [
       {
         prompt: 'Yes, draft outreach messages for the non-responsive ones',
@@ -39,6 +61,29 @@ export const chatScripts: ChatScript[] = [
 > **Suggested call script:** Introduce yourself, congratulate on completion, explain the importance of document submission for grant processing, offer to walk through the upload process, and schedule a follow-up if documents are not immediately available.
 
 All three messages have been saved as drafts in the Communications Hub. Would you like me to send them now or schedule them for tomorrow morning?`,
+        context: {
+          trainees: [
+            { name: 'David Ng', id: 'david-ng' },
+            { name: 'Lisa Koh', id: 'lisa-koh' },
+            { name: 'Mei Ling', id: 'mei-ling' },
+          ],
+          dataSources: [
+            'Trainee Database',
+            'Outreach & CRM Log',
+            'Communication Preferences',
+          ],
+          confidence: {
+            level: 'High',
+            label: 'Drafts based on channel preferences',
+          },
+        },
+        actions: [
+          {
+            label: 'View in Communications',
+            href: '/communications',
+            variant: 'link',
+          },
+        ],
       },
     ],
   },
@@ -64,6 +109,30 @@ All three messages have been saved as drafts in the Communications Hub. Would yo
 The recommendation was made with **high confidence** based on 47 comparable career switcher assessments from previous cohorts.
 
 Would you like me to show comparable cases from previous cohorts?`,
+    context: {
+      trainees: [{ name: 'Marcus Lee', id: 'marcus-lee' }],
+      dataSources: [
+        'Assessment Records',
+        'AI Recommendation Engine',
+        'Historical Cohort Data',
+      ],
+      confidence: {
+        level: 'High',
+        label: 'Based on 47 comparable assessments',
+      },
+    },
+    actions: [
+      {
+        label: 'View Marcus Lee Profile',
+        href: '/trainee/marcus-lee',
+        variant: 'link',
+      },
+      {
+        label: 'View in AI Insights',
+        href: '/ai-insights',
+        variant: 'outline',
+      },
+    ],
     followUps: [
       {
         prompt: 'Show me comparable cases',
@@ -90,6 +159,18 @@ Would you like me to show comparable cases from previous cohorts?`,
 - **Lesson learned**: This case contributed to the model's improved accuracy for career switcher assessments
 
 These cases show a **91% positive outcome rate** when trainees followed the AI recommendation for the BA track. The model has since been refined to better weight transferable soft skills alongside technical aptitude.`,
+        context: {
+          trainees: [{ name: 'Marcus Lee', id: 'marcus-lee' }],
+          dataSources: [
+            'Historical Cohort Data',
+            'Placement Outcomes Database',
+            'AI Model Training Logs',
+          ],
+          confidence: {
+            level: 'High',
+            label: 'Verified placement outcomes',
+          },
+        },
       },
     ],
   },
@@ -114,6 +195,25 @@ These cases show a **91% positive outcome rate** when trainees followed the AI r
 - **Average time to placement**: 3.2 weeks (down from 4.1 weeks last quarter)
 
 Would you like a detailed breakdown by cohort?`,
+    context: {
+      dataSources: [
+        'Programme Database',
+        'Placement Records',
+        'Q4 2025 Comparison Data',
+      ],
+      confidence: {
+        level: 'High',
+        label: 'Aggregated from verified records',
+      },
+    },
+    actions: [
+      { label: 'View in Analytics', href: '/analytics', variant: 'link' },
+      {
+        label: 'Generate Report',
+        href: '/analytics',
+        variant: 'outline',
+      },
+    ],
     followUps: [
       {
         prompt: 'Yes, break it down by cohort',
@@ -133,6 +233,17 @@ Would you like a detailed breakdown by cohort?`,
 - Earlier cohorts consistently outperform later ones, suggesting the value of a longer post-completion placement window
 - ICT-2025-Q3 has the fastest average placement time at 18 days
 - BA-2025-Q4 still has 3 trainees in active matching, so the rate is expected to improve over the next 2 weeks`,
+        context: {
+          dataSources: [
+            'Programme Database',
+            'Cohort Records',
+            'Placement Tracking',
+          ],
+          confidence: {
+            level: 'High',
+            label: 'Aggregated from verified records',
+          },
+        },
       },
     ],
   },
@@ -152,6 +263,24 @@ Would you like a detailed breakdown by cohort?`,
 There are currently **8 available BA graduates** who have completed training and are ready for placement. 6 of them match at least one vacancy with a score above 70%.
 
 Would you like me to prepare candidate submissions for any of these vacancies?`,
+    context: {
+      trainees: [
+        { name: 'Marcus Lee', id: 'marcus-lee' },
+        { name: 'Priya Sharma', id: 'priya-sharma' },
+      ],
+      dataSources: [
+        'Employer Vacancy Database',
+        'AI Matching Engine',
+        'Trainee Skills Profiles',
+      ],
+      confidence: {
+        level: 'High',
+        label: 'Real-time vacancy data',
+      },
+    },
+    actions: [
+      { label: 'View in Matching', href: '/matching', variant: 'link' },
+    ],
     followUps: [
       {
         prompt: 'Prepare submissions for TechCorp',
@@ -178,6 +307,29 @@ Would you like me to prepare candidate submissions for any of these vacancies?`,
 - Salary expectation: $3,900/month
 
 I have drafted submission packages for all three candidates. You can review and send them from the **Matching** page, or I can submit them directly to TechCorp's hiring manager, Jennifer Wu.`,
+        context: {
+          trainees: [
+            { name: 'Marcus Lee', id: 'marcus-lee' },
+            { name: 'Priya Sharma', id: 'priya-sharma' },
+          ],
+          dataSources: [
+            'AI Matching Engine',
+            'Trainee Performance Records',
+            'Employer Requirements',
+          ],
+          confidence: {
+            level: 'High',
+            label: 'Match scores from verified profiles',
+          },
+        },
+        actions: [
+          { label: 'View in Matching', href: '/matching', variant: 'link' },
+          {
+            label: 'View TechCorp Profile',
+            href: '/employer/techcorp',
+            variant: 'outline',
+          },
+        ],
       },
     ],
   },
@@ -209,6 +361,24 @@ I have drafted submission packages for all three candidates. You can review and 
 3. Implement a multi-channel sequence starting with WhatsApp, then SMS, then email
 
 Should I adjust the outreach sequence timing based on these insights?`,
+    context: {
+      dataSources: [
+        'Outreach & CRM Log',
+        'Communication Analytics',
+        'Channel Performance Data',
+      ],
+      confidence: {
+        level: 'High',
+        label: 'Based on 317 outreach messages',
+      },
+    },
+    actions: [
+      {
+        label: 'View in Communications',
+        href: '/communications',
+        variant: 'link',
+      },
+    ],
     followUps: [
       {
         prompt: 'Yes, adjust the timing',
@@ -231,6 +401,16 @@ Should I adjust the outreach sequence timing based on these insights?`,
 - **Multi-channel coverage**: every trainee receives outreach on at least 2 channels within the first week
 
 The updated sequence has been saved as a draft. Would you like me to apply it to all active outreach campaigns, or test it with a pilot group first?`,
+        context: {
+          dataSources: [
+            'Communication Analytics',
+            'Outreach Sequence Config',
+          ],
+          confidence: {
+            level: 'Medium',
+            label: 'Projected estimates based on historical data',
+          },
+        },
       },
     ],
   },
@@ -275,6 +455,26 @@ The updated sequence has been saved as a draft. Would you like me to apply it to
 4. **Scale BA programme** capacity by 20% for Q2 based on strong demand and placement outcomes
 
 Would you like me to add an employer engagement analysis section?`,
+    context: {
+      dataSources: [
+        'Programme Database',
+        'Placement Records',
+        'Employer CRM',
+        'SSG Grant Tracker',
+      ],
+      confidence: {
+        level: 'High',
+        label: 'Aggregated from all programme data',
+      },
+    },
+    actions: [
+      { label: 'View in Analytics', href: '/analytics', variant: 'link' },
+      {
+        label: 'Generate Report',
+        href: '/analytics',
+        variant: 'outline',
+      },
+    ],
     followUps: [
       {
         prompt: 'Add employer engagement analysis',
@@ -305,6 +505,25 @@ Would you like me to add an employer engagement analysis section?`,
 4. Create an employer satisfaction survey to systematically track partnership health
 
 This section has been appended to the briefing document. You can download the full report from the **Analytics** page.`,
+        context: {
+          dataSources: [
+            'Employer CRM',
+            'Placement Records',
+            'Retention Tracking',
+          ],
+          confidence: {
+            level: 'High',
+            label: 'Verified employer partnership data',
+          },
+        },
+        actions: [
+          { label: 'View Employers', href: '/employers', variant: 'link' },
+          {
+            label: 'View in Analytics',
+            href: '/analytics',
+            variant: 'outline',
+          },
+        ],
       },
     ],
   },
