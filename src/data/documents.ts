@@ -18,6 +18,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-22',
     ocrConfidence: 72,
     priority: Priority.High,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     ocrExtraction: {
       fields: [
         {
@@ -83,6 +84,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-23',
     ocrConfidence: 88,
     priority: Priority.Medium,
+    programmeTrack: 'Digital Marketing Bootcamp',
     ocrExtraction: {
       fields: [
         {
@@ -129,6 +131,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-23',
     ocrConfidence: 96,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     ocrExtraction: {
       fields: [
         {
@@ -189,6 +192,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-22',
     ocrConfidence: 97,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     ocrExtraction: {
       fields: [
         {
@@ -249,6 +253,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-22',
     ocrConfidence: 95,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     ocrExtraction: {
       fields: [
         {
@@ -297,6 +302,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-24',
     ocrConfidence: 45,
     priority: Priority.High,
+    programmeTrack: 'Digital Marketing Bootcamp',
     ocrExtraction: {
       fields: [
         {
@@ -361,6 +367,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-24',
     ocrConfidence: 91,
     priority: Priority.Medium,
+    programmeTrack: 'Business Analyst Certification',
     ocrExtraction: {
       fields: [
         {
@@ -407,6 +414,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-24',
     ocrConfidence: 94,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     ocrExtraction: {
       fields: [
         {
@@ -456,6 +464,7 @@ export const documents: Document[] = [
     submittedDate: '2026-01-10',
     ocrConfidence: 91,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-01-12',
   },
@@ -468,6 +477,7 @@ export const documents: Document[] = [
     submittedDate: '2026-01-11',
     ocrConfidence: 94,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'system',
     verifiedDate: '2026-01-11',
   },
@@ -480,6 +490,7 @@ export const documents: Document[] = [
     submittedDate: '2026-01-15',
     ocrConfidence: 95,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'system',
     verifiedDate: '2026-01-15',
   },
@@ -492,6 +503,7 @@ export const documents: Document[] = [
     submittedDate: '2026-01-18',
     ocrConfidence: 87,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-01-20',
   },
@@ -504,6 +516,7 @@ export const documents: Document[] = [
     submittedDate: '2026-01-22',
     ocrConfidence: 89,
     priority: Priority.Medium,
+    programmeTrack: 'Digital Marketing Bootcamp',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-01-24',
   },
@@ -516,6 +529,7 @@ export const documents: Document[] = [
     submittedDate: '2026-01-25',
     ocrConfidence: 93,
     priority: Priority.Low,
+    programmeTrack: 'Digital Marketing Bootcamp',
     verifiedBy: 'system',
     verifiedDate: '2026-01-25',
   },
@@ -528,6 +542,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-01',
     ocrConfidence: 96,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'system',
     verifiedDate: '2026-02-01',
   },
@@ -540,6 +555,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-03',
     ocrConfidence: 94,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'system',
     verifiedDate: '2026-02-03',
   },
@@ -552,6 +568,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-05',
     ocrConfidence: 88,
     priority: Priority.Medium,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-02-07',
   },
@@ -564,6 +581,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-08',
     ocrConfidence: 92,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'system',
     verifiedDate: '2026-02-08',
   },
@@ -576,6 +594,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-10',
     ocrConfidence: 97,
     priority: Priority.Low,
+    programmeTrack: 'Digital Marketing Bootcamp',
     verifiedBy: 'system',
     verifiedDate: '2026-02-10',
   },
@@ -588,6 +607,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-12',
     ocrConfidence: 95,
     priority: Priority.Low,
+    programmeTrack: 'Digital Marketing Bootcamp',
     verifiedBy: 'system',
     verifiedDate: '2026-02-12',
   },
@@ -600,6 +620,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-14',
     ocrConfidence: 86,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-02-16',
   },
@@ -612,6 +633,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-15',
     ocrConfidence: 93,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'system',
     verifiedDate: '2026-02-15',
   },
@@ -624,6 +646,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-18',
     ocrConfidence: 94,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'system',
     verifiedDate: '2026-02-18',
   },
@@ -636,6 +659,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-20',
     ocrConfidence: 90,
     priority: Priority.Medium,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-02-22',
   },
@@ -648,6 +672,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-25',
     ocrConfidence: 96,
     priority: Priority.Low,
+    programmeTrack: 'Digital Marketing Bootcamp',
     verifiedBy: 'system',
     verifiedDate: '2026-02-25',
   },
@@ -660,6 +685,7 @@ export const documents: Document[] = [
     submittedDate: '2026-02-27',
     ocrConfidence: 88,
     priority: Priority.Low,
+    programmeTrack: 'Digital Marketing Bootcamp',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-03-01',
   },
@@ -672,6 +698,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-01',
     ocrConfidence: 95,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'system',
     verifiedDate: '2026-03-01',
   },
@@ -684,6 +711,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-03',
     ocrConfidence: 93,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'system',
     verifiedDate: '2026-03-03',
   },
@@ -696,6 +724,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-05',
     ocrConfidence: 92,
     priority: Priority.Medium,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-03-06',
   },
@@ -708,6 +737,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-08',
     ocrConfidence: 95,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'system',
     verifiedDate: '2026-03-08',
   },
@@ -720,6 +750,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-10',
     ocrConfidence: 89,
     priority: Priority.Medium,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-03-12',
   },
@@ -732,6 +763,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-12',
     ocrConfidence: 52,
     priority: Priority.High,
+    programmeTrack: 'Digital Marketing Bootcamp',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-03-14',
   },
@@ -744,6 +776,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-14',
     ocrConfidence: 94,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'system',
     verifiedDate: '2026-03-14',
   },
@@ -756,6 +789,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-15',
     ocrConfidence: 87,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-03-17',
   },
@@ -768,6 +802,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-16',
     ocrConfidence: 90,
     priority: Priority.Medium,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-03-18',
   },
@@ -780,6 +815,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-18',
     ocrConfidence: 93,
     priority: Priority.Low,
+    programmeTrack: 'Digital Marketing Bootcamp',
     verifiedBy: 'system',
     verifiedDate: '2026-03-18',
   },
@@ -792,6 +828,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-20',
     ocrConfidence: 95,
     priority: Priority.Low,
+    programmeTrack: 'ICT Career Conversion (SCTP)',
     verifiedBy: 'system',
     verifiedDate: '2026-03-20',
   },
@@ -804,6 +841,7 @@ export const documents: Document[] = [
     submittedDate: '2026-03-21',
     ocrConfidence: 86,
     priority: Priority.Low,
+    programmeTrack: 'Business Analyst Certification',
     verifiedBy: 'sarah-tan',
     verifiedDate: '2026-03-23',
   },

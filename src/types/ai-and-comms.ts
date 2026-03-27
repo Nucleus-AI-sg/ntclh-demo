@@ -83,6 +83,7 @@ export interface Document {
   submittedDate: string
   ocrConfidence: number
   priority: Priority
+  programmeTrack?: string
   ocrExtraction?: OcrExtraction
   verifiedBy?: string
   verifiedDate?: string
