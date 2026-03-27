@@ -1,6 +1,17 @@
+'use client'
+
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { StatusBadge, AppBarChart } from '@/components/shared'
+import { StatusBadge, AppBarChart, FilterBar } from '@/components/shared'
+import type { FilterConfig } from '@/components/shared'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import type { Programme, Cohort, ProgrammeMetrics } from '@/types'
 
 interface ProgrammeListProps {
@@ -10,8 +21,41 @@ interface ProgrammeListProps {
 }
 
 const colours = ['bg-blue-500', 'bg-teal-500', 'bg-indigo-500']
+type SortKey = 'name' | 'duration' | 'placement'
 
 export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListProps) {
+  const [search, setSearch] = useState('')
+  const [durationFilter, setDurationFilter] = useState('__all__')
+  const [sortKey, setSortKey] = useState<SortKey>('name')
+
+  const durationOptions = useMemo(() => {
+    const durations = [...new Set(programmes.map((p) => p.durationWeeks))].sort((a, b) => a - b)
+    return durations.map((d) => ({ label: `${d} weeks`, value: String(d) }))
+  }, [programmes])
+
+  const filters: FilterConfig[] = [
+    { id: 'duration', label: 'All Durations', options: durationOptions, value: durationFilter, onChange: setDurationFilter },
+  ]
+
+  const filtered = useMemo(() => {
+    let result = programmes
+    if (search) {
+      const q = search.toLowerCase()
+      result = result.filter((p) => p.name.toLowerCase().includes(q) || p.shortName.toLowerCase().includes(q))
+    }
+    if (durationFilter !== '__all__') {
+      result = result.filter((p) => p.durationWeeks === Number(durationFilter))
+    }
+    result = [...result].sort((a, b) => {
+      if (sortKey === 'duration') return a.durationWeeks - b.durationWeeks
+      if (sortKey === 'placement') return b.placementRate - a.placementRate
+      return a.name.localeCompare(b.name)
+    })
+    return result
+  }, [programmes, search, durationFilter, sortKey])
+
+  const colourMap = useMemo(() => new Map(programmes.map((p, i) => [p.id, colours[i % colours.length]])), [programmes])
+
   const comparisonData = metrics.map((m) => {
     const prog = programmes.find((p) => p.id === m.programmeId)
     return { name: prog?.shortName ?? m.programmeId, completion: m.completionRate, placement: m.placementRate, conversion: m.enrolmentConversion }
@@ -19,16 +63,30 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
 
   return (
     <div className="space-y-6">
+      {/* Filters */}
+      <FilterBar filters={filters} searchPlaceholder="Search programmes..." searchValue={search} onSearchChange={setSearch}>
+        <Select value={sortKey} onValueChange={(v) => setSortKey(v as SortKey)}>
+          <SelectTrigger className="h-8 w-auto min-w-[160px] text-xs border-slate-200 rounded-lg">
+            <SelectValue placeholder="Sort by" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="name">Sort: Name</SelectItem>
+            <SelectItem value="duration">Sort: Duration</SelectItem>
+            <SelectItem value="placement">Sort: Placement Rate</SelectItem>
+          </SelectContent>
+        </Select>
+      </FilterBar>
+
       {/* Programme Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {programmes.map((prog, i) => {
+        {filtered.map((prog) => {
           const progCohorts = cohorts.filter((c) => c.programmeId === prog.id)
           const activeCohorts = progCohorts.filter((c) => c.status === 'active').length
           const m = metrics.find((pm) => pm.programmeId === prog.id)
           return (
             <Link key={prog.id} href={`/programme/${prog.id}`} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center gap-3 mb-3">
-                <div className={cn('w-3 h-3 rounded-full', colours[i % colours.length])} />
+                <div className={cn('w-3 h-3 rounded-full', colourMap.get(prog.id) ?? colours[0])} />
                 <h3 className="text-sm font-bold text-slate-900">{prog.name}</h3>
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">

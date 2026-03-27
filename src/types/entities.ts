@@ -26,6 +26,9 @@ export interface ModuleDefinition {
   instructor: string
   assessmentType: string
   order: number
+  learningObjectives?: string[]
+  prerequisites?: string[]
+  averageScore?: number
 }
 
 export interface Programme {

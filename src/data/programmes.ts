@@ -15,6 +15,9 @@ export const programmes: Programme[] = [
         instructor: 'Dr. Tan',
         assessmentType: 'Written + Practical',
         order: 1,
+        learningObjectives: ['Understand software development lifecycle', 'Apply object-oriented programming principles', 'Write clean, maintainable code'],
+        prerequisites: ['Basic computer literacy'],
+        averageScore: 78,
       },
       {
         id: 'ict-mod-02',
@@ -23,6 +26,9 @@ export const programmes: Programme[] = [
         instructor: 'Ms. Lim',
         assessmentType: 'Project-based',
         order: 2,
+        learningObjectives: ['Build responsive web applications with React', 'Implement RESTful APIs with Node.js', 'Apply modern CSS frameworks'],
+        prerequisites: ['Software Engineering Fundamentals'],
+        averageScore: 82,
       },
       {
         id: 'ict-mod-03',
@@ -31,6 +37,9 @@ export const programmes: Programme[] = [
         instructor: 'Mr. Kumar',
         assessmentType: 'Written exam',
         order: 3,
+        learningObjectives: ['Design normalised relational schemas', 'Write complex SQL queries', 'Understand NoSQL databases'],
+        prerequisites: ['Software Engineering Fundamentals'],
+        averageScore: 75,
       },
       {
         id: 'ict-mod-04',
@@ -39,6 +48,9 @@ export const programmes: Programme[] = [
         instructor: 'Ms. Chen',
         assessmentType: 'Practical assessment',
         order: 4,
+        learningObjectives: ['Deploy applications on AWS', 'Configure containerised environments', 'Implement CI/CD pipelines'],
+        prerequisites: ['Web Development', 'Database Management'],
+        averageScore: 80,
       },
       {
         id: 'ict-mod-05',
@@ -47,6 +59,9 @@ export const programmes: Programme[] = [
         instructor: 'Dr. Tan',
         assessmentType: 'Group project',
         order: 5,
+        learningObjectives: ['Apply Scrum and Kanban methodologies', 'Use version control effectively', 'Practise test-driven development'],
+        prerequisites: ['Software Engineering Fundamentals'],
+        averageScore: 85,
       },
       {
         id: 'ict-mod-06',
@@ -55,6 +70,9 @@ export const programmes: Programme[] = [
         instructor: 'All',
         assessmentType: 'Presentation + Demo',
         order: 6,
+        learningObjectives: ['Deliver a full-stack application end to end', 'Present technical solutions to stakeholders', 'Apply agile project management'],
+        prerequisites: ['All prior modules'],
+        averageScore: 77,
       },
       {
         id: 'ict-mod-07',
@@ -63,6 +81,8 @@ export const programmes: Programme[] = [
         instructor: 'External',
         assessmentType: 'CV + Mock interview',
         order: 7,
+        learningObjectives: ['Craft a compelling technical CV', 'Demonstrate skills in mock interviews', 'Build a professional portfolio'],
+        averageScore: 88,
       },
     ],
     description:
@@ -87,6 +107,8 @@ export const programmes: Programme[] = [
         instructor: 'Dr. Tan',
         assessmentType: 'Written + Practical',
         order: 1,
+        learningObjectives: ['Define the BA role and competencies', 'Identify stakeholder needs', 'Apply structured analysis techniques'],
+        averageScore: 80,
       },
       {
         id: 'ba-mod-02',
@@ -95,6 +117,9 @@ export const programmes: Programme[] = [
         instructor: 'Ms. Lim',
         assessmentType: 'Project-based',
         order: 2,
+        learningObjectives: ['Write analytical SQL queries', 'Use Excel and BI tools for data analysis', 'Create data visualisations'],
+        prerequisites: ['Business Analysis Fundamentals'],
+        averageScore: 76,
       },
       {
         id: 'ba-mod-03',
@@ -103,6 +128,9 @@ export const programmes: Programme[] = [
         instructor: 'Mr. Kumar',
         assessmentType: 'Group project',
         order: 3,
+        learningObjectives: ['Apply Scrum ceremonies and artefacts', 'Write effective user stories', 'Facilitate sprint planning sessions'],
+        prerequisites: ['Business Analysis Fundamentals'],
+        averageScore: 83,
       },
       {
         id: 'ba-mod-04',
@@ -111,6 +139,9 @@ export const programmes: Programme[] = [
         instructor: 'Dr. Tan',
         assessmentType: 'Written exam',
         order: 4,
+        learningObjectives: ['Elicit requirements from stakeholders', 'Document functional and non-functional requirements', 'Manage requirements traceability'],
+        prerequisites: ['Business Analysis Fundamentals', 'Agile Methodology'],
+        averageScore: 74,
       },
       {
         id: 'ba-mod-05',
@@ -119,6 +150,9 @@ export const programmes: Programme[] = [
         instructor: 'Ms. Chen',
         assessmentType: 'Practical assessment',
         order: 5,
+        learningObjectives: ['Map current-state and future-state processes', 'Use BPMN notation effectively', 'Identify process improvement opportunities'],
+        prerequisites: ['Requirements Engineering'],
+        averageScore: 79,
       },
       {
         id: 'ba-mod-06',
@@ -127,6 +161,9 @@ export const programmes: Programme[] = [
         instructor: 'All',
         assessmentType: 'Presentation + Demo',
         order: 6,
+        learningObjectives: ['Deliver a complete BA artefact set', 'Present findings to simulated stakeholders', 'Demonstrate analytical problem-solving'],
+        prerequisites: ['All prior modules'],
+        averageScore: 81,
       },
     ],
     description:
@@ -151,6 +188,8 @@ export const programmes: Programme[] = [
         instructor: 'Ms. Wong',
         assessmentType: 'Written + Practical',
         order: 1,
+        learningObjectives: ['Develop a digital marketing strategy', 'Analyse target audiences and personas', 'Set measurable KPIs'],
+        averageScore: 82,
       },
       {
         id: 'dm-mod-02',
@@ -159,6 +198,9 @@ export const programmes: Programme[] = [
         instructor: 'Mr. Lee',
         assessmentType: 'Project-based',
         order: 2,
+        learningObjectives: ['Create SEO-optimised content', 'Conduct keyword research', 'Build a content calendar'],
+        prerequisites: ['Digital Strategy'],
+        averageScore: 79,
       },
       {
         id: 'dm-mod-03',
@@ -167,6 +209,9 @@ export const programmes: Programme[] = [
         instructor: 'Ms. Lim',
         assessmentType: 'Practical assessment',
         order: 3,
+        learningObjectives: ['Interpret social media metrics', 'Use analytics platforms effectively', 'Generate actionable insights from data'],
+        prerequisites: ['Digital Strategy'],
+        averageScore: 84,
       },
       {
         id: 'dm-mod-04',
@@ -175,6 +220,9 @@ export const programmes: Programme[] = [
         instructor: 'Mr. Lee',
         assessmentType: 'Written exam',
         order: 4,
+        learningObjectives: ['Set up Google Ads campaigns', 'Optimise ad spend and bidding strategies', 'Measure ROAS and conversion rates'],
+        prerequisites: ['Digital Strategy', 'Content Marketing & SEO'],
+        averageScore: 73,
       },
       {
         id: 'dm-mod-05',
@@ -183,6 +231,9 @@ export const programmes: Programme[] = [
         instructor: 'All',
         assessmentType: 'Presentation + Demo',
         order: 5,
+        learningObjectives: ['Plan and execute a multi-channel campaign', 'Present campaign results and ROI analysis', 'Apply A/B testing methodology'],
+        prerequisites: ['All prior modules'],
+        averageScore: 80,
       },
     ],
     description:
