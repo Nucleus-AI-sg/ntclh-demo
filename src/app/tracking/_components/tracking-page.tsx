@@ -50,7 +50,7 @@ export function TrackingPage({ trainees, programmes, documents, communications, 
     }
   }, [selectedTrainee, showToast])
 
-  const handleBulkReminder = useCallback((data: { channel: string; template: string }) => {
+  const handleBulkReminder = useCallback((data: { channel: string; template: string; body: string }) => {
     showToast(`Reminder sent via ${data.channel} to ${selectedIds.length} trainee${selectedIds.length !== 1 ? 's' : ''}`)
     setSelectedIds([])
   }, [selectedIds.length, showToast])

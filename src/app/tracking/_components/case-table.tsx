@@ -53,10 +53,8 @@ export function CaseTable({ trainees, programmes, documents, statusFilter, onSel
     return map
   }, [documents])
 
-  const postTraining = trainees.filter((t) => postTrainingStages.has(t.lifecycleStage))
-
   const filtered = useMemo(() => {
-    let result = postTraining
+    let result = trainees.filter((t) => postTrainingStages.has(t.lifecycleStage))
     if (progFilter !== '__all__') result = result.filter((t) => t.programmeId === progFilter)
     if (search) { const q = search.toLowerCase(); result = result.filter((t) => t.name.toLowerCase().includes(q)) }
     if (statusFilter) {
@@ -72,7 +70,7 @@ export function CaseTable({ trainees, programmes, documents, statusFilter, onSel
       })
     }
     return result
-  }, [postTraining, progFilter, search, statusFilter, docsByTrainee])
+  }, [trainees, progFilter, search, statusFilter, docsByTrainee])
 
   const programmeOptions = programmes.map((p) => ({ label: p.shortName, value: p.id }))
 
