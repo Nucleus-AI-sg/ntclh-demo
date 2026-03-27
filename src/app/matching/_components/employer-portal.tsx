@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Star } from 'lucide-react'
-import { StatusBadge } from '@/components/shared'
+import { PartyPopper } from 'lucide-react'
+import { ConfirmationModal } from '@/components/shared'
 import { cn } from '@/lib/utils'
 import type { Employer, Vacancy, Placement, Trainee } from '@/types'
 import { PlacementStatus } from '@/types'
+import { InterviewFeedbackForm } from './interview-feedback-form'
+import { HiringHistoryTable } from './hiring-history-table'
 
 interface EmployerPortalProps {
   employer: Employer | undefined
@@ -24,10 +26,14 @@ const kanbanCols = [
   { key: PlacementStatus.Hired, label: 'Hired' },
 ] as const
 
+interface OfferDetails { placementId: string; salary: string; startDate: string; role: string }
+
 export function EmployerPortal({ employer, vacancies, placements: initialPlacements, trainees, onAction }: EmployerPortalProps) {
   const [placementState, setPlacementState] = useState(initialPlacements)
   const [feedbackOpen, setFeedbackOpen] = useState<string | null>(null)
-  const [ratings, setRatings] = useState({ technical: 0, communication: 0, cultural: 0 })
+  const [offerModal, setOfferModal] = useState<OfferDetails | null>(null)
+  const [hireConfirm, setHireConfirm] = useState<string | null>(null)
+  const [celebrated, setCelebrated] = useState<Set<string>>(new Set())
 
   if (!employer) return <p className="text-sm text-slate-400 text-center py-8">Select an employer from the By Employer tab first</p>
 
@@ -35,9 +41,61 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
   const empPlacements = placementState.filter((p) => p.employerId === employer.id)
   const hiredPlacements = empPlacements.filter((p) => p.status === PlacementStatus.Hired)
 
-  const moveTo = (placementId: string, status: PlacementStatus, label: string) => {
+  const updateStatus = (placementId: string, status: PlacementStatus) => {
     setPlacementState((prev) => prev.map((p) => p.id === placementId ? { ...p, status } : p))
+  }
+
+  const moveTo = (placementId: string, status: PlacementStatus, label: string) => {
+    updateStatus(placementId, status)
     onAction(`Candidate moved to ${label}`)
+  }
+
+  const handleMakeOffer = (placementId: string) => {
+    const p = placementState.find((pl) => pl.id === placementId)
+    const trainee = p ? traineeMap[p.traineeId] : undefined
+    setOfferModal({ placementId, salary: '', startDate: '2026-05-01', role: trainee?.placedRole ?? '' })
+  }
+
+  const confirmOffer = () => {
+    if (!offerModal) return
+    updateStatus(offerModal.placementId, PlacementStatus.Offered)
+    onAction(`Offer extended: $${offerModal.salary}/month, starting ${offerModal.startDate}`)
+    setOfferModal(null)
+  }
+
+  const confirmHire = () => {
+    if (!hireConfirm) return
+    const placementId = hireConfirm
+    updateStatus(placementId, PlacementStatus.Hired)
+    setCelebrated((prev) => new Set(prev).add(placementId))
+    onAction('Candidate hired! Placement confirmed.')
+    setHireConfirm(null)
+    setTimeout(() => setCelebrated((prev) => { const next = new Set(prev); next.delete(placementId); return next }), 3000)
+  }
+
+  const renderActions = (col: typeof kanbanCols[number], pId: string) => {
+    if (col.key === PlacementStatus.Submitted) return (
+      <>
+        <button onClick={() => moveTo(pId, PlacementStatus.Shortlisted, 'Shortlisted')} className="px-2 py-1 text-[9px] font-bold text-blue-600 border border-blue-200 rounded hover:bg-blue-50">Shortlist</button>
+        <button onClick={() => moveTo(pId, PlacementStatus.Passed, 'Passed')} className="px-2 py-1 text-[9px] font-bold text-slate-500 border border-slate-200 rounded hover:bg-slate-50">Pass</button>
+      </>
+    )
+    if (col.key === PlacementStatus.Shortlisted) return (
+      <button onClick={() => { moveTo(pId, PlacementStatus.Interviewed, 'Interviewed'); setFeedbackOpen(pId) }} className="px-2 py-1 text-[9px] font-bold text-teal-600 border border-teal-200 rounded hover:bg-teal-50">Schedule Interview</button>
+    )
+    if (col.key === PlacementStatus.Interviewed) return (
+      <>
+        <button onClick={() => handleMakeOffer(pId)} className="px-2 py-1 text-[9px] font-bold text-green-600 border border-green-200 rounded hover:bg-green-50">Make Offer</button>
+        <button onClick={() => moveTo(pId, PlacementStatus.Passed, 'Passed')} className="px-2 py-1 text-[9px] font-bold text-slate-500 border border-slate-200 rounded hover:bg-slate-50">Decline</button>
+      </>
+    )
+    if (col.key === PlacementStatus.Offered) return (
+      <>
+        <button onClick={() => setHireConfirm(pId)} className="px-2 py-1 text-[9px] font-bold text-green-600 border border-green-200 rounded hover:bg-green-50">Accept Offer</button>
+        <button onClick={() => moveTo(pId, PlacementStatus.Passed, 'Passed')} className="px-2 py-1 text-[9px] font-bold text-red-500 border border-red-200 rounded hover:bg-red-50">Decline</button>
+      </>
+    )
+    return null
   }
 
   return (
@@ -65,27 +123,14 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
                   {items.map((p) => {
                     const trainee = traineeMap[p.traineeId]
                     if (!trainee) return null
+                    const isCelebrating = celebrated.has(p.id)
                     return (
-                      <div key={p.id} className="bg-white rounded-lg border border-slate-200 p-3 shadow-sm">
+                      <div key={p.id} className={cn('bg-white rounded-lg border p-3 shadow-sm transition-all', isCelebrating ? 'border-green-400 ring-2 ring-green-100' : 'border-slate-200')}>
+                        {isCelebrating && <div className="flex items-center gap-1 mb-1 text-green-600"><PartyPopper className="h-3.5 w-3.5" /><span className="text-[10px] font-bold">Placement confirmed!</span></div>}
                         <Link href={`/trainee/${trainee.id}`} className="text-xs font-bold text-slate-900 hover:text-blue-600">{trainee.name}</Link>
                         <p className="text-[10px] text-slate-500">{trainee.programmeId.toUpperCase()}</p>
-                        <div className="flex items-center gap-1 mt-1">
-                          <span className="text-[10px] font-bold text-green-600">{p.matchScore}% match</span>
-                        </div>
-                        <div className="flex gap-1 mt-2">
-                          {col.key === PlacementStatus.Submitted && (
-                            <>
-                              <button onClick={() => moveTo(p.id, PlacementStatus.Shortlisted, 'Shortlisted')} className="px-2 py-1 text-[9px] font-bold text-blue-600 border border-blue-200 rounded hover:bg-blue-50">Shortlist</button>
-                              <button onClick={() => moveTo(p.id, PlacementStatus.Passed, 'Passed')} className="px-2 py-1 text-[9px] font-bold text-slate-500 border border-slate-200 rounded hover:bg-slate-50">Pass</button>
-                            </>
-                          )}
-                          {col.key === PlacementStatus.Shortlisted && (
-                            <button onClick={() => { moveTo(p.id, PlacementStatus.Interviewed, 'Interviewed'); setFeedbackOpen(p.id) }} className="px-2 py-1 text-[9px] font-bold text-teal-600 border border-teal-200 rounded hover:bg-teal-50">Interview</button>
-                          )}
-                          {col.key === PlacementStatus.Interviewed && (
-                            <button onClick={() => moveTo(p.id, PlacementStatus.Hired, 'Hired')} className="px-2 py-1 text-[9px] font-bold text-green-600 border border-green-200 rounded hover:bg-green-50">Hire</button>
-                          )}
-                        </div>
+                        <span className="text-[10px] font-bold text-green-600">{p.matchScore}% match</span>
+                        <div className="flex gap-1 mt-2 flex-wrap">{renderActions(col, p.id)}</div>
                       </div>
                     )
                   })}
@@ -96,59 +141,29 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
         </div>
       </div>
 
-      {/* Interview Feedback Form */}
-      {feedbackOpen && (
-        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-          <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Interview Feedback</h3>
-          <div className="grid grid-cols-3 gap-4 mb-4">
-            {(['technical', 'communication', 'cultural'] as const).map((key) => (
-              <div key={key}>
-                <p className="text-[10px] font-bold text-slate-500 uppercase mb-1 capitalize">{key} Skills</p>
-                <div className="flex gap-1">
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <button key={n} onClick={() => setRatings((r) => ({ ...r, [key]: n }))} className={cn('p-1', n <= ratings[key] ? 'text-amber-400' : 'text-slate-200')}>
-                      <Star className="h-5 w-5" fill={n <= ratings[key] ? 'currentColor' : 'none'} />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <button onClick={() => { setFeedbackOpen(null); onAction('Feedback submitted') }} className="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700">
-            Submit Feedback
-          </button>
-        </div>
-      )}
+      {feedbackOpen && <InterviewFeedbackForm onSubmit={() => { setFeedbackOpen(null); onAction('Feedback submitted') }} onCancel={() => setFeedbackOpen(null)} />}
 
-      {/* Hiring History */}
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100">
-          <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Hiring History</h3>
+      <HiringHistoryTable placements={hiredPlacements} traineeMap={traineeMap} />
+
+      {/* Offer Modal */}
+      <ConfirmationModal open={!!offerModal} onConfirm={confirmOffer} onCancel={() => setOfferModal(null)} title="Extend Offer" description="Complete the offer details below." confirmLabel="Send Offer">
+        <div className="space-y-3">
+          <div>
+            <label className="text-[10px] font-bold text-slate-500 uppercase">Role Title</label>
+            <input type="text" value={offerModal?.role ?? ''} onChange={(e) => setOfferModal((prev) => prev ? { ...prev, role: e.target.value } : null)} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="text-[10px] font-bold text-slate-500 uppercase">Monthly Salary ($)</label>
+            <input type="number" min="0" value={offerModal?.salary ?? ''} onChange={(e) => setOfferModal((prev) => prev ? { ...prev, salary: e.target.value } : null)} placeholder="e.g. 4500" className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="text-[10px] font-bold text-slate-500 uppercase">Start Date</label>
+            <input type="date" value={offerModal?.startDate ?? ''} onChange={(e) => setOfferModal((prev) => prev ? { ...prev, startDate: e.target.value } : null)} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
         </div>
-        <table className="w-full text-left text-sm">
-          <thead>
-            <tr className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              <th className="px-5 py-3">Candidate</th>
-              <th className="px-5 py-3">Role</th>
-              <th className="px-5 py-3 text-center">Score</th>
-              <th className="px-5 py-3">Retention</th>
-              <th className="px-5 py-3">Status</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {hiredPlacements.length === 0 && <tr><td colSpan={5} className="px-5 py-6 text-center text-slate-400">No hiring history</td></tr>}
-            {hiredPlacements.map((p) => (
-              <tr key={p.id} className="hover:bg-slate-50">
-                <td className="px-5 py-3 font-bold"><Link href={`/trainee/${p.traineeId}`} className="text-slate-900 hover:text-blue-600">{traineeMap[p.traineeId]?.name ?? p.traineeId}</Link></td>
-                <td className="px-5 py-3 text-slate-600">{traineeMap[p.traineeId]?.placedRole ?? '-'}</td>
-                <td className="px-5 py-3 text-center font-bold">{p.matchScore}%</td>
-                <td className="px-5 py-3 text-slate-500">{p.retentionMonths ? `${p.retentionMonths} months` : '-'}</td>
-                <td className="px-5 py-3"><StatusBadge status="hired" /></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      </ConfirmationModal>
+
+      <ConfirmationModal open={!!hireConfirm} onConfirm={confirmHire} onCancel={() => setHireConfirm(null)} title="Confirm Hire" description="Confirm this candidate has accepted the offer and will be hired." confirmLabel="Confirm Hire" />
     </div>
   )
 }
