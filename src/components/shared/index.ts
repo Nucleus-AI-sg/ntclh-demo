@@ -15,6 +15,7 @@ export {
   AppFunnelChart,
   AppRadarChart,
   AppHeatmapChart,
+  AppScatterChart,
   chartColours,
 } from './charts'
 export { ConfirmationModal } from './confirmation-modal'

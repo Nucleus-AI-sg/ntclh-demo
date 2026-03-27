@@ -50,6 +50,11 @@ export {
   feedbackImpactTimeline,
   feedbackTimeline,
   matchingPerformanceMetrics,
+  matchScoreCalibration,
+  matchQualityMetrics,
+  matchingPatternsDiscovered,
+  employerFeedbackRanking,
+  recommendationStats,
 } from './ai-performance'
 export { chatScripts, fallbackResponse } from './chat-scripts'
 export { integrations } from './integrations'

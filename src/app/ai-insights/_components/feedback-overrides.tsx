@@ -1,5 +1,5 @@
 import { AppPieChart, AppLineChart } from '@/components/shared'
-import { feedbackImpactTimeline } from '@/data'
+import { feedbackImpactTimeline, overrideAnalysis } from '@/data'
 import type { OverridePattern, AiPerformanceSnapshot } from '@/types'
 
 interface FeedbackOverridesProps {
@@ -54,6 +54,33 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* Top Coordinator Contributors */}
+      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Top Coordinator Contributors</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {overrideAnalysis.topContributors.map((c) => (
+            <div key={c.name} className="border border-slate-200 rounded-lg p-4">
+              <p className="text-sm font-bold text-slate-900">{c.name}</p>
+              <p className="text-xs text-slate-500 mt-1">{c.feedbackSignals} feedback signals</p>
+              <div className="flex gap-4 mt-3">
+                <div>
+                  <p className="text-lg font-black text-amber-600">{c.overrides}</p>
+                  <p className="text-[10px] text-slate-400">Overrides</p>
+                </div>
+                <div>
+                  <p className="text-lg font-black text-green-600">{c.confirmations}</p>
+                  <p className="text-[10px] text-slate-400">Confirmations</p>
+                </div>
+                <div>
+                  <p className="text-lg font-black text-blue-600">{c.feedbackSignals ? Math.round((c.overrides / c.feedbackSignals) * 100) : 0}%</p>
+                  <p className="text-[10px] text-slate-400">Override Rate</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
