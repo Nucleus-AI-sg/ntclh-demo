@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Eye, EyeOff } from 'lucide-react'
-import { FilterBar } from '@/components/shared'
+import { Eye, EyeOff, Pencil, Plus } from 'lucide-react'
+import { FilterBar, useActionToast, ActionToast } from '@/components/shared'
 import { getChannelIcon } from '@/lib/channel-icons'
 import { templateSampleData } from '@/data'
 import type { MessageTemplate, TemplateCategory } from '@/types'
+import { TemplateEditorModal } from './template-editor-modal'
 
 const categoryLabels: Record<TemplateCategory, string> = {
   enrolment: 'Enrolment',
@@ -26,6 +27,9 @@ interface TemplatesTabProps {
 export function TemplatesTab({ templates }: TemplatesTabProps) {
   const [categoryFilter, setCategoryFilter] = useState('__all__')
   const [preview, setPreview] = useState<string | null>(null)
+  const [editorOpen, setEditorOpen] = useState(false)
+  const [editingTemplate, setEditingTemplate] = useState<MessageTemplate | null>(null)
+  const [toast, showToast] = useActionToast()
 
   const filtered = useMemo(() => {
     if (categoryFilter === '__all__') return templates
@@ -36,11 +40,24 @@ export function TemplatesTab({ templates }: TemplatesTabProps) {
 
   const categoryOptions = Object.entries(categoryLabels).map(([value, label]) => ({ value, label }))
 
+  const handleEditTemplate = (t: MessageTemplate) => {
+    setEditingTemplate(t)
+    setEditorOpen(true)
+  }
+
   return (
     <div className="space-y-4">
-      <FilterBar
-        filters={[{ id: 'category', label: 'All Categories', options: categoryOptions, value: categoryFilter, onChange: setCategoryFilter }]}
-      />
+      <div className="flex items-center justify-between">
+        <FilterBar
+          filters={[{ id: 'category', label: 'All Categories', options: categoryOptions, value: categoryFilter, onChange: setCategoryFilter }]}
+        />
+        <button
+          onClick={() => { setEditingTemplate(null); setEditorOpen(true) }}
+          className="flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 border border-blue-200 rounded-lg px-3 py-1.5 hover:bg-blue-50 transition-colors"
+        >
+          <Plus className="h-3.5 w-3.5" /> Create Template
+        </button>
+      </div>
 
       <div className="grid gap-3">
         {filtered.map((t) => (
@@ -63,13 +80,21 @@ export function TemplatesTab({ templates }: TemplatesTabProps) {
                   </p>
                 </div>
               </div>
-              <button
-                onClick={() => setPreview(preview === t.id ? null : t.id)}
-                className="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700"
-              >
-                {preview === t.id ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
-                {preview === t.id ? 'Close' : 'Preview'}
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleEditTemplate(t)}
+                  className="flex items-center gap-1 text-xs font-bold text-slate-500 hover:text-slate-700"
+                >
+                  <Pencil className="h-3 w-3" /> Edit
+                </button>
+                <button
+                  onClick={() => setPreview(preview === t.id ? null : t.id)}
+                  className="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700"
+                >
+                  {preview === t.id ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+                  {preview === t.id ? 'Close' : 'Preview'}
+                </button>
+              </div>
             </div>
 
             {/* Merge fields */}
@@ -102,6 +127,15 @@ export function TemplatesTab({ templates }: TemplatesTabProps) {
           </div>
         </div>
       )}
+
+      <TemplateEditorModal
+        key={editingTemplate?.id ?? 'new'}
+        open={editorOpen}
+        onClose={() => setEditorOpen(false)}
+        template={editingTemplate}
+        onSave={() => showToast('Template saved successfully')}
+      />
+      <ActionToast message={toast} />
     </div>
   )
 }
