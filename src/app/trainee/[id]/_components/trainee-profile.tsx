@@ -1,6 +1,14 @@
 'use client'
 
+import { useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import {
+  ActionToast, useActionToast, ComposeMessageModal, ConfirmationModal,
+} from '@/components/shared'
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from '@/components/ui/select'
+import { LifecycleStage } from '@/types'
 import type {
   Trainee, Programme, Cohort, Assessment,
   ActivityEvent, ModuleProgress, Communication,
@@ -42,10 +50,31 @@ const tabs = [
   { id: 'comms', label: 'Comms & Audit' },
 ] as const
 
+const stageLabels: Record<string, string> = {
+  [LifecycleStage.Applied]: 'Applied',
+  [LifecycleStage.Enrolled]: 'Enrolled',
+  [LifecycleStage.Training]: 'Training',
+  [LifecycleStage.Completed]: 'Completed',
+  [LifecycleStage.Placed]: 'Placed',
+  [LifecycleStage.Verified]: 'Verified',
+}
+
 export function TraineeProfile(props: TraineeProfileProps) {
+  const [toast, showToast] = useActionToast()
+  const [composeOpen, setComposeOpen] = useState(false)
+  const [statusOpen, setStatusOpen] = useState(false)
+  const [newStage, setNewStage] = useState(props.trainee.lifecycleStage)
+
   return (
     <div className="space-y-6">
-      <ProfileHeader trainee={props.trainee} programme={props.programme} cohort={props.cohort} />
+      <ProfileHeader
+        trainee={props.trainee}
+        programme={props.programme}
+        cohort={props.cohort}
+        onSendMessage={() => setComposeOpen(true)}
+        onUpdateStatus={() => { setNewStage(props.trainee.lifecycleStage); setStatusOpen(true) }}
+        showToast={showToast}
+      />
 
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="w-full justify-start border-b border-slate-200 bg-transparent rounded-none h-auto p-0 gap-0">
@@ -61,7 +90,7 @@ export function TraineeProfile(props: TraineeProfileProps) {
         </TabsList>
 
         <TabsContent value="overview" className="mt-6">
-          <OverviewTab trainee={props.trainee} programme={props.programme} assessment={props.assessment} events={props.events} />
+          <OverviewTab trainee={props.trainee} programme={props.programme} assessment={props.assessment} events={props.events} modules={props.modules} placements={props.placements} />
         </TabsContent>
         <TabsContent value="enrolment" className="mt-6">
           <EnrolmentTab assessment={props.assessment} trainee={props.trainee} programmes={props.programmes} />
@@ -70,7 +99,7 @@ export function TraineeProfile(props: TraineeProfileProps) {
           <TrainingTab modules={props.modules} />
         </TabsContent>
         <TabsContent value="documents" className="mt-6">
-          <DocumentsTab documents={props.documents} />
+          <DocumentsTab documents={props.documents} showToast={showToast} />
         </TabsContent>
         <TabsContent value="placement" className="mt-6">
           <PlacementTab trainee={props.trainee} placements={props.placements} matches={props.matches} employerNames={props.employerNames} vacancyTitles={props.vacancyTitles} />
@@ -79,6 +108,40 @@ export function TraineeProfile(props: TraineeProfileProps) {
           <CommsAuditTab communications={props.communications} auditEntries={props.auditEntries} notes={props.notes} />
         </TabsContent>
       </Tabs>
+
+      {/* Compose Message Modal */}
+      <ComposeMessageModal
+        open={composeOpen}
+        onClose={() => setComposeOpen(false)}
+        recipient={props.trainee.name}
+        onSend={() => showToast(`Message sent to ${props.trainee.name}`)}
+      />
+
+      {/* Update Status Modal */}
+      <ConfirmationModal
+        open={statusOpen}
+        onCancel={() => setStatusOpen(false)}
+        onConfirm={() => {
+          setStatusOpen(false)
+          showToast(`Status updated to "${stageLabels[newStage]}"`)
+        }}
+        title="Update Lifecycle Status"
+        description={`Change ${props.trainee.name}'s lifecycle stage.`}
+        confirmLabel="Update Status"
+      >
+        <Select value={newStage} onValueChange={(v) => setNewStage(v as LifecycleStage)}>
+          <SelectTrigger className="w-full text-sm">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(stageLabels).map(([value, label]) => (
+              <SelectItem key={value} value={value}>{label}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </ConfirmationModal>
+
+      <ActionToast message={toast} />
     </div>
   )
 }

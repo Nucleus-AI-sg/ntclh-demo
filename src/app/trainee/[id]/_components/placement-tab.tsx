@@ -1,6 +1,18 @@
 import { StatusBadge, AppRadarChart } from '@/components/shared'
 import type { Trainee, Placement, MatchResult } from '@/types'
 
+const sourceLabels: Record<string, string> = {
+  lhub_matched: 'LHub-matched',
+  self_sourced: 'Self-sourced',
+}
+
+const typeLabels: Record<string, string> = {
+  full_time: 'Full-time',
+  part_time: 'Part-time',
+  freelance: 'Freelance',
+  already_employed: 'Already Employed',
+}
+
 interface PlacementTabProps {
   trainee: Trainee
   placements: Placement[]
@@ -16,6 +28,8 @@ export function PlacementTab({ trainee, placements, matches, employerNames, vaca
     requirement: s.requirementScore,
   })) ?? []
 
+  const statusLabel = trainee.employmentStatus?.replace(/_/g, ' ') ?? 'Job-seeking'
+
   return (
     <div className="space-y-6">
       <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
@@ -23,8 +37,14 @@ export function PlacementTab({ trainee, placements, matches, employerNames, vaca
         <dl className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
           <div>
             <dt className="text-[10px] font-bold text-slate-400 uppercase">Status</dt>
-            <dd className="font-semibold text-slate-800 capitalize">{trainee.employmentType?.replace(/_/g, ' ') ?? 'Job-seeking'}</dd>
+            <dd className="font-semibold text-slate-800 capitalize">{statusLabel}</dd>
           </div>
+          {trainee.employmentType && (
+            <div>
+              <dt className="text-[10px] font-bold text-slate-400 uppercase">Employment Type</dt>
+              <dd className="font-semibold text-slate-800">{typeLabels[trainee.employmentType] ?? trainee.employmentType}</dd>
+            </div>
+          )}
           {trainee.placedEmployerId && (
             <div>
               <dt className="text-[10px] font-bold text-slate-400 uppercase">Employer</dt>
@@ -37,10 +57,22 @@ export function PlacementTab({ trainee, placements, matches, employerNames, vaca
               <dd className="font-semibold text-slate-800">{trainee.placedRole}</dd>
             </div>
           )}
-          {trainee.placedSalary && (
+          {trainee.placedSalary != null && (
             <div>
               <dt className="text-[10px] font-bold text-slate-400 uppercase">Salary</dt>
-              <dd className="font-semibold text-slate-800">${trainee.placedSalary.toLocaleString()}/month</dd>
+              <dd className="font-semibold text-slate-800">S${trainee.placedSalary.toLocaleString('en-SG')}/month</dd>
+            </div>
+          )}
+          {trainee.placedStartDate && (
+            <div>
+              <dt className="text-[10px] font-bold text-slate-400 uppercase">Start Date</dt>
+              <dd className="font-semibold text-slate-800">{new Date(trainee.placedStartDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</dd>
+            </div>
+          )}
+          {trainee.placementSource && (
+            <div>
+              <dt className="text-[10px] font-bold text-slate-400 uppercase">Source</dt>
+              <dd className="font-semibold text-slate-800">{sourceLabels[trainee.placementSource] ?? trainee.placementSource}</dd>
             </div>
           )}
         </dl>
