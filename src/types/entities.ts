@@ -1,5 +1,6 @@
 import {
   CohortStatus,
+  EmploymentStatus,
   EngagementLevel,
   EmploymentType,
   LifecycleStage,
@@ -88,6 +89,19 @@ export interface Trainee {
   placedRole?: string
   placedSalary?: number
   placedStartDate?: string
+  employmentStatus?: EmploymentStatus
+  docVerificationScore?: number
+  riskAssessment?: {
+    level: 'low' | 'medium' | 'high'
+    factors: string[]
+  }
+  milestones?: TraineeMilestone[]
+}
+
+export interface TraineeMilestone {
+  label: string
+  date?: string
+  completed: boolean
 }
 
 export interface EmployerContact {
@@ -123,6 +137,7 @@ export interface Employer {
   contacts: EmployerContact[]
   hiringPreferences: HiringPreferences
   notes: string
+  companyAddress?: string
 }
 
 export interface Vacancy {

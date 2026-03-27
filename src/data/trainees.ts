@@ -1,5 +1,6 @@
 import { Trainee } from '@/types'
 import {
+  EmploymentStatus,
   EmploymentType,
   LifecycleStage,
   PlacementSource,
@@ -37,6 +38,19 @@ export const trainees: Trainee[] = [
       'Transition to data-driven decision-making roles in the technology sector',
     daysInStage: 23,
     lastActivity: 'Module 2 completed - SQL & Data Tools',
+    employmentStatus: EmploymentStatus.InTransition,
+    milestones: [
+      { label: 'Application Submitted', date: '2026-02-01', completed: true },
+      { label: 'SingPass Verified', date: '2026-02-03', completed: true },
+      { label: 'AI Assessment Passed', date: '2026-02-05', completed: true },
+      { label: 'Enrolled', date: '2026-02-15', completed: true },
+      { label: 'Training Started', date: '2026-03-03', completed: true },
+      { label: 'Module 1 Completed', date: '2026-03-14', completed: true },
+      { label: 'Module 2 Completed', date: '2026-03-25', completed: true },
+      { label: 'Training Completed', completed: false },
+      { label: 'Placed', completed: false },
+      { label: 'Verified', completed: false },
+    ],
   },
 
   // 2. Amy Chen - verified trainee (happy path)
@@ -73,6 +87,18 @@ export const trainees: Trainee[] = [
     placedRole: 'Junior Software Developer',
     placedSalary: 4500,
     placedStartDate: '2026-02-15',
+    employmentStatus: EmploymentStatus.Employed,
+    docVerificationScore: 96,
+    milestones: [
+      { label: 'Application Submitted', date: '2025-10-10', completed: true },
+      { label: 'SingPass Verified', date: '2025-10-12', completed: true },
+      { label: 'AI Assessment Passed', date: '2025-10-14', completed: true },
+      { label: 'Enrolled', date: '2025-10-20', completed: true },
+      { label: 'Training Completed', date: '2026-02-01', completed: true },
+      { label: 'Placed', date: '2026-02-15', completed: true },
+      { label: 'Documents Verified', date: '2026-03-01', completed: true },
+      { label: '6-Month Retention', completed: false },
+    ],
   },
 
   // 3. David Ng - flagged verification (discrepancy flow)
@@ -103,6 +129,12 @@ export const trainees: Trainee[] = [
     careerGoals: 'Move into business analysis and data-driven roles',
     daysInStage: 70,
     lastActivity: 'Document flagged - employer name discrepancy',
+    employmentStatus: EmploymentStatus.Employed,
+    docVerificationScore: 42,
+    riskAssessment: {
+      level: 'high',
+      factors: ['Document discrepancy detected', 'Employer name mismatch', 'Extended time in stage'],
+    },
   },
 
   // 4. Lisa Koh - non-responsive trainee (escalation flow)
@@ -133,6 +165,11 @@ export const trainees: Trainee[] = [
     careerGoals: 'Leverage communication skills in digital marketing',
     daysInStage: 115,
     lastActivity: 'Escalated to manual follow-up',
+    employmentStatus: EmploymentStatus.Unemployed,
+    riskAssessment: {
+      level: 'high',
+      factors: ['Non-responsive to outreach', '115 days in stage', 'No documents submitted'],
+    },
   },
 
   // 5. Raj Patel - self-sourced placement
@@ -170,6 +207,8 @@ export const trainees: Trainee[] = [
     placedRole: 'Junior Developer',
     placedSalary: 4200,
     placedStartDate: '2026-03-01',
+    employmentStatus: EmploymentStatus.Employed,
+    docVerificationScore: 92,
   },
 
   // ─── NAMED PRD TRAINEES ───────────────────────────────────────────
@@ -300,6 +339,8 @@ export const trainees: Trainee[] = [
     placedRole: 'IT Support Analyst',
     placedSalary: 3800,
     placedStartDate: '2026-03-18',
+    employmentStatus: EmploymentStatus.Employed,
+    docVerificationScore: 78,
   },
 
   // Kumar S. - ICT, completed, documents auto-verified
@@ -337,6 +378,8 @@ export const trainees: Trainee[] = [
     placedRole: 'Systems Engineer',
     placedSalary: 5000,
     placedStartDate: '2026-03-14',
+    employmentStatus: EmploymentStatus.Employed,
+    docVerificationScore: 98,
   },
 
   // ─── APPLIED (3 trainees) ─────────────────────────────────────────
@@ -615,6 +658,10 @@ export const trainees: Trainee[] = [
       'Apply scientific rigour to business analysis and data interpretation',
     daysInStage: 23,
     lastActivity: 'Module 1 assessment score below threshold - tutor alerted',
+    riskAssessment: {
+      level: 'medium',
+      factors: ['Module 1 score below threshold', 'Attendance at 78%'],
+    },
   },
   {
     id: 'vincent-chua',
@@ -740,6 +787,8 @@ export const trainees: Trainee[] = [
     placedRole: 'Software Engineer',
     placedSalary: 5800,
     placedStartDate: '2026-02-10',
+    employmentStatus: EmploymentStatus.Employed,
+    docVerificationScore: 95,
   },
   {
     id: 'diana-lee',
@@ -775,5 +824,7 @@ export const trainees: Trainee[] = [
     placedRole: 'Marketing Analyst',
     placedSalary: 4000,
     placedStartDate: '2026-01-15',
+    employmentStatus: EmploymentStatus.Employed,
+    docVerificationScore: 94,
   },
 ]

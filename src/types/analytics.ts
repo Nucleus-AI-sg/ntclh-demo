@@ -79,3 +79,22 @@ export interface StrategicInsight {
   insight: string
   supportingData?: string
 }
+
+export interface MatchingPerformanceMetrics {
+  totalMatchesGenerated: number
+  matchAcceptanceRate: number
+  avgMatchScore: number
+  avgTimeToPlacement: number
+  topSkillGaps: { skill: string; demandCount: number; supplyCount: number }[]
+  matchesByProgramme: { programmeId: string; matches: number; acceptanceRate: number }[]
+}
+
+export interface EmployerPerformanceEntry {
+  employerId: string
+  employerName: string
+  sector: string
+  placements: number
+  avgRetentionMonths: number
+  avgSatisfaction: number
+  avgTimeToFill: number
+}

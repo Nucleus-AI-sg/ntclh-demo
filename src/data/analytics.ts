@@ -1,4 +1,4 @@
-import { DataCompletenessCheck, MonthlyMetric, ProgrammeMetrics, ReportHistoryEntry, ReportTemplate } from '@/types'
+import { DataCompletenessCheck, EmployerPerformanceEntry, MonthlyMetric, ProgrammeMetrics, ReportHistoryEntry, ReportTemplate } from '@/types'
 
 export const monthlyMetrics: MonthlyMetric[] = [
   {
@@ -185,6 +185,17 @@ export const dataCompletenessChecks: DataCompletenessCheck[] = [
   { label: 'Employment Verified', status: 'partial', count: '14/21' },
   { label: 'Document Archive', status: 'complete', count: '30/30' },
   { label: 'Employer Confirmations', status: 'partial', count: '6/8' },
+]
+
+export const employerPerformanceData: EmployerPerformanceEntry[] = [
+  { employerId: 'techcorp', employerName: 'TechCorp Pte Ltd', sector: 'Technology', placements: 8, avgRetentionMonths: 11, avgSatisfaction: 4.5, avgTimeToFill: 28 },
+  { employerId: 'financefirst', employerName: 'FinanceFirst Pte Ltd', sector: 'Financial Services', placements: 5, avgRetentionMonths: 10, avgSatisfaction: 4.2, avgTimeToFill: 35 },
+  { employerId: 'cloudserve', employerName: 'CloudServe Asia', sector: 'Technology', placements: 6, avgRetentionMonths: 9, avgSatisfaction: 4.4, avgTimeToFill: 22 },
+  { employerId: 'healthtech', employerName: 'HealthTech SG', sector: 'Technology', placements: 3, avgRetentionMonths: 12, avgSatisfaction: 4.7, avgTimeToFill: 30 },
+  { employerId: 'retailpro', employerName: 'RetailPro Holdings', sector: 'Retail & Commerce', placements: 4, avgRetentionMonths: 8, avgSatisfaction: 3.9, avgTimeToFill: 40 },
+  { employerId: 'greenmark', employerName: 'GreenMark Consulting', sector: 'Professional Services', placements: 3, avgRetentionMonths: 10, avgSatisfaction: 4.1, avgTimeToFill: 32 },
+  { employerId: 'databridge', employerName: 'DataBridge Analytics', sector: 'Technology', placements: 4, avgRetentionMonths: 11, avgSatisfaction: 4.6, avgTimeToFill: 25 },
+  { employerId: 'smartfin', employerName: 'SmartFin Solutions', sector: 'Financial Services', placements: 2, avgRetentionMonths: 7, avgSatisfaction: 4.0, avgTimeToFill: 38 },
 ]
 
 export const reportTemplates: ReportTemplate[] = [

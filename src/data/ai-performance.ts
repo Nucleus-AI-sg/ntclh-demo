@@ -1,5 +1,6 @@
 import type {
   AiPerformanceSnapshot,
+  MatchingPerformanceMetrics,
   ModelVersion,
   OverridePattern,
   StrategicInsight,
@@ -255,6 +256,25 @@ export const feedbackImpactTimeline = [
   { date: 'Jan 2026', event: 'Retail-to-BA transfer learning model deployed (v2.0)', impact: '+8% accuracy for retail backgrounds' },
   { date: 'Mar 2026', event: 'Jan 2026 cohort outcomes incorporated (v2.1)', impact: '+3% assessment, +5% matching accuracy' },
 ]
+
+export const matchingPerformanceMetrics: MatchingPerformanceMetrics = {
+  totalMatchesGenerated: 342,
+  matchAcceptanceRate: 67,
+  avgMatchScore: 78,
+  avgTimeToPlacement: 42,
+  topSkillGaps: [
+    { skill: 'Cloud Architecture', demandCount: 18, supplyCount: 6 },
+    { skill: 'Data Visualisation', demandCount: 15, supplyCount: 9 },
+    { skill: 'Agile/Scrum', demandCount: 12, supplyCount: 8 },
+    { skill: 'Machine Learning', demandCount: 10, supplyCount: 3 },
+    { skill: 'DevOps', demandCount: 8, supplyCount: 4 },
+  ],
+  matchesByProgramme: [
+    { programmeId: 'ict', matches: 156, acceptanceRate: 72 },
+    { programmeId: 'ba', matches: 128, acceptanceRate: 65 },
+    { programmeId: 'dm', matches: 58, acceptanceRate: 60 },
+  ],
+}
 
 export const feedbackTimeline = [
   {
