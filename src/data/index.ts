@@ -36,6 +36,7 @@ export {
   reportTemplates,
   reportHistory,
   dataCompletenessChecks,
+  employerPerformanceData,
 } from './analytics'
 export {
   aiPerformanceHistory,
@@ -48,6 +49,7 @@ export {
   predictionMatrix,
   feedbackImpactTimeline,
   feedbackTimeline,
+  matchingPerformanceMetrics,
 } from './ai-performance'
 export { chatScripts, fallbackResponse } from './chat-scripts'
 export { integrations } from './integrations'

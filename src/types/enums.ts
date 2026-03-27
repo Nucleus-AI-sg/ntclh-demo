@@ -107,6 +107,14 @@ export enum ApplicationStatus {
   Waitlisted = 'waitlisted',
 }
 
+export enum EmploymentStatus {
+  Employed = 'employed',
+  Unemployed = 'unemployed',
+  SelfEmployed = 'self_employed',
+  Freelancing = 'freelancing',
+  InTransition = 'in_transition',
+}
+
 export enum PlacementStatus {
   Available = 'available',
   Submitted = 'submitted',
