@@ -1,10 +1,13 @@
-import { FileText, CheckCircle, AlertTriangle, Clock } from 'lucide-react'
+import { useState, useCallback } from 'react'
+import { FileText, CheckCircle, AlertTriangle, Clock, Upload } from 'lucide-react'
 import { StatusBadge } from '@/components/shared'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { DocumentStatus } from '@/types'
 import type { Document } from '@/types'
 
 interface DocumentsTabProps {
   documents: Document[]
+  showToast: (msg: string) => void
 }
 
 const statusIcon: Record<string, React.ReactNode> = {
@@ -16,7 +19,43 @@ const statusIcon: Record<string, React.ReactNode> = {
   [DocumentStatus.Rejected]: <AlertTriangle className="h-4 w-4 text-red-500" />,
 }
 
-export function DocumentsTab({ documents }: DocumentsTabProps) {
+const docTypes = ['Pay Slip', 'CPF Statement', 'Employment Letter', 'Certificate', 'Other'] as const
+
+export function DocumentsTab({ documents, showToast }: DocumentsTabProps) {
+  const [dragOver, setDragOver] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [selectedType, setSelectedType] = useState<string>(docTypes[0])
+
+  const simulateUpload = useCallback((fileName: string) => {
+    setUploading(true)
+    setProgress(0)
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval)
+          setUploading(false)
+          showToast(`"${fileName}" uploaded successfully`)
+          return 0
+        }
+        return prev + 20
+      })
+    }, 200)
+  }, [showToast])
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(false)
+    const file = e.dataTransfer.files[0]
+    if (file) simulateUpload(file.name)
+  }, [simulateUpload])
+
+  const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) simulateUpload(file.name)
+    e.target.value = ''
+  }, [simulateUpload])
+
   return (
     <div className="space-y-6">
       <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
@@ -38,6 +77,48 @@ export function DocumentsTab({ documents }: DocumentsTabProps) {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Upload Section */}
+      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Upload Document</h3>
+        <div className="flex items-center gap-3 mb-3">
+          <label className="text-xs font-bold text-slate-600">Document type:</label>
+          <Select value={selectedType} onValueChange={setSelectedType}>
+            <SelectTrigger className="w-48 text-xs h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {docTypes.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
+            </SelectContent>
+          </Select>
+        </div>
+        <div
+          onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={handleDrop}
+          className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+            dragOver ? 'border-blue-400 bg-blue-50' : 'border-slate-200 hover:border-slate-300'
+          }`}
+        >
+          <Upload className="h-8 w-8 text-slate-300 mx-auto mb-2" />
+          <p className="text-sm text-slate-500 font-medium">
+            Drag and drop a file here, or{' '}
+            <label className="text-blue-600 hover:underline cursor-pointer font-bold">
+              browse
+              <input type="file" className="hidden" accept=".pdf,.jpg,.jpeg,.png" onChange={handleFileSelect} />
+            </label>
+          </p>
+          <p className="text-[10px] text-slate-400 mt-1">PDF, JPG, or PNG up to 10 MB</p>
+          {uploading && (
+            <div className="mt-4">
+              <div className="w-full bg-slate-100 rounded-full h-2">
+                <div className="bg-blue-600 h-2 rounded-full transition-all" style={{ width: `${progress}%` }} />
+              </div>
+              <p className="text-xs text-slate-500 mt-1">Uploading... {progress}%</p>
+            </div>
+          )}
         </div>
       </div>
 

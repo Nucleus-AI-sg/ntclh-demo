@@ -6,11 +6,19 @@ interface TrainingTabProps {
   modules: ModuleProgress[]
 }
 
+function formatDate(date: string | undefined): string {
+  if (!date) return '-'
+  return new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
 export function TrainingTab({ modules }: TrainingTabProps) {
   const completed = modules.filter((m) => m.status === ModuleStatus.Completed)
   const avgScore = completed.length > 0
     ? Math.round(completed.reduce((sum, m) => sum + (m.score ?? 0), 0) / completed.length)
     : 0
+  // Derive attendance: completed + in-progress modules count as attended
+  const attendedCount = modules.filter((m) => m.status === ModuleStatus.Completed || m.status === ModuleStatus.InProgress).length
+  const attendance = modules.length > 0 ? Math.round((attendedCount / modules.length) * 100) : 0
 
   return (
     <div className="space-y-6">
@@ -25,7 +33,7 @@ export function TrainingTab({ modules }: TrainingTabProps) {
         </div>
         <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Attendance</p>
-          <p className="text-2xl font-black text-slate-900 mt-1">92%</p>
+          <p className="text-2xl font-black text-slate-900 mt-1">{attendance}%</p>
         </div>
       </div>
 
@@ -47,7 +55,7 @@ export function TrainingTab({ modules }: TrainingTabProps) {
                   <td className="px-6 py-4 font-bold text-slate-900">{mod.moduleName}</td>
                   <td className="px-6 py-4"><StatusBadge status={mod.status} /></td>
                   <td className="px-6 py-4 text-center font-bold text-slate-700">{mod.score != null ? `${mod.score}%` : '-'}</td>
-                  <td className="px-6 py-4 text-xs text-slate-500">{mod.completedDate ?? '-'}</td>
+                  <td className="px-6 py-4 text-xs text-slate-500">{formatDate(mod.completedDate)}</td>
                   <td className="px-6 py-4 text-xs text-slate-500">{mod.instructor}</td>
                 </tr>
               ))}

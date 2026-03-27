@@ -1,26 +1,30 @@
 import { User, GraduationCap, Briefcase, Mail, Phone, MapPin } from 'lucide-react'
 import { StatCard, ActivityFeed } from '@/components/shared'
-import type { Trainee, Programme, Assessment, ActivityEvent } from '@/types'
+import { ModuleStatus } from '@/types'
+import type { Trainee, Programme, Assessment, ActivityEvent, ModuleProgress, Placement } from '@/types'
 
 interface OverviewTabProps {
   trainee: Trainee
   programme: Programme | undefined
   assessment: Assessment | undefined
   events: ActivityEvent[]
+  modules: ModuleProgress[]
+  placements: Placement[]
 }
 
-export function OverviewTab({ trainee, programme, assessment, events }: OverviewTabProps) {
-  const modulesCompleted = 2 // Marcus: 2 of 6
-  const totalModules = programme?.modules.length ?? 6
+export function OverviewTab({ trainee, programme, assessment, events, modules, placements }: OverviewTabProps) {
+  const modulesCompleted = modules.filter((m) => m.status === ModuleStatus.Completed).length
+  const totalModules = modules.length || (programme?.modules.length ?? 0)
+  const activePlacements = placements.filter((p) => p.status === 'available' || p.status === 'submitted').length
 
   return (
     <div className="space-y-6">
       {/* Key Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard label="Days in Programme" value={trainee.daysInStage} icon={User} iconColour="blue" />
-        <StatCard label="Training Progress" value={`${modulesCompleted}/${totalModules}`} icon={GraduationCap} iconColour="teal" subtitle={`${Math.round((modulesCompleted / totalModules) * 100)}%`} />
+        <StatCard label="Training Progress" value={`${modulesCompleted}/${totalModules}`} icon={GraduationCap} iconColour="teal" subtitle={`${totalModules > 0 ? Math.round((modulesCompleted / totalModules) * 100) : 0}%`} />
         <StatCard label="AI Suitability" value={assessment ? `${assessment.overallScore}%` : 'N/A'} icon={Briefcase} iconColour="indigo" />
-        <StatCard label="Placement Matches" value={3} icon={User} iconColour="green" subtitle="Active" />
+        <StatCard label="Placement Matches" value={activePlacements} icon={User} iconColour="green" subtitle="Active" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
