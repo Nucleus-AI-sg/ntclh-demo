@@ -75,7 +75,7 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
                   <p className="text-[10px] text-slate-400">Confirmations</p>
                 </div>
                 <div>
-                  <p className="text-lg font-black text-blue-600">{Math.round((c.overrides / c.feedbackSignals) * 100)}%</p>
+                  <p className="text-lg font-black text-blue-600">{c.feedbackSignals ? Math.round((c.overrides / c.feedbackSignals) * 100) : 0}%</p>
                   <p className="text-[10px] text-slate-400">Override Rate</p>
                 </div>
               </div>

@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   ZAxis,
 } from 'recharts'
-import { chartColours, tooltipStyle, axisStyle, gridStyle } from './chart-colours'
+import { chartColours, axisStyle, gridStyle } from './chart-colours'
 
 interface AppScatterChartProps {
   data: { x: number; y: number; label?: string }[]
@@ -42,7 +42,6 @@ export function AppScatterChart({
           <YAxis type="number" dataKey="y" name={yLabel} {...axisStyle} />
           <ZAxis range={[40, 40]} />
           <Tooltip
-            {...tooltipStyle}
             cursor={{ strokeDasharray: '3 3' }}
             content={({ payload }) => {
               if (!payload?.length) return null
