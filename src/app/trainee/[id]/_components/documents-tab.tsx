@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { FileText, CheckCircle, AlertTriangle, Clock, Upload } from 'lucide-react'
 import { StatusBadge } from '@/components/shared'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -26,33 +26,41 @@ export function DocumentsTab({ documents, showToast }: DocumentsTabProps) {
   const [uploading, setUploading] = useState(false)
   const [progress, setProgress] = useState(0)
   const [selectedType, setSelectedType] = useState<string>(docTypes[0])
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const simulateUpload = useCallback((fileName: string) => {
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (progress >= 100 && intervalRef.current) {
+      clearInterval(intervalRef.current)
+      intervalRef.current = null
+      setUploading(false)
+      setProgress(0)
+      showToast(`Document uploaded successfully`)
+    }
+  }, [progress, showToast])
+
+  const simulateUpload = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
     setUploading(true)
     setProgress(0)
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval)
-          setUploading(false)
-          showToast(`"${fileName}" uploaded successfully`)
-          return 0
-        }
-        return prev + 20
-      })
+    intervalRef.current = setInterval(() => {
+      setProgress((prev) => prev + 20)
     }, 200)
-  }, [showToast])
+  }, [])
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault()
     setDragOver(false)
-    const file = e.dataTransfer.files[0]
-    if (file) simulateUpload(file.name)
+    if (e.dataTransfer.files[0]) simulateUpload()
   }, [simulateUpload])
 
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) simulateUpload(file.name)
+    if (e.target.files?.[0]) simulateUpload()
     e.target.value = ''
   }, [simulateUpload])
 
