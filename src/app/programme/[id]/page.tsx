@@ -1,4 +1,6 @@
-import { PagePlaceholder } from "@/components/page-placeholder"
+import { notFound } from 'next/navigation'
+import { programmes, cohorts, programmeMetrics } from '@/data'
+import { ProgrammeDetail } from './_components/programme-detail'
 
 export default async function ProgrammeDetailPage({
   params,
@@ -6,12 +8,11 @@ export default async function ProgrammeDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
+  const programme = programmes.find((p) => p.id === id)
+  if (!programme) notFound()
 
-  return (
-    <PagePlaceholder
-      title={`Programme Detail: ${id}`}
-      description="Individual programme with cohorts, modules, trainee roster, and outcome metrics."
-      prd="PRD-10"
-    />
-  )
+  const progCohorts = cohorts.filter((c) => c.programmeId === programme.id)
+  const metrics = programmeMetrics.find((m) => m.programmeId === programme.id)
+
+  return <ProgrammeDetail programme={programme} cohorts={progCohorts} metrics={metrics} />
 }

@@ -55,7 +55,7 @@ export function FilterBar({
             <SelectValue placeholder={filter.label} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">{filter.label}</SelectItem>
+            <SelectItem value="__all__">{filter.label}</SelectItem>
             {filter.options.map((opt) => (
               <SelectItem key={opt.value} value={opt.value}>
                 {opt.label}
