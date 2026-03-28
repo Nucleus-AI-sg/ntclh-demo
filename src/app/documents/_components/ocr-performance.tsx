@@ -30,7 +30,7 @@ export function OcrPerformance() {
   return (
     <div className="space-y-4">
       {/* Accuracy Trend Chart */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">OCR Accuracy Over Time</h3>
         <AppLineChart
           data={accuracyData}
@@ -46,7 +46,7 @@ export function OcrPerformance() {
       </div>
 
       {/* Processing Time Distribution */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Processing Time Distribution</h3>
         <AppBarChart
           data={processingTimeData}
@@ -61,7 +61,7 @@ export function OcrPerformance() {
       </div>
 
       {/* Field-Level Accuracy */}
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl overflow-hidden">
         <div className="p-4 border-b border-slate-100">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Field-Level Accuracy</h3>
         </div>

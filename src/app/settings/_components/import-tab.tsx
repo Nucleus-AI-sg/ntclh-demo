@@ -45,7 +45,7 @@ export function ImportTab({ showToast }: ImportTabProps) {
 
   return (
     <div className="space-y-4">
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
           <Database className="h-4 w-4 text-blue-600" /> Excel Import Tool
         </h3>
@@ -64,7 +64,7 @@ export function ImportTab({ showToast }: ImportTabProps) {
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex items-center justify-between">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Import History</h3>
           <ExportButton formats={['CSV']} label="Export History" showToast={showToast} />

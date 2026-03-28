@@ -61,7 +61,7 @@ export function PerformanceTab({ cohorts, metrics, trainees, employers }: Perfor
   return (
     <div className="space-y-4">
       {/* Cohort Comparison */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cohort Comparison</h3>
         <AppBarChart
           data={cohortData}
@@ -85,7 +85,7 @@ export function PerformanceTab({ cohorts, metrics, trainees, employers }: Perfor
             { label: 'Avg Time to Place', value: `${metrics.avgTimeToPlacement}d` },
             { label: 'Conversion', value: `${metrics.enrolmentConversion}%` },
           ].map((m) => (
-            <div key={m.label} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
+            <div key={m.label} className="bg-white rounded-xl p-4 text-center">
               <p className="text-[10px] font-bold text-slate-400 uppercase">{m.label}</p>
               <p className="text-2xl font-black text-slate-900 mt-1">{m.value}</p>
             </div>
@@ -97,13 +97,13 @@ export function PerformanceTab({ cohorts, metrics, trainees, employers }: Perfor
       {(employmentTypeData.length > 0 || sectorData.length > 0) && (
         <div className="grid grid-cols-2 gap-4">
           {employmentTypeData.length > 0 && (
-            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+            <div className="bg-white rounded-xl p-4">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Employment Type</h3>
               <AppPieChart data={employmentTypeData} height={220} />
             </div>
           )}
           {sectorData.length > 0 && (
-            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+            <div className="bg-white rounded-xl p-4">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Sector Distribution</h3>
               <AppPieChart data={sectorData} height={220} />
             </div>
@@ -113,7 +113,7 @@ export function PerformanceTab({ cohorts, metrics, trainees, employers }: Perfor
 
       {/* Top Employers */}
       {topEmployers.length > 0 && (
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Top Placement Employers</h3>
           <table className="w-full text-sm">
             <thead>

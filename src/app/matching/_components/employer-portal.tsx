@@ -125,7 +125,7 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
                     if (!trainee) return null
                     const isCelebrating = celebrated.has(p.id)
                     return (
-                      <div key={p.id} className={cn('bg-white rounded-lg border p-3 shadow-sm transition-all', isCelebrating ? 'border-green-400 ring-2 ring-green-100' : 'border-slate-200')}>
+                      <div key={p.id} className={cn('bg-white rounded-lg p-3 transition-all', isCelebrating ? 'ring-2 ring-green-100' : '')}>
                         {isCelebrating && <div className="flex items-center gap-1 mb-1 text-green-600"><PartyPopper className="h-3.5 w-3.5" /><span className="text-[10px] font-bold">Placement confirmed!</span></div>}
                         <Link href={`/trainee/${trainee.id}`} className="text-xs font-bold text-slate-900 hover:text-blue-600">{trainee.name}</Link>
                         <p className="text-[10px] text-slate-500">{trainee.programmeId.toUpperCase()}</p>

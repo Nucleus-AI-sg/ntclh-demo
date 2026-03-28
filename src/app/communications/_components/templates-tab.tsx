@@ -61,7 +61,7 @@ export function TemplatesTab({ templates }: TemplatesTabProps) {
 
       <div className="grid gap-3">
         {filtered.map((t) => (
-          <div key={t.id} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <div key={t.id} className="bg-white rounded-xl p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500">

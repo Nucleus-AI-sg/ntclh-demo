@@ -89,7 +89,7 @@ export function DocumentArchive({ documents }: DocumentArchiveProps) {
       <p className="text-xs text-slate-500">{filtered.length} of {archived.length} documents</p>
 
       {/* Table */}
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>

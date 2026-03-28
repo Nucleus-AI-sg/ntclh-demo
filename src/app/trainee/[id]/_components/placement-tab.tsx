@@ -32,7 +32,7 @@ export function PlacementTab({ trainee, placements, matches, employerNames, vaca
 
   return (
     <div className="space-y-4">
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Employment Status</h3>
         <dl className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
           <div>
@@ -79,7 +79,7 @@ export function PlacementTab({ trainee, placements, matches, employerNames, vaca
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+        <div className="bg-white rounded-xl overflow-hidden">
           <div className="p-4 border-b border-slate-100">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Placement Match History</h3>
           </div>
@@ -110,7 +110,7 @@ export function PlacementTab({ trainee, placements, matches, employerNames, vaca
           </div>
         </div>
 
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Competency Profile</h3>
           {radarData.length > 0 ? (
             <AppRadarChart

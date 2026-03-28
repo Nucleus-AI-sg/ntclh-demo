@@ -19,7 +19,7 @@ export function EnrolmentTab({ assessment, trainee, programmes }: EnrolmentTabPr
   return (
     <div className="space-y-4">
       {/* Application Summary */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Application Summary</h3>
         <dl className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
           <div>

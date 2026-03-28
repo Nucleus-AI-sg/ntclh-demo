@@ -103,7 +103,7 @@ export function CampaignsTab({ campaigns }: CampaignsTabProps) {
 
       {/* Scheduled Messages */}
       {activeScheduled.length > 0 && (
-        <div className="bg-white border border-slate-200 rounded-xl shadow-sm">
+        <div className="bg-white rounded-xl">
           <div className="px-5 py-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-amber-500" />

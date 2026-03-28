@@ -29,7 +29,7 @@ export function SequencesTab({ sequences }: SequencesTabProps) {
         const rates = stepResponseRates[seq.id] ?? []
 
         return (
-          <div key={seq.id} className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+          <div key={seq.id} className="bg-white rounded-xl overflow-hidden">
             {/* Header */}
             <div className="px-5 py-4 flex items-center justify-between">
               <div>

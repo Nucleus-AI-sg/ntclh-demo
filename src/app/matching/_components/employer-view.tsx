@@ -81,7 +81,7 @@ export function EmployerView({ employers, vacancies, matches, trainees, selected
           {filteredEmployers.map((emp) => {
             const vCount = vacancies.filter((v) => v.employerId === emp.id).length
             return (
-              <button key={emp.id} onClick={() => { onSelectEmployer(emp.id); setSelectedVacancyId(null) }} className={cn('w-full text-left p-3 rounded-xl border transition-all', emp.id === selectedEmployerId ? 'bg-white border-blue-500 ring-1 ring-blue-200 shadow-sm' : 'bg-slate-50 border-slate-100 hover:bg-white')}>
+              <button key={emp.id} onClick={() => { onSelectEmployer(emp.id); setSelectedVacancyId(null) }} className={cn('w-full text-left p-3 rounded-xl transition-all', emp.id === selectedEmployerId ? 'bg-white ring-1 ring-blue-200' : 'bg-slate-50 hover:bg-white')}>
                 <p className="text-sm font-bold text-slate-900">{emp.name}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-[10px] text-slate-500">{vCount} vacancies</span>
@@ -104,7 +104,7 @@ export function EmployerView({ employers, vacancies, matches, trainees, selected
                   ))}
                 </div>
               )}
-              <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+              <div className="bg-white rounded-xl p-4">
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="text-lg font-bold text-slate-900">{selectedVacancy.title}</h3>

@@ -22,7 +22,7 @@ export function CandidateMatchCard({ match, trainee, rank, isExpanded, isBookmar
   const radarData = match.skillsComparison.map((s) => ({ skill: s.skill, candidate: s.candidateScore, requirement: s.requirementScore }))
 
   return (
-    <div className={cn('bg-white border rounded-xl shadow-sm overflow-hidden', isBookmarked ? 'border-amber-300' : 'border-slate-200')}>
+    <div className={cn('bg-white rounded-xl overflow-hidden', isBookmarked ? 'ring-1 ring-amber-300' : '')}>
       <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-50" onClick={onToggle}>
         <div className="flex items-center gap-4">
           <span className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center text-xs font-black">#{rank}</span>

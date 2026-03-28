@@ -47,7 +47,7 @@ export function ChannelsTab({ showToast }: ChannelsTabProps) {
       {channels.map((ch) => {
         const pct = Math.round((ch.used / ch.limit) * 100)
         return (
-          <div key={ch.name} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <div key={ch.name} className="bg-white rounded-xl p-4">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 {ch.icon === 'mail' ? <Mail className="h-4 w-4 text-blue-600" /> : <MessageSquare className="h-4 w-4 text-blue-600" />}

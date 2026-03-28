@@ -32,7 +32,7 @@ export function StrategicInsights({ insights }: StrategicInsightsProps) {
         const items = grouped[key as StrategicInsight['category']] ?? []
         if (items.length === 0) return null
         return (
-          <div key={key} className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+          <div key={key} className="bg-white rounded-xl p-4">
             <h3 className={cn('text-xs font-black uppercase tracking-widest mb-4 flex items-center gap-2 px-2 py-1 rounded-md border w-fit', config.colour)}>
               {config.icon} {config.label} Insights
             </h3>

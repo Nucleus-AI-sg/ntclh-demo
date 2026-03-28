@@ -35,7 +35,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
       </div>
 
       {/* Report Templates */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Government Report Templates</h3>
         <div className="space-y-3">
           {reportTemplates.map((report) => (
@@ -62,7 +62,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
       </div>
 
       {/* Data Completeness Check */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Pre-Generation Data Check</h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {dataCompletenessChecks.map((check) => (
@@ -76,7 +76,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
 
       {/* Report Preview */}
       {preview && (
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center">
               <Eye className="h-4 w-4 mr-2 text-blue-600" /> Report Preview: {preview}
@@ -96,7 +96,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
       )}
 
       {/* Report History */}
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl overflow-hidden">
         <div className="p-4 border-b border-slate-100">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Report History</h3>
         </div>

@@ -29,7 +29,7 @@ export function OverviewTab({ trainee, programme, assessment, events, modules, p
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Personal Details */}
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Personal Details</h3>
           <div className="space-y-3 text-sm">
             <div className="flex items-center gap-3 text-slate-600">
@@ -53,12 +53,12 @@ export function OverviewTab({ trainee, programme, assessment, events, modules, p
         {/* Career Goals & Activity */}
         <div className="space-y-4">
           {trainee.careerGoals && (
-            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+            <div className="bg-white rounded-xl p-4">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Career Goals</h3>
               <p className="text-sm text-slate-700 leading-relaxed">{trainee.careerGoals}</p>
             </div>
           )}
-          <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+          <div className="bg-white rounded-xl p-4">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Recent Activity</h3>
             <ActivityFeed events={events} maxItems={5} />
           </div>

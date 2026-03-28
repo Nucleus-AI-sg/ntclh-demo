@@ -42,12 +42,12 @@ export function EnrolmentPipelineTab({ programmeId, trainees }: EnrolmentPipelin
 
   return (
     <div className="space-y-4">
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Enrolment Funnel</h3>
         <AppFunnelChart data={funnelData} height={250} />
       </div>
 
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Application Queue</h3>
           <Link href="/enrolment" className="text-xs text-blue-600 hover:underline font-bold">

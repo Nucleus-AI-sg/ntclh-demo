@@ -11,7 +11,7 @@ interface ComparisonTableProps {
 
 export function ComparisonTable({ matches, traineeMap, skillLabels }: ComparisonTableProps) {
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-white rounded-xl overflow-hidden">
       <table className="w-full text-left text-xs">
         <thead>
           <tr className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">

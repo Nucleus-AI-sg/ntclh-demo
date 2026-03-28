@@ -9,7 +9,7 @@ interface ActivityLogProps {
 export function ActivityLog({ entries }: ActivityLogProps) {
   return (
     <div className="w-64 flex-shrink-0">
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-4 sticky top-4">
+      <div className="bg-white rounded-xl p-4 sticky top-4">
         <div className="flex items-center gap-2 mb-3">
           <Clock className="h-3.5 w-3.5 text-slate-400" />
           <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Activity Log</h4>

@@ -40,44 +40,44 @@ export function StatCard({
   return (
     <div
       className={cn(
-        'bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3',
+        'bg-white p-3.5 rounded-xl flex items-center gap-3',
         className,
       )}
     >
       <div
         className={cn(
-          'w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0',
+          'w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0',
           colour.bg,
           colour.text,
         )}
       >
-        <Icon className="h-6 w-6" />
+        <Icon className="h-5 w-5" />
       </div>
       <div className="min-w-0">
         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
           {label}
         </p>
-        <div className="flex items-end gap-2">
+        <div className="flex items-end gap-1.5">
           <span
             className={cn(
-              'text-2xl font-black text-slate-900 leading-none',
+              'text-xl font-extrabold text-slate-900 leading-none',
               valueClassName,
             )}
           >
             {value}
           </span>
           {trend && trend.direction !== 'flat' && (
-            <span className={cn('text-xs font-bold flex items-center', trendColour)}>
+            <span className={cn('text-[11px] font-bold flex items-center', trendColour)}>
               {trend.value}
-              <TrendIcon className="h-3.5 w-3.5 ml-0.5" />
-            </span>
-          )}
-          {subtitle && (
-            <span className="text-slate-400 text-xs font-medium truncate">
-              {subtitle}
+              <TrendIcon className="h-3 w-3 ml-0.5" />
             </span>
           )}
         </div>
+        {subtitle && (
+          <p className="text-slate-400 text-[11px] font-medium truncate mt-0.5">
+            {subtitle}
+          </p>
+        )}
       </div>
     </div>
   )

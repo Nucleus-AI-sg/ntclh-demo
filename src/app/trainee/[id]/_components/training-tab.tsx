@@ -23,21 +23,21 @@ export function TrainingTab({ modules }: TrainingTabProps) {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
+        <div className="bg-white rounded-xl p-4 text-center">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Modules Completed</p>
           <p className="text-2xl font-black text-slate-900 mt-1">{completed.length}/{modules.length}</p>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
+        <div className="bg-white rounded-xl p-4 text-center">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Average Score</p>
           <p className="text-2xl font-black text-slate-900 mt-1">{avgScore}%</p>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
+        <div className="bg-white rounded-xl p-4 text-center">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Attendance</p>
           <p className="text-2xl font-black text-slate-900 mt-1">{attendance}%</p>
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>

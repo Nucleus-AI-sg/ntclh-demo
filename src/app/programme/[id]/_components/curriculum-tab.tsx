@@ -23,7 +23,7 @@ export function CurriculumTab({ modules }: CurriculumTabProps) {
   return (
     <div className="space-y-3">
       {modules.map((mod) => (
-        <div key={mod.id} className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+        <div key={mod.id} className="bg-white rounded-xl overflow-hidden">
           <div
             className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-50"
             onClick={() => setExpandedModule(expandedModule === mod.id ? null : mod.id)}

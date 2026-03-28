@@ -77,7 +77,7 @@ export function EmployerList({ employers, vacancies, placements, staff }: Employ
         <StatCard label="At-Risk Relationships" value={atRiskCount} icon={AlertTriangle} iconColour="red" />
       </div>
 
-      <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4">
           <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Employer Network</h3>
           <div className="flex items-center gap-2">

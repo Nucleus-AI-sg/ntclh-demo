@@ -76,7 +76,7 @@ export function ContextPanel({ context, collapsed, onToggle }: ContextPanelProps
           )}
 
           {context?.confidence && (
-            <div className="p-3 bg-white rounded-xl border border-slate-100 flex items-center gap-3">
+            <div className="p-3 bg-white rounded-xl flex items-center gap-3">
               <ConfidenceRing level={context.confidence.level} />
               <div>
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">Confidence</p>

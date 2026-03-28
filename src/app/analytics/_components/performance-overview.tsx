@@ -92,7 +92,7 @@ export function PerformanceOverview({ monthlyMetrics, programmeMetrics, placemen
 
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Placement Rate by Programme</h3>
           <AppBarChart
             data={barData}
@@ -105,7 +105,7 @@ export function PerformanceOverview({ monthlyMetrics, programmeMetrics, placemen
             showLegend
           />
         </div>
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Placement Funnel</h3>
           <AppFunnelChart
             data={placementFunnel.map((s) => ({ name: `${s.stage} (${s.conversionRate}%)`, value: s.count }))}
@@ -116,7 +116,7 @@ export function PerformanceOverview({ monthlyMetrics, programmeMetrics, placemen
       </div>
 
       {/* Monthly Trends */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Monthly Trends (12 Months)</h3>
         <AppLineChart
           data={monthlyMetrics}
@@ -133,7 +133,7 @@ export function PerformanceOverview({ monthlyMetrics, programmeMetrics, placemen
       </div>
 
       {/* At-Risk Alerts */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center">
           <AlertTriangle className="h-4 w-4 mr-2 text-red-500" /> AI-Identified Risks
         </h3>

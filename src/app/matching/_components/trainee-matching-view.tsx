@@ -66,7 +66,7 @@ export function TraineeMatchingView({ trainees, vacancies, programmes }: Trainee
         {unmatched.map((trainee) => {
           const matched = vacancies.filter((v) => v.programmeIds.includes(trainee.programmeId)).slice(0, 3)
           return (
-            <div key={trainee.id} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+            <div key={trainee.id} className="bg-white rounded-xl p-4">
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <Link href={`/trainee/${trainee.id}`} className="text-sm font-bold text-slate-900 hover:text-blue-600">

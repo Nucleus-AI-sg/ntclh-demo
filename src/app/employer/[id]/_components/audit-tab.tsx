@@ -15,7 +15,7 @@ export function AuditTab({ entries }: AuditTabProps) {
   const sorted = [...entries].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm divide-y divide-slate-100">
+    <div className="bg-white rounded-xl divide-y divide-slate-100">
       {sorted.length === 0 && <p className="px-5 py-8 text-sm text-slate-400 text-center">No audit entries</p>}
       {sorted.map((entry) => (
         <div key={entry.id} className="px-5 py-3 flex items-start gap-3 hover:bg-slate-50">

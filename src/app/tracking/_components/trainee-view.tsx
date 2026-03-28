@@ -35,7 +35,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
       </div>
 
       {/* Journey Progress */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Your Journey</h3>
         <LifecycleStepper currentStage={trainee.lifecycleStage} />
       </div>
@@ -53,7 +53,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
       </div>
 
       {/* Career Roadmap */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center">
           <TrendingUp className="h-4 w-4 mr-2 text-teal-600" /> Your Career Roadmap
         </h3>
@@ -74,7 +74,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
       </div>
 
       {/* Document Upload */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Upload Documents</h3>
         <div className="space-y-2 mb-4">
           {['Pay Slip', 'CPF Statement', 'Employment Letter'].map((docType) => {
@@ -103,7 +103,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
       </div>
 
       {/* Placement Opportunities */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center">
           <Sparkles className="h-4 w-4 mr-2 text-indigo-600" /> Matched Opportunities
         </h3>

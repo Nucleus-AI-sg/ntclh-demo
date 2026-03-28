@@ -11,7 +11,7 @@ interface HiringHistoryTableProps {
 
 export function HiringHistoryTable({ placements, traineeMap }: HiringHistoryTableProps) {
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-white rounded-xl overflow-hidden">
       <div className="p-4 border-b border-slate-100">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Hiring History</h3>
       </div>

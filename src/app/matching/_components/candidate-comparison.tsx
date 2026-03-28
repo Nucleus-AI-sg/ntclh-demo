@@ -79,7 +79,7 @@ export function CandidateComparison({ matches, trainees, vacancies, onSubmit }: 
       {comparedMatches.length >= 2 ? (
         <>
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+            <div className="bg-white rounded-xl p-4">
               <p className="text-[10px] font-bold text-slate-500 uppercase mb-2">Skills Comparison</p>
               <AppRadarChart data={radarData} radars={radars} angleKey="skill" height={280} showLegend />
             </div>

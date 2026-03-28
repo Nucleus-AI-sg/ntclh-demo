@@ -29,7 +29,7 @@ export function GovernmentTab({ showToast }: GovernmentTabProps) {
   return (
     <div className="space-y-3">
       {govPortals.map((p) => (
-        <div key={p.id} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+        <div key={p.id} className="bg-white rounded-xl p-4">
           <div className="flex items-center justify-between mb-2">
             <div>
               <p className="text-sm font-bold text-slate-900">{p.name}</p>

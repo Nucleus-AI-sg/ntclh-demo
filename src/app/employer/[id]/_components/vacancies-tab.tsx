@@ -23,7 +23,7 @@ export function VacanciesTab({ vacancies }: VacanciesTabProps) {
       <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Active Vacancies ({active.length})</h3>
       {active.length === 0 && <p className="text-sm text-slate-400 text-center py-8">No active vacancies</p>}
       {active.map((v) => (
-        <div key={v.id} className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+        <div key={v.id} className="bg-white rounded-xl overflow-hidden">
           <button onClick={() => toggle(v.id)} className="w-full p-4 flex items-center justify-between text-left hover:bg-slate-50">
             <div>
               <p className="text-sm font-bold text-slate-900">{v.title}</p>

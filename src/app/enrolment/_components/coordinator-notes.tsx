@@ -35,7 +35,7 @@ export function CoordinatorNotes({ assessmentId }: CoordinatorNotesProps) {
   }
 
   return (
-    <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+    <div className="bg-white rounded-xl p-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center">
           <StickyNote className="h-4 w-4 mr-2 text-amber-600" />

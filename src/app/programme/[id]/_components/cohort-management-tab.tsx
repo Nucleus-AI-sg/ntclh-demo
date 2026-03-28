@@ -81,7 +81,7 @@ export function CohortManagementTab({ cohorts: initialCohorts, trainees, onEditC
       {cohorts.map((cohort) => {
         const cohortTrainees = trainees.filter((t) => t.cohortId === cohort.id)
         return (
-          <div key={cohort.id} className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+          <div key={cohort.id} className="bg-white rounded-xl overflow-hidden">
             <div
               className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-50"
               onClick={() => setExpandedCohort(expandedCohort === cohort.id ? null : cohort.id)}

@@ -22,7 +22,7 @@ export function OverviewTab({ employer }: OverviewTabProps) {
   return (
     <div className="space-y-4">
       {/* Company Details Card */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Company Details</h3>
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div className="flex items-start gap-2">
@@ -45,7 +45,7 @@ export function OverviewTab({ employer }: OverviewTabProps) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Relationship Summary</h3>
           <dl className="grid grid-cols-2 gap-3 text-sm">
             <div><dt className="text-[10px] font-bold text-slate-400 uppercase">Partner Since</dt><dd className="font-semibold text-slate-800">{employer.partnerSince}</dd></div>
@@ -55,14 +55,14 @@ export function OverviewTab({ employer }: OverviewTabProps) {
           </dl>
           {employer.notes && <p className="text-xs text-slate-600 mt-4 italic border-t border-slate-100 pt-3">{employer.notes}</p>}
         </div>
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Engagement Trend</h3>
           <AppLineChart data={engagementData} lines={[{ key: 'score', label: 'Engagement Score', colour: '#2563eb' }]} xKey="month" height={200} />
         </div>
       </div>
 
       {contact && (
-        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Contacts</h3>
           <div className="space-y-2">
             {employer.contacts.map((c) => (

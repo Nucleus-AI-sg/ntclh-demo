@@ -123,7 +123,7 @@ export function MessageBubble({ role, content, actions }: MessageBubbleProps) {
       </div>
       <div className="max-w-[80%] space-y-2">
         <div
-          className="bg-white border border-slate-200 rounded-xl rounded-tl-sm px-4 py-3 shadow-sm prose prose-sm prose-slate max-w-none"
+          className="bg-white rounded-xl rounded-tl-sm px-4 py-3 prose prose-sm prose-slate max-w-none"
           dangerouslySetInnerHTML={{ __html: formatMarkdown(content) }}
         />
         {actions && actions.length > 0 && (

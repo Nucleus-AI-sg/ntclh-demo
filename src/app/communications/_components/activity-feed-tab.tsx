@@ -101,7 +101,7 @@ export function ActivityFeedTab({ communications }: ActivityFeedTabProps) {
   return (
     <div className="space-y-4">
       <FilterBar filters={filters} searchPlaceholder="Search by name or subject..." searchValue={search} onSearchChange={setSearch} />
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm divide-y divide-slate-100">
+      <div className="bg-white rounded-xl divide-y divide-slate-100">
         {filtered.length === 0 && (
           <p className="text-sm text-slate-400 text-center py-12">No communications match your filters.</p>
         )}

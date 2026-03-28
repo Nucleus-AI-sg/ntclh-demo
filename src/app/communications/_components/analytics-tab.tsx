@@ -17,7 +17,7 @@ export function AnalyticsTab({ sequences }: AnalyticsTabProps) {
   return (
     <div className="space-y-4">
       {/* Response Rate Trends */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Response Rate Trends (6 months)</h3>
         <AppLineChart
           data={responseRateTrends}
@@ -33,7 +33,7 @@ export function AnalyticsTab({ sequences }: AnalyticsTabProps) {
       </div>
 
       {/* Best Performing Times */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Best Performing Times</h3>
         <p className="text-[10px] text-slate-500 mb-4">
           Recommendation: Best time to send email is <span className="font-bold text-green-600">Tuesday 10:00-11:00</span>
@@ -46,7 +46,7 @@ export function AnalyticsTab({ sequences }: AnalyticsTabProps) {
       </div>
 
       {/* Outreach Effectiveness by Segment */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Outreach Effectiveness by Segment</h3>
         <p className="text-[10px] text-slate-500 mb-4">
           ICT trainees respond best to WhatsApp (68%), BA trainees prefer email (42%)
@@ -61,7 +61,7 @@ export function AnalyticsTab({ sequences }: AnalyticsTabProps) {
       </div>
 
       {/* Sequence Funnel Analysis */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Sequence Funnel Analysis</h3>
         <div className="grid md:grid-cols-2 gap-4">
           {sequences.map((seq) => {

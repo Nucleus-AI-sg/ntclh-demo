@@ -43,7 +43,7 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics, secto
       {prog && metrics && (
         <>
           {/* Programme Summary */}
-          <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+          <div className="bg-white rounded-xl p-4">
             <h3 className="text-lg font-bold text-slate-900 mb-1">{prog.name}</h3>
             <p className="text-xs text-slate-500 mb-4">{prog.description}</p>
             <dl className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
@@ -68,7 +68,7 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics, secto
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Cohort Performance */}
-            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+            <div className="bg-white rounded-xl p-4">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cohort Performance</h3>
               <AppBarChart
                 data={cohortData}
@@ -84,14 +84,14 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics, secto
             </div>
 
             {/* Sector Breakdown */}
-            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+            <div className="bg-white rounded-xl p-4">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Placement by Sector</h3>
               <AppPieChart data={sectorData} innerRadius={60} height={250} />
             </div>
           </div>
 
           {/* Cohort Table */}
-          <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+          <div className="bg-white rounded-xl overflow-hidden">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">

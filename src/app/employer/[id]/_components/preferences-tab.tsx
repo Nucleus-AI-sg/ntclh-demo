@@ -10,7 +10,7 @@ interface PreferencesTabProps {
 
 export function PreferencesTab({ employer, showToast }: PreferencesTabProps) {
   return (
-    <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+    <div className="bg-white rounded-xl p-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Hiring Preferences</h3>
         <button onClick={() => showToast('Preferences updated')} className="flex items-center gap-1 text-xs font-bold text-blue-600 hover:underline"><Edit className="h-3 w-3" /> Edit</button>

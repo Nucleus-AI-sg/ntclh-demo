@@ -39,7 +39,7 @@ export function SettingsPage({ integrations, users }: SettingsPageProps) {
 
   return (
     <div className="space-y-4">
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Integration Health</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {integrations.map((intg) => (

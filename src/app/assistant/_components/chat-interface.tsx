@@ -12,7 +12,7 @@ function TypingIndicator() {
       <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
         <Sparkles className="h-3.5 w-3.5 text-blue-600" />
       </div>
-      <div className="bg-white border border-slate-200 rounded-xl px-4 py-3 shadow-sm flex items-center gap-2">
+      <div className="bg-white rounded-xl px-4 py-3 flex items-center gap-2">
         <div className="flex gap-1">
           {[0, 150, 300].map((d) => (
             <span key={d} className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: `${d}ms` }} />

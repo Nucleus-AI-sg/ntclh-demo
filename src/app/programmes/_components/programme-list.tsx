@@ -84,7 +84,7 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
           const activeCohorts = progCohorts.filter((c) => c.status === 'active').length
           const m = metrics.find((pm) => pm.programmeId === prog.id)
           return (
-            <Link key={prog.id} href={`/programme/${prog.id}`} className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+            <Link key={prog.id} href={`/programme/${prog.id}`} className="bg-white rounded-xl p-4 hover:bg-slate-50 transition-colors">
               <div className="flex items-center gap-3 mb-3">
                 <div className={cn('w-3 h-3 rounded-full', colourMap.get(prog.id) ?? colours[0])} />
                 <h3 className="text-sm font-bold text-slate-900">{prog.name}</h3>
@@ -101,7 +101,7 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
       </div>
 
       {/* Cohort Timeline (Gantt-style) */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cohort Timeline</h3>
         <div className="space-y-2">
           {cohorts.map((cohort) => {
@@ -124,7 +124,7 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
       </div>
 
       {/* Cross-Programme Comparison */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+      <div className="bg-white rounded-xl p-4">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cross-Programme Comparison</h3>
         <AppBarChart
           data={comparisonData}

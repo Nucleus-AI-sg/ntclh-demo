@@ -24,7 +24,7 @@ export function PlacementsTab({ placements, trainees, vacancies }: PlacementsTab
   const vacancyMap = Object.fromEntries(vacancies.map((v) => [v.id, v]))
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-white rounded-xl overflow-hidden">
       <table className="w-full text-left text-sm">
         <thead>
           <tr className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">

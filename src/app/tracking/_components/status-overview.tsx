@@ -67,8 +67,8 @@ export function StatusOverview({ trainees, documents, activeFilter, onFilter }: 
             key={cat.key}
             onClick={() => onFilter(isActive ? null : cat.key)}
             className={cn(
-              'bg-white p-4 rounded-xl border shadow-sm flex items-center gap-3 transition-all text-left',
-              isActive ? 'border-blue-500 ring-1 ring-blue-200' : 'border-slate-100',
+              'bg-white p-4 rounded-xl flex items-center gap-3 transition-all text-left',
+              isActive ? 'ring-1 ring-blue-200' : '',
               cat.colour.bg,
             )}
           >

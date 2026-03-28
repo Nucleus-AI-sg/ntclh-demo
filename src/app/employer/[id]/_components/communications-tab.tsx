@@ -46,7 +46,7 @@ export function CommunicationsTab({ communications, onReply }: CommunicationsTab
           <MessageSquare className="h-3.5 w-3.5" /> Reply
         </button>
       </div>
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm divide-y divide-slate-100">
+      <div className="bg-white rounded-xl divide-y divide-slate-100">
         {filtered.length === 0 && <p className="px-5 py-8 text-sm text-slate-400 text-center">No communications found</p>}
         {filtered.map((comm) => (
           <div key={comm.id} className="px-5 py-3 flex items-start gap-3 hover:bg-slate-50">
