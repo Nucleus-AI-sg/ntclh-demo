@@ -1,0 +1,189 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: ['deploy/**']
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Create environment file
+        env:
+          APP_ENV: ${{ secrets.APP_ENV_FILE }}
+        run: |
+          if [ -n "$APP_ENV" ]; then
+            echo "$APP_ENV" > .env
+          fi
+
+      - name: Build
+        run: yarn build
+
+      - name: Copy static assets into standalone output
+        run: |
+          cp -r public .next/standalone/public
+          cp -r .next/static .next/standalone/.next/static
+          mkdir -p .next/standalone/deploy
+          cp deploy/production.config.cjs .next/standalone/deploy/production.config.cjs
+
+      - name: Setup SSH
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          HOST: ${{ vars.DEPLOY_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Deploy to server
+        env:
+          HOST: ${{ vars.DEPLOY_HOST }}
+          APP_NAME: ntuclh-demo
+          BUILD_TAG: gha-${{ github.run_number }}
+        run: |
+          retry() {
+            local attempt=1 max=3 delay=10
+            while [ $attempt -le $max ]; do
+              if "$@"; then return 0; fi
+              echo "::warning::Attempt $attempt/$max failed. Retrying in ${delay}s..."
+              sleep $delay
+              delay=$((delay * 2))
+              attempt=$((attempt + 1))
+            done
+            echo "::error::All $max attempts failed."
+            return 1
+          }
+
+          APP_DIR="/home/deploy/apps/$APP_NAME"
+          RELEASE_DIR="$APP_DIR/releases/$BUILD_TAG"
+
+          retry ssh -i ~/.ssh/deploy_key "deploy@$HOST" \
+            "mkdir -p $RELEASE_DIR/public $RELEASE_DIR/.next $RELEASE_DIR/deploy"
+
+          retry rsync -az -e "ssh -i ~/.ssh/deploy_key" \
+            .next/standalone/. "deploy@$HOST:$RELEASE_DIR"
+
+          retry ssh -i ~/.ssh/deploy_key "deploy@$HOST" "\
+            ln -sfn $APP_DIR/releases/$BUILD_TAG $APP_DIR/current && \
+            ln -sfn $APP_DIR/shared $APP_DIR/current/shared && \
+            ln -sfn $APP_DIR/logs $APP_DIR/current/logs && \
+            cd $APP_DIR/current && \
+            (pm2 delete $APP_NAME || true) && \
+            pm2 start deploy/production.config.cjs && \
+            pm2 save"
+
+      - name: Clean up old releases
+        continue-on-error: true
+        env:
+          HOST: ${{ vars.DEPLOY_HOST }}
+          APP_NAME: ntuclh-demo
+        run: |
+          ssh -i ~/.ssh/deploy_key "deploy@$HOST" \
+            'cd /home/deploy/apps/'"$APP_NAME"'/releases && \
+             CURRENT=$(readlink -f ../current) && \
+             ls -1d gha-* 2>/dev/null | sort -t- -k2 -n | head -n -5 | while read d; do
+               [ "$(readlink -f "$d")" != "$CURRENT" ] && rm -rf "$d"
+             done'
+
+  notify-discord:
+    name: Discord Deploy Notification
+    needs: [deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build and send notification
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_DEPLOY_WEBHOOK_URL }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          BRANCH: ${{ github.ref_name }}
+          ACTOR: ${{ github.actor }}
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          if [ "$DEPLOY_RESULT" = "success" ]; then
+            COLOR=3066993
+            STATUS_TEXT="Deployed successfully"
+            STATUS_LINE="Webapp - deployed"
+            CONTENT=""
+          elif [ "$DEPLOY_RESULT" = "cancelled" ]; then
+            COLOR=15105570
+            STATUS_TEXT="Deploy cancelled"
+            STATUS_LINE="Webapp - cancelled, running previous version"
+            CONTENT=""
+          else
+            COLOR=15158332
+            STATUS_TEXT="DEPLOYMENT FAILED"
+            STATUS_LINE="Webapp - deploy failed, site may be DOWN"
+            CONTENT="Production deployment failed - investigate immediately: ${RUN_URL}"
+          fi
+
+          COMMIT_LOG=$(git log --oneline --no-merges origin/main..HEAD 2>/dev/null | head -15)
+          if [ -z "$COMMIT_LOG" ]; then
+            COMMIT_LOG="No new commits"
+          fi
+
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          PAYLOAD=$(jq -n \
+            --arg content "$CONTENT" \
+            --arg title "Deploy #$RUN_NUMBER - $STATUS_TEXT" \
+            --arg url "$RUN_URL" \
+            --argjson color "$COLOR" \
+            --arg branch "$BRANCH" \
+            --arg actor "$ACTOR" \
+            --arg services "$STATUS_LINE" \
+            --arg commits "$(printf '```\n%s\n```' "$COMMIT_LOG")" \
+            --arg timestamp "$TIMESTAMP" \
+            '{
+              content: (if $content == "" then null else $content end),
+              embeds: [{
+                title: $title,
+                url: $url,
+                color: $color,
+                fields: [
+                  { name: "Branch", value: $branch, inline: true },
+                  { name: "Triggered by", value: $actor, inline: true },
+                  { name: "Status", value: $services, inline: false },
+                  { name: "Deploy Log", value: $commits, inline: false }
+                ],
+                footer: { text: "GitHub Actions - Deploy to Production" },
+                timestamp: $timestamp
+              }]
+            }')
+
+          if [ -n "$WEBHOOK_URL" ]; then
+            curl -sf -X POST "$WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -d "$PAYLOAD"
+            echo "Discord notification sent"
+          else
+            echo "::warning::DISCORD_DEPLOY_WEBHOOK_URL secret not set - skipping notification"
+          fi
