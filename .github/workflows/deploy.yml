@@ -42,7 +42,7 @@ jobs:
 
       - name: Copy static assets into standalone output
         run: |
-          cp -r public .next/standalone/public
+          [ -d public ] && cp -r public .next/standalone/public
           cp -r .next/static .next/standalone/.next/static
           mkdir -p .next/standalone/deploy
           cp deploy/production.config.cjs .next/standalone/deploy/production.config.cjs
