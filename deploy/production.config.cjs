@@ -15,7 +15,7 @@ module.exports = {
       out_file: `${logDir}/out.log`,
       pid_file: `${sharedDir}/${appName}.pid`,
       cwd: releaseDir,
-      env: { NODE_ENV: "production", PORT: 3001 },
+      env: { NODE_ENV: "production", PORT: 3003 },
     },
   ],
 };
