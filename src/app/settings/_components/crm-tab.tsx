@@ -34,14 +34,14 @@ const fieldMappings = [
 
 export function CrmTab({ showToast }: CrmTabProps) {
   return (
-    <div className="space-y-6">
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+    <div className="space-y-4">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Sync Configuration</h3>
         <EditableForm fields={syncConfigFields} onSave={() => showToast('Sync configuration saved')} />
       </div>
 
       <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100">
+        <div className="p-4 border-b border-slate-100">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Field Mapping</h3>
         </div>
         <table className="w-full text-left text-sm">
@@ -67,7 +67,7 @@ export function CrmTab({ showToast }: CrmTabProps) {
       </div>
 
       <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100">
+        <div className="p-4 border-b border-slate-100">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Recent Sync Activity</h3>
         </div>
         <div className="divide-y divide-slate-100">

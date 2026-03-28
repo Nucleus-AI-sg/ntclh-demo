@@ -28,14 +28,14 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header with Export */}
       <div className="flex items-center justify-end">
         <ExportButton label="Export Reports" showToast={showToast} />
       </div>
 
       {/* Report Templates */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Government Report Templates</h3>
         <div className="space-y-3">
           {reportTemplates.map((report) => (
@@ -62,7 +62,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
       </div>
 
       {/* Data Completeness Check */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Pre-Generation Data Check</h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {dataCompletenessChecks.map((check) => (
@@ -76,7 +76,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
 
       {/* Report Preview */}
       {preview && (
-        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center">
               <Eye className="h-4 w-4 mr-2 text-blue-600" /> Report Preview: {preview}
@@ -85,7 +85,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
               <Download className="h-3 w-3" /> Download PDF
             </button>
           </div>
-          <div className="bg-slate-50 rounded-lg border border-slate-200 p-6 text-center text-slate-400 min-h-[200px] flex items-center justify-center">
+          <div className="bg-slate-50 rounded-lg border border-slate-200 p-4 text-center text-slate-400 min-h-[200px] flex items-center justify-center">
             <div>
               <p className="text-sm font-bold">Government Report Template</p>
               <p className="text-xs mt-1">{preview}</p>
@@ -97,7 +97,7 @@ export function ComplianceReports({ reportTemplates, reportHistory, dataComplete
 
       {/* Report History */}
       <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100">
+        <div className="p-4 border-b border-slate-100">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Report History</h3>
         </div>
         <table className="w-full text-left text-sm">

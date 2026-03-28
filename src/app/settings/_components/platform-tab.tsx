@@ -55,8 +55,8 @@ export function PlatformTab({ users: initialUsers, showToast }: PlatformTabProps
   }
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+    <div className="space-y-4">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
           <Settings className="h-4 w-4 text-blue-600" /> General
         </h3>
@@ -75,14 +75,14 @@ export function PlatformTab({ users: initialUsers, showToast }: PlatformTabProps
         </dl>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
           <Shield className="h-4 w-4 text-blue-600" /> Data Retention
         </h3>
         <EditableForm fields={retentionFields} onSave={() => showToast('Retention settings saved')} />
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
           <Bell className="h-4 w-4 text-blue-600" /> Notification Preferences
         </h3>
@@ -104,7 +104,7 @@ export function PlatformTab({ users: initialUsers, showToast }: PlatformTabProps
       </div>
 
       <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+        <div className="p-4 border-b border-slate-100 flex items-center justify-between">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
             <Users className="h-4 w-4 text-blue-600" /> System Users
           </h3>

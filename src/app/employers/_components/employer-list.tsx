@@ -68,7 +68,7 @@ export function EmployerList({ employers, vacancies, placements, staff }: Employ
   ]
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         <StatCard label="Total Employers" value={employers.length} icon={Building2} iconColour="blue" />
         <StatCard label="Open Vacancies" value={totalOpenVacancies} icon={Briefcase} iconColour="teal" />
@@ -78,7 +78,7 @@ export function EmployerList({ employers, vacancies, placements, staff }: Employ
       </div>
 
       <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
-        <div className="p-6 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4">
+        <div className="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4">
           <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Employer Network</h3>
           <div className="flex items-center gap-2">
             <FilterBar
@@ -93,7 +93,7 @@ export function EmployerList({ employers, vacancies, placements, staff }: Employ
             />
           </div>
         </div>
-        <div className="px-6 py-3 border-b border-slate-100 flex items-center justify-end gap-2">
+        <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-end gap-2">
           <button onClick={() => setShowMessageModal(true)} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50">Send Message</button>
           <ExportButton label="Export Report" formats={['CSV', 'PDF']} showToast={showToast} />
           <button onClick={() => setShowAddModal(true)} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700"><Plus className="h-3.5 w-3.5" />Add Employer</button>

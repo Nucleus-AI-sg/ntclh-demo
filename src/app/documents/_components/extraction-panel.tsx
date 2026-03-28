@@ -44,7 +44,7 @@ export function ExtractionPanel({
 }: ExtractionPanelProps) {
   return (
     <div className="space-y-4">
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">OCR Extraction Results</h3>
         <div className="space-y-2">
           {fields.map((field) => {

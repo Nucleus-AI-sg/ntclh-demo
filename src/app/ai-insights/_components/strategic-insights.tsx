@@ -20,7 +20,7 @@ export function StrategicInsights({ insights }: StrategicInsightsProps) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-center gap-3">
         <Lightbulb className="h-5 w-5 text-blue-600" />
         <p className="text-sm font-medium text-blue-800">
@@ -32,7 +32,7 @@ export function StrategicInsights({ insights }: StrategicInsightsProps) {
         const items = grouped[key as StrategicInsight['category']] ?? []
         if (items.length === 0) return null
         return (
-          <div key={key} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+          <div key={key} className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
             <h3 className={cn('text-xs font-black uppercase tracking-widest mb-4 flex items-center gap-2 px-2 py-1 rounded-md border w-fit', config.colour)}>
               {config.icon} {config.label} Insights
             </h3>

@@ -71,7 +71,7 @@ export function EmployerView({ employers, vacancies, matches, trainees, selected
 
   return (
     <>
-      <div className="flex gap-6 min-h-[500px]">
+      <div className="flex gap-4 min-h-[500px]">
         {/* Employer Sidebar */}
         <div className="w-72 flex-shrink-0 space-y-2 overflow-y-auto">
           <div className="relative mb-2">
@@ -104,7 +104,7 @@ export function EmployerView({ employers, vacancies, matches, trainees, selected
                   ))}
                 </div>
               )}
-              <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+              <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="text-lg font-bold text-slate-900">{selectedVacancy.title}</h3>

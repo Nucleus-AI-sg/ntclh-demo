@@ -34,7 +34,7 @@ export function ContextPanel({ context, collapsed, onToggle }: ContextPanelProps
       </button>
 
       {!collapsed && (
-        <div className="flex-1 overflow-y-auto px-5 pb-6 space-y-6">
+        <div className="flex-1 overflow-y-auto px-5 pb-4 space-y-4">
           <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Referenced Data</h3>
 
           {!context && (

@@ -68,7 +68,7 @@ export function CampaignsTab({ campaigns }: CampaignsTabProps) {
   ]
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex justify-end gap-2">
         <button
           onClick={() => setWizardOpen(true)}
@@ -88,7 +88,7 @@ export function CampaignsTab({ campaigns }: CampaignsTabProps) {
 
       {/* Expanded detail panel */}
       {expanded && (
-        <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Per-Recipient Status</p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             {(campaignRecipientStatus[expanded] ?? []).map((r, i) => (

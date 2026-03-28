@@ -26,7 +26,7 @@ export function TraineeSlideOver({ trainee, programmes, open, onClose }: Trainee
       subtitle={programme?.shortName ?? trainee.programmeId}
       avatarInitials={initials}
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         <div>
           <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Status</h4>
           <div className="flex items-center gap-2">

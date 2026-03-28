@@ -35,7 +35,7 @@ export function ProgrammeDetail({ programme, cohorts, metrics, trainees, employe
   const [toast, showToast] = useActionToast()
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
@@ -66,19 +66,19 @@ export function ProgrammeDetail({ programme, cohorts, metrics, trainees, employe
           ))}
         </TabsList>
 
-        <TabsContent value="cohorts" className="mt-6">
+        <TabsContent value="cohorts" className="mt-4">
           <CohortManagementTab cohorts={cohorts} trainees={trainees} onEditCohort={(c) => { setEditCohort(c); setShowCohortModal(true) }} />
         </TabsContent>
-        <TabsContent value="curriculum" className="mt-6">
+        <TabsContent value="curriculum" className="mt-4">
           <CurriculumTab modules={programme.modules} />
         </TabsContent>
-        <TabsContent value="pipeline" className="mt-6">
+        <TabsContent value="pipeline" className="mt-4">
           <EnrolmentPipelineTab programmeId={programme.id} trainees={trainees} />
         </TabsContent>
-        <TabsContent value="performance" className="mt-6">
+        <TabsContent value="performance" className="mt-4">
           <PerformanceTab cohorts={cohorts} metrics={metrics} trainees={trainees} employers={employers} />
         </TabsContent>
-        <TabsContent value="settings" className="mt-6">
+        <TabsContent value="settings" className="mt-4">
           <SettingsTab programme={programme} />
         </TabsContent>
       </Tabs>

@@ -99,7 +99,7 @@ export function EmployerPortal({ employer, vacancies, placements: initialPlaceme
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-center justify-between">
         <div>
           <p className="text-sm font-bold text-blue-900">{employer.name}</p>

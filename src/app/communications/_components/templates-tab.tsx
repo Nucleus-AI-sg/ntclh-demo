@@ -111,7 +111,7 @@ export function TemplatesTab({ templates }: TemplatesTabProps) {
 
       {/* Preview panel */}
       {previewTemplate && (
-        <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
           <div className="flex items-center justify-between mb-3">
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Template Preview (with sample data)</p>
             <span className="text-[10px] text-slate-400">{previewTemplate.channel === 'email' ? 'Rich text' : 'Plain text'}</span>

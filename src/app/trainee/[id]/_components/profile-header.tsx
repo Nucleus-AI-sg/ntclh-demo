@@ -16,7 +16,7 @@ export function ProfileHeader({ trainee, programme, cohort, onSendMessage, onUpd
   const initials = trainee.name.split(' ').map((n) => n[0]).join('')
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-4">

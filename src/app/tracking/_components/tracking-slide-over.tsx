@@ -32,7 +32,7 @@ export function TrackingSlideOver({ trainee, programme, communications, document
 
   return (
     <SlideOverPanel open={open} onClose={onClose} title={trainee.name} subtitle={programme?.shortName} avatarInitials={initials}>
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Profile Summary */}
         <div>
           <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Profile</h4>

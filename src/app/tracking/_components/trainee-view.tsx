@@ -29,13 +29,13 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
   const matched = vacancies.filter((v) => v.programmeIds.includes(trainee.programmeId)).slice(0, 4)
 
   return (
-    <div className="space-y-6 relative">
+    <div className="space-y-4 relative">
       <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-800 font-medium">
         Previewing self-service portal for <span className="font-bold">{trainee.name}</span>
       </div>
 
       {/* Journey Progress */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Your Journey</h3>
         <LifecycleStepper currentStage={trainee.lifecycleStage} />
       </div>
@@ -53,7 +53,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
       </div>
 
       {/* Career Roadmap */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center">
           <TrendingUp className="h-4 w-4 mr-2 text-teal-600" /> Your Career Roadmap
         </h3>
@@ -74,7 +74,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
       </div>
 
       {/* Document Upload */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Upload Documents</h3>
         <div className="space-y-2 mb-4">
           {['Pay Slip', 'CPF Statement', 'Employment Letter'].map((docType) => {
@@ -103,7 +103,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
       </div>
 
       {/* Placement Opportunities */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center">
           <Sparkles className="h-4 w-4 mr-2 text-indigo-600" /> Matched Opportunities
         </h3>
@@ -125,7 +125,7 @@ export function TraineeView({ trainee, programme, documents, vacancies }: Traine
       </div>
 
       {toast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg text-sm font-bold">
+        <div className="fixed bottom-6 right-6 z-50 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg text-sm font-bold">
           {toast}
         </div>
       )}

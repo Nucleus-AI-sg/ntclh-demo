@@ -32,7 +32,7 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics, secto
   const sectorData = sectorBreakdown.map((s) => ({ name: s.sector, value: s.percentage }))
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
         <FilterBar
           filters={[{ id: 'programme', label: 'Select Programme', options: programmeOptions, value: selectedProg, onChange: setSelectedProg }]}
@@ -43,7 +43,7 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics, secto
       {prog && metrics && (
         <>
           {/* Programme Summary */}
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+          <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
             <h3 className="text-lg font-bold text-slate-900 mb-1">{prog.name}</h3>
             <p className="text-xs text-slate-500 mb-4">{prog.description}</p>
             <dl className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
@@ -66,9 +66,9 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics, secto
             </dl>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Cohort Performance */}
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cohort Performance</h3>
               <AppBarChart
                 data={cohortData}
@@ -84,7 +84,7 @@ export function ProgrammeDeepDive({ programmes, cohorts, programmeMetrics, secto
             </div>
 
             {/* Sector Breakdown */}
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Placement by Sector</h3>
               <AppPieChart data={sectorData} innerRadius={60} height={250} />
             </div>

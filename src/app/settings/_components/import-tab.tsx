@@ -44,12 +44,12 @@ export function ImportTab({ showToast }: ImportTabProps) {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+    <div className="space-y-4">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
           <Database className="h-4 w-4 text-blue-600" /> Excel Import Tool
         </h3>
-        <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center">
+        <div className="border-2 border-dashed border-slate-300 rounded-lg p-4 text-center">
           <Upload className="h-8 w-8 text-slate-300 mx-auto mb-3" />
           <p className="text-sm text-slate-500 mb-4">Drag and drop an Excel file here, or click to browse</p>
           <input ref={fileRef} type="file" accept=".xlsx,.csv" className="hidden" onChange={handleFileSelect} />
@@ -65,7 +65,7 @@ export function ImportTab({ showToast }: ImportTabProps) {
       </div>
 
       <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+        <div className="p-4 border-b border-slate-100 flex items-center justify-between">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Import History</h3>
           <ExportButton formats={['CSV']} label="Export History" showToast={showToast} />
         </div>

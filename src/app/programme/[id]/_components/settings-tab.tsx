@@ -26,15 +26,15 @@ export function SettingsTab({ programme }: SettingsTabProps) {
   ]
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+    <div className="space-y-4">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">
           Programme Configuration
         </h3>
         <EditableForm fields={configFields} onSave={() => showToast('Programme settings saved')} />
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-1.5">
           <Settings className="h-3.5 w-3.5" />
           Government Scheme Mapping

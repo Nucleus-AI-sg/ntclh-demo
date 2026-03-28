@@ -33,19 +33,19 @@ export function AiInsightsPage(props: AiInsightsPageProps) {
           <TabsTrigger key={tab.id} value={tab.id} className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-700 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-xs font-bold uppercase tracking-wider px-4 py-3 text-slate-500 hover:text-slate-700">{tab.label}</TabsTrigger>
         ))}
       </TabsList>
-      <TabsContent value="assessment" className="mt-6">
+      <TabsContent value="assessment" className="mt-4">
         <AssessmentPerformance history={props.history} />
       </TabsContent>
-      <TabsContent value="feedback" className="mt-6">
+      <TabsContent value="feedback" className="mt-4">
         <FeedbackOverrides overridePatterns={props.overridePatterns} history={props.history} />
       </TabsContent>
-      <TabsContent value="matching" className="mt-6">
+      <TabsContent value="matching" className="mt-4">
         <MatchingPerformance />
       </TabsContent>
-      <TabsContent value="strategic" className="mt-6">
+      <TabsContent value="strategic" className="mt-4">
         <StrategicInsights insights={props.strategicInsights} />
       </TabsContent>
-      <TabsContent value="transparency" className="mt-6">
+      <TabsContent value="transparency" className="mt-4">
         <ModelTransparency assessmentFeatures={props.assessmentFeatures} matchingFeatures={props.matchingFeatures} modelVersions={props.modelVersions} />
       </TabsContent>
     </Tabs>

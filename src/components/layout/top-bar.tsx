@@ -44,87 +44,70 @@ export function TopBar() {
   const title = pageTitles[baseRoute] ?? pageTitles[pathname] ?? "Dashboard"
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 shadow-sm">
-      <div className="flex flex-col">
-        {/* Breadcrumbs */}
-        <nav className="flex text-[10px] font-medium text-slate-400 uppercase tracking-widest gap-2 items-center">
-          <Link
-            href="/"
-            className="hover:text-blue-600 transition-colors"
-          >
-            Portal
-          </Link>
+    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+      {/* Breadcrumb row */}
+      <div className="flex items-center justify-between px-6 pt-2.5 pb-1">
+        <nav className="flex text-[9px] font-medium text-slate-400 uppercase tracking-widest gap-1.5 items-center">
+          <Link href="/" className="hover:text-blue-600 transition-colors">Portal</Link>
           {segments.length === 0 ? (
             <>
-              <span className="material-symbols-outlined text-[12px]">
-                chevron_right
-              </span>
-              <span className="text-slate-900">Dashboard</span>
+              <span className="material-symbols-outlined text-[10px]">chevron_right</span>
+              <span className="text-slate-600">Dashboard</span>
             </>
           ) : (
             segments.map((segment, index) => {
               const href = "/" + segments.slice(0, index + 1).join("/")
               const isLast = index === segments.length - 1
-              const label =
-                breadcrumbLabels[segment] ?? decodeURIComponent(segment)
+              const label = breadcrumbLabels[segment] ?? decodeURIComponent(segment)
               return (
-                <span key={href} className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[12px]">
-                    chevron_right
-                  </span>
+                <span key={href} className="flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[10px]">chevron_right</span>
                   {isLast ? (
-                    <span className="text-slate-900">{label}</span>
+                    <span className="text-slate-600">{label}</span>
                   ) : (
-                    <Link
-                      href={href}
-                      className="hover:text-blue-600 transition-colors"
-                    >
-                      {label}
-                    </Link>
+                    <Link href={href} className="hover:text-blue-600 transition-colors">{label}</Link>
                   )}
                 </span>
               )
             })
           )}
         </nav>
-        {/* Page Title */}
-        <h2 className="text-xl font-bold text-slate-900 tracking-tight">
-          {title}
-        </h2>
+
+        {/* Actions - top-right */}
+        <div className="flex items-center gap-2.5">
+          <div className="relative hidden lg:block">
+            <span className="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-[16px]">search</span>
+            <input
+              className="pl-7 pr-3 py-1 bg-slate-50 border border-slate-100 rounded-md text-[11px] w-48 focus:ring-1 focus:ring-blue-500 focus:border-blue-300 transition-all outline-none placeholder:text-slate-400"
+              placeholder="Search..."
+              type="text"
+            />
+          </div>
+
+          <button className="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-md relative transition-colors">
+            <span className="material-symbols-outlined text-[18px]">notifications</span>
+            <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-red-500 rounded-full" />
+          </button>
+
+          <div className="h-4 w-px bg-slate-150" />
+
+          <button className="flex items-center gap-1 px-2.5 py-1 text-slate-500 font-medium text-[11px] rounded-md hover:bg-slate-50 transition-all">
+            <span className="material-symbols-outlined text-[16px]">download</span>
+            <span>Export</span>
+          </button>
+
+          <button className="flex items-center gap-1 px-2.5 py-1 bg-blue-600 text-white font-semibold text-[11px] rounded-md hover:bg-blue-700 transition-all">
+            <span className="material-symbols-outlined text-[16px]">add</span>
+            <span>New Alert</span>
+          </button>
+        </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        {/* Search */}
-        <div className="relative hidden lg:block">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">
-            search
-          </span>
-          <input
-            className="pl-10 pr-4 py-2 bg-slate-100 border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-blue-500 transition-all outline-none"
-            placeholder="Search trainees, employers..."
-            type="text"
-          />
-        </div>
-
-        {/* Notifications */}
-        <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-full relative transition-colors">
-          <span className="material-symbols-outlined">notifications</span>
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
-        </button>
-
-        <div className="h-6 w-px bg-slate-200 mx-1" />
-
-        {/* Export Report */}
-        <button className="flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-700 font-medium text-sm rounded-lg hover:bg-slate-50 transition-all">
-          <span className="material-symbols-outlined text-lg">download</span>
-          <span>Export Report</span>
-        </button>
-
-        {/* New Alert */}
-        <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-semibold text-sm rounded-lg hover:bg-blue-700 shadow-sm transition-all active:opacity-70">
-          <span className="material-symbols-outlined text-lg">add_alert</span>
-          <span>New Alert</span>
-        </button>
+      {/* Title row */}
+      <div className="px-6 pb-2.5">
+        <h2 className="text-lg font-bold text-slate-900 tracking-tight leading-none">
+          {title}
+        </h2>
       </div>
     </header>
   )

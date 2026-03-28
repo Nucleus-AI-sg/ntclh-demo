@@ -94,26 +94,26 @@ export function DocumentArchive({ documents }: DocumentArchiveProps) {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                <th className="px-6 py-4">Trainee</th>
-                <th className="px-6 py-4">Document Type</th>
-                <th className="px-6 py-4">Submitted</th>
-                <th className="px-6 py-4 text-center">OCR Confidence</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Verified By</th>
+                <th className="px-4 py-4">Trainee</th>
+                <th className="px-4 py-4">Document Type</th>
+                <th className="px-4 py-4">Submitted</th>
+                <th className="px-4 py-4 text-center">OCR Confidence</th>
+                <th className="px-4 py-4">Status</th>
+                <th className="px-4 py-4">Verified By</th>
               </tr>
             </thead>
             <tbody className="text-sm divide-y divide-slate-100">
               {filtered.length === 0 && (
-                <tr><td colSpan={6} className="px-6 py-12 text-center text-slate-400">No documents found</td></tr>
+                <tr><td colSpan={6} className="px-4 py-12 text-center text-slate-400">No documents found</td></tr>
               )}
               {filtered.map((doc) => (
                 <tr key={doc.id} className="hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => setSelectedDoc(doc)}>
-                  <td className="px-6 py-4 font-bold text-slate-900">{doc.traineeName}</td>
-                  <td className="px-6 py-4 text-xs text-slate-600 capitalize">{doc.type.replace(/_/g, ' ')}</td>
-                  <td className="px-6 py-4 text-xs text-slate-500">{doc.submittedDate}</td>
-                  <td className="px-6 py-4 text-center text-xs font-bold text-slate-700">{doc.ocrConfidence}%</td>
-                  <td className="px-6 py-4"><StatusBadge status={doc.status} /></td>
-                  <td className="px-6 py-4 text-xs text-slate-500">{doc.verifiedBy === 'system' ? 'System (Auto)' : 'Sarah Tan'}</td>
+                  <td className="px-4 py-4 font-bold text-slate-900">{doc.traineeName}</td>
+                  <td className="px-4 py-4 text-xs text-slate-600 capitalize">{doc.type.replace(/_/g, ' ')}</td>
+                  <td className="px-4 py-4 text-xs text-slate-500">{doc.submittedDate}</td>
+                  <td className="px-4 py-4 text-center text-xs font-bold text-slate-700">{doc.ocrConfidence}%</td>
+                  <td className="px-4 py-4"><StatusBadge status={doc.status} /></td>
+                  <td className="px-4 py-4 text-xs text-slate-500">{doc.verifiedBy === 'system' ? 'System (Auto)' : 'Sarah Tan'}</td>
                 </tr>
               ))}
             </tbody>

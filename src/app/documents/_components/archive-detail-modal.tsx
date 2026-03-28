@@ -37,7 +37,7 @@ export function ArchiveDetailModal({ document, onClose }: ArchiveDetailModalProp
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-5 mt-2">
+        <div className="space-y-4 mt-2">
           {/* Document Info */}
           <div className="grid grid-cols-2 gap-4 text-xs">
             <div>

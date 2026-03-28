@@ -91,7 +91,7 @@ export function DocumentsPage({ documents: initial }: DocumentsPageProps) {
   const current = confirmAction ? confirmLabels[confirmAction] : null
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <ProcessingMetrics />
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -107,7 +107,7 @@ export function DocumentsPage({ documents: initial }: DocumentsPageProps) {
           ))}
         </TabsList>
 
-        <TabsContent value="queue" className="mt-6">
+        <TabsContent value="queue" className="mt-4">
           <VerificationQueue
             documents={active}
             onSelectDocument={handleSelectDoc}
@@ -118,7 +118,7 @@ export function DocumentsPage({ documents: initial }: DocumentsPageProps) {
             onBatchResubmit={() => setConfirmAction('resubmit')}
           />
         </TabsContent>
-        <TabsContent value="reviewer" className="mt-6">
+        <TabsContent value="reviewer" className="mt-4">
           <DocumentReviewer
             document={selectedDoc}
             documents={active}
@@ -128,10 +128,10 @@ export function DocumentsPage({ documents: initial }: DocumentsPageProps) {
             onEscalate={() => setConfirmAction('escalate')}
           />
         </TabsContent>
-        <TabsContent value="archive" className="mt-6">
+        <TabsContent value="archive" className="mt-4">
           <DocumentArchive documents={documents} />
         </TabsContent>
-        <TabsContent value="performance" className="mt-6">
+        <TabsContent value="performance" className="mt-4">
           <OcrPerformance />
         </TabsContent>
       </Tabs>

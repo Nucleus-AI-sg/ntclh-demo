@@ -101,7 +101,7 @@ export function ApplicationQueue({ assessments, trainees, selectedId, onSelect }
       </div>
       <div className="flex-1 overflow-y-auto divide-y divide-slate-200">
         {filtered.length === 0 && (
-          <div className="p-6 text-center text-xs text-slate-400">No applications match your filters.</div>
+          <div className="p-4 text-center text-xs text-slate-400">No applications match your filters.</div>
         )}
         {filtered.map((assessment) => {
           const trainee = traineeMap[assessment.traineeId]

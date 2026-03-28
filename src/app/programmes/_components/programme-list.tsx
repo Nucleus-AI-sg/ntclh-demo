@@ -62,7 +62,7 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
   })
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Filters */}
       <FilterBar filters={filters} searchPlaceholder="Search programmes..." searchValue={search} onSearchChange={setSearch}>
         <Select value={sortKey} onValueChange={(v) => setSortKey(v as SortKey)}>
@@ -78,13 +78,13 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
       </FilterBar>
 
       {/* Programme Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {filtered.map((prog) => {
           const progCohorts = cohorts.filter((c) => c.programmeId === prog.id)
           const activeCohorts = progCohorts.filter((c) => c.status === 'active').length
           const m = metrics.find((pm) => pm.programmeId === prog.id)
           return (
-            <Link key={prog.id} href={`/programme/${prog.id}`} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+            <Link key={prog.id} href={`/programme/${prog.id}`} className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center gap-3 mb-3">
                 <div className={cn('w-3 h-3 rounded-full', colourMap.get(prog.id) ?? colours[0])} />
                 <h3 className="text-sm font-bold text-slate-900">{prog.name}</h3>
@@ -101,7 +101,7 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
       </div>
 
       {/* Cohort Timeline (Gantt-style) */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cohort Timeline</h3>
         <div className="space-y-2">
           {cohorts.map((cohort) => {
@@ -124,7 +124,7 @@ export function ProgrammeList({ programmes, cohorts, metrics }: ProgrammeListPro
       </div>
 
       {/* Cross-Programme Comparison */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cross-Programme Comparison</h3>
         <AppBarChart
           data={comparisonData}

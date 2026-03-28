@@ -13,9 +13,9 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
   const pieData = overridePatterns.map((p) => ({ name: p.type, value: p.count }))
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Override Rate Trend */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Override Rate Trend</h3>
         <AppLineChart
           data={history}
@@ -26,9 +26,9 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
         <p className="text-xs text-slate-500 mt-2">Override rate decreased from 31% to 18% as model accuracy improved</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Override Breakdown */}
-        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Override Breakdown</h3>
           <AppPieChart data={pieData} innerRadius={60} height={250} />
           <p className="text-xs text-slate-500 mt-2 text-center">{totalOverrides} total overrides, AI was correct in {aiCorrect} cases ({totalOverrides > 0 ? Math.round((aiCorrect / totalOverrides) * 100) : 0}%)</p>
@@ -36,7 +36,7 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
 
         {/* Override Patterns Table */}
         <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-          <div className="p-5 border-b border-slate-100">
+          <div className="p-4 border-b border-slate-100">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Override Patterns</h3>
           </div>
           <table className="w-full text-left text-sm">
@@ -58,7 +58,7 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
       </div>
 
       {/* Top Coordinator Contributors */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Top Coordinator Contributors</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {overrideAnalysis.topContributors.map((c) => (
@@ -85,7 +85,7 @@ export function FeedbackOverrides({ overridePatterns, history }: FeedbackOverrid
       </div>
 
       {/* Feedback Impact Timeline */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Feedback Impact Timeline</h3>
         <div className="space-y-3">
           {feedbackImpactTimeline.map((item, i) => (

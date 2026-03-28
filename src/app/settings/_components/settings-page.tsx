@@ -38,8 +38,8 @@ export function SettingsPage({ integrations, users }: SettingsPageProps) {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+    <div className="space-y-4">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Integration Health</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {integrations.map((intg) => (
@@ -73,11 +73,11 @@ export function SettingsPage({ integrations, users }: SettingsPageProps) {
           ))}
         </TabsList>
 
-        <TabsContent value="crm" className="mt-6"><CrmTab showToast={showToast} /></TabsContent>
-        <TabsContent value="import" className="mt-6"><ImportTab showToast={showToast} /></TabsContent>
-        <TabsContent value="government" className="mt-6"><GovernmentTab showToast={showToast} /></TabsContent>
-        <TabsContent value="channels" className="mt-6"><ChannelsTab showToast={showToast} /></TabsContent>
-        <TabsContent value="platform" className="mt-6"><PlatformTab users={users} showToast={showToast} /></TabsContent>
+        <TabsContent value="crm" className="mt-4"><CrmTab showToast={showToast} /></TabsContent>
+        <TabsContent value="import" className="mt-4"><ImportTab showToast={showToast} /></TabsContent>
+        <TabsContent value="government" className="mt-4"><GovernmentTab showToast={showToast} /></TabsContent>
+        <TabsContent value="channels" className="mt-4"><ChannelsTab showToast={showToast} /></TabsContent>
+        <TabsContent value="platform" className="mt-4"><PlatformTab users={users} showToast={showToast} /></TabsContent>
       </Tabs>
 
       <ActionToast message={toast} />

@@ -14,10 +14,10 @@ const statusColour: Record<string, string> = {
 
 export function MatchingPerformance() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Match Quality Metrics */}
       <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100">
+        <div className="p-4 border-b border-slate-100">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Match Quality Metrics</h3>
           <p className="text-xs text-slate-500 mt-1">Current performance vs 3 months ago</p>
         </div>
@@ -44,7 +44,7 @@ export function MatchingPerformance() {
       </div>
 
       {/* Scatter Plot */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Match Score Calibration</h3>
         <p className="text-xs text-slate-500 mb-4">
           Correlation between AI match score at submission and employer rating after hire. Strong positive correlation indicates well-calibrated predictions.
@@ -60,10 +60,10 @@ export function MatchingPerformance() {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Matching Patterns */}
         <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-          <div className="p-5 border-b border-slate-100">
+          <div className="p-4 border-b border-slate-100">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Matching Patterns Discovered</h3>
           </div>
           <div className="divide-y divide-slate-100">
@@ -86,7 +86,7 @@ export function MatchingPerformance() {
 
         {/* Employer Feedback */}
         <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-          <div className="p-5 border-b border-slate-100">
+          <div className="p-4 border-b border-slate-100">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Employer Feedback Contribution</h3>
             <p className="text-[10px] text-slate-500 mt-1">
               Employers who provide structured interview feedback see 15% better match quality on subsequent rounds

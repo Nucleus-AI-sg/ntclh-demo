@@ -65,10 +65,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: var(--font-inter);
-  --font-headline: var(--font-inter);
-  --font-body: var(--font-inter);
-  --font-label: var(--font-inter);
+  --font-sans: var(--font-dm-sans);
+  --font-headline: var(--font-dm-sans);
+  --font-body: var(--font-dm-sans);
+  --font-label: var(--font-dm-sans);
 }
 
 body {

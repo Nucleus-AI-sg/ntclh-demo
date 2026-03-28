@@ -19,9 +19,9 @@ export function AssessmentPerformance({ history }: AssessmentPerformanceProps) {
   const latest = history[history.length - 1]
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Health Score */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex items-center gap-6">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm flex items-center gap-4">
         <ScoreGauge score={latest?.overallAccuracy ?? 0} size="lg" label="AI Health" />
         <div>
           <h3 className="text-lg font-bold text-slate-900">Overall AI Accuracy: {latest?.overallAccuracy}%</h3>
@@ -31,7 +31,7 @@ export function AssessmentPerformance({ history }: AssessmentPerformanceProps) {
       </div>
 
       {/* Accuracy Over Time */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Accuracy Over Time</h3>
         <AppLineChart
           data={history}
@@ -48,7 +48,7 @@ export function AssessmentPerformance({ history }: AssessmentPerformanceProps) {
       </div>
 
       {/* Prediction vs Outcome Matrix */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Prediction vs Outcome Accuracy (%)</h3>
         <AppHeatmapChart
           data={predictionMatrix}
@@ -58,7 +58,7 @@ export function AssessmentPerformance({ history }: AssessmentPerformanceProps) {
       </div>
 
       {/* Recommendation Engine Stats */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Recommendation Engine Statistics</h3>
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           <StatBox label="Total Recommendations" value={recommendationStats.totalRecommendations.toLocaleString()} />

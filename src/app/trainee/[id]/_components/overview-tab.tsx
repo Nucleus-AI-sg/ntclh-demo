@@ -18,7 +18,7 @@ export function OverviewTab({ trainee, programme, assessment, events, modules, p
   const activePlacements = placements.filter((p) => p.status === 'available' || p.status === 'submitted').length
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard label="Days in Programme" value={trainee.daysInStage} icon={User} iconColour="blue" />
@@ -27,9 +27,9 @@ export function OverviewTab({ trainee, programme, assessment, events, modules, p
         <StatCard label="Placement Matches" value={activePlacements} icon={User} iconColour="green" subtitle="Active" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Personal Details */}
-        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Personal Details</h3>
           <div className="space-y-3 text-sm">
             <div className="flex items-center gap-3 text-slate-600">
@@ -51,14 +51,14 @@ export function OverviewTab({ trainee, programme, assessment, events, modules, p
         </div>
 
         {/* Career Goals & Activity */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {trainee.careerGoals && (
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Career Goals</h3>
               <p className="text-sm text-slate-700 leading-relaxed">{trainee.careerGoals}</p>
             </div>
           )}
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+          <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Recent Activity</h3>
             <ActivityFeed events={events} maxItems={5} />
           </div>

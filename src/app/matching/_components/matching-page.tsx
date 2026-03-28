@@ -36,7 +36,7 @@ export function MatchingPage({ employers, vacancies, trainees, programmes, match
   }, [])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Dashboard Metrics */}
       <div className="flex items-center justify-between">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 flex-1">
@@ -70,8 +70,8 @@ export function MatchingPage({ employers, vacancies, trainees, programmes, match
           ))}
         </TabsList>
 
-        <TabsContent value="employer" className="mt-6">
-          <div className="flex gap-6">
+        <TabsContent value="employer" className="mt-4">
+          <div className="flex gap-4">
             <div className="flex-1 min-w-0">
               <EmployerView
                 employers={employers}
@@ -87,13 +87,13 @@ export function MatchingPage({ employers, vacancies, trainees, programmes, match
             <ActivityLog entries={activityLog} />
           </div>
         </TabsContent>
-        <TabsContent value="trainee" className="mt-6">
+        <TabsContent value="trainee" className="mt-4">
           <TraineeMatchingView trainees={trainees} vacancies={vacancies} programmes={programmes} />
         </TabsContent>
-        <TabsContent value="compare" className="mt-6">
+        <TabsContent value="compare" className="mt-4">
           <CandidateComparison matches={matches} trainees={trainees} vacancies={vacancies} onSubmit={(t, v) => showToast(`${t} submitted for ${v}`)} />
         </TabsContent>
-        <TabsContent value="portal" className="mt-6">
+        <TabsContent value="portal" className="mt-4">
           <EmployerPortal employer={employers.find((e) => e.id === selectedEmployerId)} vacancies={vacancies.filter((v) => v.employerId === selectedEmployerId)} placements={placements} trainees={trainees} onAction={showToast} />
         </TabsContent>
       </Tabs>

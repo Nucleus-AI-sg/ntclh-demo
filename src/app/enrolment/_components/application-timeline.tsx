@@ -49,7 +49,7 @@ export function ApplicationTimeline({ assessment, trainee }: ApplicationTimeline
   const events = buildTimeline(assessment, trainee)
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+    <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
       <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-5 flex items-center">
         <Clock className="h-4 w-4 mr-2 text-blue-600" />
         Application Timeline

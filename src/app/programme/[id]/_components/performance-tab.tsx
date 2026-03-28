@@ -59,9 +59,9 @@ export function PerformanceTab({ cohorts, metrics, trainees, employers }: Perfor
   }, [trainees, employers])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Cohort Comparison */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cohort Comparison</h3>
         <AppBarChart
           data={cohortData}
@@ -95,15 +95,15 @@ export function PerformanceTab({ cohorts, metrics, trainees, employers }: Perfor
 
       {/* Outcome Breakdown */}
       {(employmentTypeData.length > 0 || sectorData.length > 0) && (
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-4">
           {employmentTypeData.length > 0 && (
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Employment Type</h3>
               <AppPieChart data={employmentTypeData} height={220} />
             </div>
           )}
           {sectorData.length > 0 && (
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+            <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
               <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Sector Distribution</h3>
               <AppPieChart data={sectorData} height={220} />
             </div>
@@ -113,7 +113,7 @@ export function PerformanceTab({ cohorts, metrics, trainees, employers }: Perfor
 
       {/* Top Employers */}
       {topEmployers.length > 0 && (
-        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Top Placement Employers</h3>
           <table className="w-full text-sm">
             <thead>

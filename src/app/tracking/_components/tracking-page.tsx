@@ -63,7 +63,7 @@ export function TrackingPage({ trainees, programmes, documents, communications, 
   const tabTriggerClass = 'rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-700 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-xs font-bold uppercase tracking-wider px-4 py-3 text-slate-500 hover:text-slate-700'
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div />
         <ExportButton label="Export" formats={['CSV', 'Excel']} showToast={showToast} />
@@ -75,7 +75,7 @@ export function TrackingPage({ trainees, programmes, documents, communications, 
           <TabsTrigger value="trainee-view" className={tabTriggerClass}>Trainee View</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="case" className="mt-6 space-y-6">
+        <TabsContent value="case" className="mt-4 space-y-4">
           <StatusOverview trainees={trainees} documents={documents} activeFilter={statusFilter} onFilter={setStatusFilter} />
           <CaseTable
             trainees={trainees}
@@ -90,7 +90,7 @@ export function TrackingPage({ trainees, programmes, documents, communications, 
           />
         </TabsContent>
 
-        <TabsContent value="trainee-view" className="mt-6">
+        <TabsContent value="trainee-view" className="mt-4">
           <TraineeView trainee={selectedTrainee} programme={programme} documents={traineeDocs} vacancies={vacancies} />
         </TabsContent>
       </Tabs>

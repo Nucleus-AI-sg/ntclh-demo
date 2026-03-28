@@ -65,7 +65,7 @@ export function DocumentViewerPanel({
       </div>
 
       <div
-        className="bg-white rounded-lg border border-slate-200 p-6 min-h-[340px] flex flex-col items-center justify-center relative overflow-auto"
+        className="bg-white rounded-lg border border-slate-200 p-4 min-h-[340px] flex flex-col items-center justify-center relative overflow-auto"
         style={{ transform: `scale(${zoom / 100}) rotate(${rotation}deg)`, transformOrigin: 'top left' }}
       >
         <p className="text-xs text-slate-400 mb-4">{document.type.replace(/_/g, ' ')} - {document.traineeName}</p>

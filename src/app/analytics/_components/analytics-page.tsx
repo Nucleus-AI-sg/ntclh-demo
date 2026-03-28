@@ -41,13 +41,13 @@ export function AnalyticsPage(props: AnalyticsPageProps) {
           <TabsTrigger key={tab.id} value={tab.id} className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-700 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-xs font-bold uppercase tracking-wider px-4 py-3 text-slate-500 hover:text-slate-700">{tab.label}</TabsTrigger>
         ))}
       </TabsList>
-      <TabsContent value="performance" className="mt-6">
+      <TabsContent value="performance" className="mt-4">
         <PerformanceOverview monthlyMetrics={props.monthlyMetrics} programmeMetrics={props.programmeMetrics} placementFunnel={props.placementFunnel} trainees={props.trainees} kpis={props.kpis} />
       </TabsContent>
-      <TabsContent value="programme" className="mt-6">
+      <TabsContent value="programme" className="mt-4">
         <ProgrammeDeepDive programmes={props.programmes} cohorts={props.cohorts} programmeMetrics={props.programmeMetrics} sectorBreakdown={props.sectorBreakdown} employerPerformance={props.employerPerformance} />
       </TabsContent>
-      <TabsContent value="compliance" className="mt-6">
+      <TabsContent value="compliance" className="mt-4">
         <ComplianceReports reportTemplates={props.reportTemplates} reportHistory={props.reportHistory} dataCompletenessChecks={props.dataCompletenessChecks} />
       </TabsContent>
     </Tabs>

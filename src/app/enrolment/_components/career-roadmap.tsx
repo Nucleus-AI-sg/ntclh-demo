@@ -14,7 +14,7 @@ export function CareerRoadmap({ trainee, programme }: CareerRoadmapProps) {
   ]
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+    <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
       <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-8 flex items-center">
         <TrendingUp className="h-4 w-4 mr-2 text-teal-600" />
         Projected Career Roadmap

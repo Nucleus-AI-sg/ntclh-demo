@@ -66,7 +66,7 @@ export function TraineeProfile(props: TraineeProfileProps) {
   const [newStage, setNewStage] = useState(props.trainee.lifecycleStage)
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <ProfileHeader
         trainee={props.trainee}
         programme={props.programme}
@@ -89,22 +89,22 @@ export function TraineeProfile(props: TraineeProfileProps) {
           ))}
         </TabsList>
 
-        <TabsContent value="overview" className="mt-6">
+        <TabsContent value="overview" className="mt-4">
           <OverviewTab trainee={props.trainee} programme={props.programme} assessment={props.assessment} events={props.events} modules={props.modules} placements={props.placements} />
         </TabsContent>
-        <TabsContent value="enrolment" className="mt-6">
+        <TabsContent value="enrolment" className="mt-4">
           <EnrolmentTab assessment={props.assessment} trainee={props.trainee} programmes={props.programmes} />
         </TabsContent>
-        <TabsContent value="training" className="mt-6">
+        <TabsContent value="training" className="mt-4">
           <TrainingTab modules={props.modules} />
         </TabsContent>
-        <TabsContent value="documents" className="mt-6">
+        <TabsContent value="documents" className="mt-4">
           <DocumentsTab documents={props.documents} showToast={showToast} />
         </TabsContent>
-        <TabsContent value="placement" className="mt-6">
+        <TabsContent value="placement" className="mt-4">
           <PlacementTab trainee={props.trainee} placements={props.placements} matches={props.matches} employerNames={props.employerNames} vacancyTitles={props.vacancyTitles} />
         </TabsContent>
-        <TabsContent value="comms" className="mt-6">
+        <TabsContent value="comms" className="mt-4">
           <CommsAuditTab communications={props.communications} auditEntries={props.auditEntries} notes={props.notes} />
         </TabsContent>
       </Tabs>

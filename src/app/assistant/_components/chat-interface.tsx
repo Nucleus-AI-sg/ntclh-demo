@@ -106,7 +106,7 @@ export function ChatInterface({ scripts, fallback }: ChatInterfaceProps) {
     <div className="flex h-[calc(100vh-8rem)] -mx-8 -mt-2">
       {/* Chat area */}
       <div className="flex-1 flex flex-col min-w-0">
-        <div className="px-6 py-3 border-b border-slate-200 flex items-center justify-between bg-white">
+        <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between bg-white">
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-blue-600" />
             <h2 className="text-sm font-bold text-slate-900">Nucleus AI Assistant</h2>
@@ -117,7 +117,7 @@ export function ChatInterface({ scripts, fallback }: ChatInterfaceProps) {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 bg-slate-50">
+        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-slate-50">
           {showSuggestions && (
             <div className="text-center py-12">
               <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
@@ -153,7 +153,7 @@ export function ChatInterface({ scripts, fallback }: ChatInterfaceProps) {
           <div ref={endRef} />
         </div>
 
-        <div className="px-6 py-3 border-t border-slate-200 bg-white">
+        <div className="px-4 py-3 border-t border-slate-200 bg-white">
           <form onSubmit={(e) => { e.preventDefault(); if (input.trim() && !typing) sendMessage(input.trim()) }} className="flex items-center gap-2">
             <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask anything about your programmes, trainees, or placements..." disabled={typing} className="flex-1 px-4 py-2.5 bg-slate-100 border-none rounded-lg text-sm focus:ring-2 focus:ring-blue-500 disabled:opacity-50" />
             <button type="submit" disabled={!input.trim() || typing} className="px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-30">

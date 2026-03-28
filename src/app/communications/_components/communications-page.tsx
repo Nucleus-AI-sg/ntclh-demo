@@ -60,7 +60,7 @@ export function CommunicationsPage({ communications, sequences, templates, campa
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Action bar */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -90,19 +90,19 @@ export function CommunicationsPage({ communications, sequences, templates, campa
           ))}
         </TabsList>
 
-        <TabsContent value="activity" className="mt-6">
+        <TabsContent value="activity" className="mt-4">
           <ActivityFeedTab communications={communications} />
         </TabsContent>
-        <TabsContent value="sequences" className="mt-6">
+        <TabsContent value="sequences" className="mt-4">
           <SequencesTab sequences={sequences} />
         </TabsContent>
-        <TabsContent value="templates" className="mt-6">
+        <TabsContent value="templates" className="mt-4">
           <TemplatesTab templates={templates} />
         </TabsContent>
-        <TabsContent value="campaigns" className="mt-6">
+        <TabsContent value="campaigns" className="mt-4">
           <CampaignsTab campaigns={campaigns} />
         </TabsContent>
-        <TabsContent value="analytics" className="mt-6">
+        <TabsContent value="analytics" className="mt-4">
           <AnalyticsTab sequences={sequences} />
         </TabsContent>
       </Tabs>

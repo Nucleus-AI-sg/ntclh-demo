@@ -28,9 +28,9 @@ const processingTimeData = [
 
 export function OcrPerformance() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Accuracy Trend Chart */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">OCR Accuracy Over Time</h3>
         <AppLineChart
           data={accuracyData}
@@ -46,7 +46,7 @@ export function OcrPerformance() {
       </div>
 
       {/* Processing Time Distribution */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Processing Time Distribution</h3>
         <AppBarChart
           data={processingTimeData}
@@ -62,24 +62,24 @@ export function OcrPerformance() {
 
       {/* Field-Level Accuracy */}
       <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100">
+        <div className="p-4 border-b border-slate-100">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Field-Level Accuracy</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
               <tr className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                <th className="px-6 py-4">Field</th>
-                <th className="px-6 py-4 text-center">Accuracy</th>
-                <th className="px-6 py-4">Most Common Error</th>
+                <th className="px-4 py-4">Field</th>
+                <th className="px-4 py-4 text-center">Accuracy</th>
+                <th className="px-4 py-4">Most Common Error</th>
               </tr>
             </thead>
             <tbody className="text-sm divide-y divide-slate-100">
               {fieldAccuracy.map((row) => (
                 <tr key={row.field} className="hover:bg-slate-50">
-                  <td className="px-6 py-4 font-bold text-slate-900">{row.field}</td>
-                  <td className="px-6 py-4 text-center font-bold text-green-600">{row.accuracy}</td>
-                  <td className="px-6 py-4 text-xs text-slate-500">{row.commonError}</td>
+                  <td className="px-4 py-4 font-bold text-slate-900">{row.field}</td>
+                  <td className="px-4 py-4 text-center font-bold text-green-600">{row.accuracy}</td>
+                  <td className="px-4 py-4 text-xs text-slate-500">{row.commonError}</td>
                 </tr>
               ))}
             </tbody>
@@ -88,7 +88,7 @@ export function OcrPerformance() {
       </div>
 
       {/* Common Issues */}
-      <div className="bg-amber-50 border border-amber-200 rounded-xl p-5">
+      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
         <h3 className="text-xs font-black text-amber-700 uppercase tracking-widest mb-3">Common Issues & Recommendations</h3>
         <ul className="space-y-2 text-xs text-amber-800">
           <li>Poor scan quality accounts for 60% of low-confidence extractions</li>

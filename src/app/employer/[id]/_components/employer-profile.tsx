@@ -37,7 +37,7 @@ export function EmployerProfile({ employer, vacancies, placements, communication
   const primaryContact = employer.contacts.find((c) => c.isPrimary)
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-4">
@@ -72,12 +72,12 @@ export function EmployerProfile({ employer, vacancies, placements, communication
           ))}
         </TabsList>
 
-        <TabsContent value="overview" className="mt-6"><OverviewTab employer={employer} /></TabsContent>
-        <TabsContent value="vacancies" className="mt-6"><VacanciesTab vacancies={vacancies} /></TabsContent>
-        <TabsContent value="preferences" className="mt-6"><PreferencesTab employer={employer} showToast={showToast} /></TabsContent>
-        <TabsContent value="placements" className="mt-6"><PlacementsTab placements={placements} trainees={trainees} vacancies={vacancies} /></TabsContent>
-        <TabsContent value="communications" className="mt-6"><CommunicationsTab communications={communications} onReply={() => setShowMessageModal(true)} /></TabsContent>
-        <TabsContent value="audit" className="mt-6"><AuditTab entries={auditEntries} /></TabsContent>
+        <TabsContent value="overview" className="mt-4"><OverviewTab employer={employer} /></TabsContent>
+        <TabsContent value="vacancies" className="mt-4"><VacanciesTab vacancies={vacancies} /></TabsContent>
+        <TabsContent value="preferences" className="mt-4"><PreferencesTab employer={employer} showToast={showToast} /></TabsContent>
+        <TabsContent value="placements" className="mt-4"><PlacementsTab placements={placements} trainees={trainees} vacancies={vacancies} /></TabsContent>
+        <TabsContent value="communications" className="mt-4"><CommunicationsTab communications={communications} onReply={() => setShowMessageModal(true)} /></TabsContent>
+        <TabsContent value="audit" className="mt-4"><AuditTab entries={auditEntries} /></TabsContent>
       </Tabs>
 
       <ComposeMessageModal open={showMessageModal} onClose={() => setShowMessageModal(false)} onSend={() => showToast('Message sent')} recipient={primaryContact?.name ?? employer.name} />

@@ -21,7 +21,7 @@ export function TrainingTab({ modules }: TrainingTabProps) {
   const attendance = modules.length > 0 ? Math.round((attendedCount / modules.length) * 100) : 0
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-3 gap-4">
         <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Modules Completed</p>
@@ -42,21 +42,21 @@ export function TrainingTab({ modules }: TrainingTabProps) {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                <th className="px-6 py-4">Module</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-center">Score</th>
-                <th className="px-6 py-4">Completed</th>
-                <th className="px-6 py-4">Instructor</th>
+                <th className="px-4 py-4">Module</th>
+                <th className="px-4 py-4">Status</th>
+                <th className="px-4 py-4 text-center">Score</th>
+                <th className="px-4 py-4">Completed</th>
+                <th className="px-4 py-4">Instructor</th>
               </tr>
             </thead>
             <tbody className="text-sm divide-y divide-slate-100">
               {modules.map((mod) => (
                 <tr key={mod.moduleId} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4 font-bold text-slate-900">{mod.moduleName}</td>
-                  <td className="px-6 py-4"><StatusBadge status={mod.status} /></td>
-                  <td className="px-6 py-4 text-center font-bold text-slate-700">{mod.score != null ? `${mod.score}%` : '-'}</td>
-                  <td className="px-6 py-4 text-xs text-slate-500">{formatDate(mod.completedDate)}</td>
-                  <td className="px-6 py-4 text-xs text-slate-500">{mod.instructor}</td>
+                  <td className="px-4 py-4 font-bold text-slate-900">{mod.moduleName}</td>
+                  <td className="px-4 py-4"><StatusBadge status={mod.status} /></td>
+                  <td className="px-4 py-4 text-center font-bold text-slate-700">{mod.score != null ? `${mod.score}%` : '-'}</td>
+                  <td className="px-4 py-4 text-xs text-slate-500">{formatDate(mod.completedDate)}</td>
+                  <td className="px-4 py-4 text-xs text-slate-500">{mod.instructor}</td>
                 </tr>
               ))}
             </tbody>

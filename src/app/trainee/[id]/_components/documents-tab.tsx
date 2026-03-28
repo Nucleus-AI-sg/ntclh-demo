@@ -65,8 +65,8 @@ export function DocumentsTab({ documents, showToast }: DocumentsTabProps) {
   }, [simulateUpload])
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+    <div className="space-y-4">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Required Documents</h3>
         <div className="space-y-3">
           {documents.length === 0 && <p className="text-sm text-slate-400">No documents on record</p>}
@@ -89,7 +89,7 @@ export function DocumentsTab({ documents, showToast }: DocumentsTabProps) {
       </div>
 
       {/* Upload Section */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Upload Document</h3>
         <div className="flex items-center gap-3 mb-3">
           <label className="text-xs font-bold text-slate-600">Document type:</label>
@@ -106,7 +106,7 @@ export function DocumentsTab({ documents, showToast }: DocumentsTabProps) {
           onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
-          className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+          className={`relative border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
             dragOver ? 'border-blue-400 bg-blue-50' : 'border-slate-200 hover:border-slate-300'
           }`}
         >
@@ -131,7 +131,7 @@ export function DocumentsTab({ documents, showToast }: DocumentsTabProps) {
       </div>
 
       {documents.filter((d) => d.ocrExtraction).map((doc) => (
-        <div key={`ocr-${doc.id}`} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <div key={`ocr-${doc.id}`} className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center">
             <FileText className="h-4 w-4 mr-2 text-blue-600" /> OCR Extraction: {doc.type.replace(/_/g, ' ')}
           </h3>
