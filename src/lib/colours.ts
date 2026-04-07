@@ -37,6 +37,9 @@ export type StatusVariant =
   | 'responded'
   | 'bounced'
   | 'inactive'
+  | 'green'
+  | 'amber'
+  | 'red'
 
 interface ColourSet {
   bg: string
@@ -61,6 +64,7 @@ export const statusColours: Record<StatusVariant, ColourSet> = {
   hired: green,
   open: green,
   on_track: green,
+  green: green,
   // Amber - pending/warning
   pending: amber,
   medium: amber,
@@ -68,6 +72,7 @@ export const statusColours: Record<StatusVariant, ColourSet> = {
   screening: amber,
   interviewing: amber,
   waitlisted: amber,
+  amber: amber,
   // Red - danger/flagged
   flagged: red,
   low: red,
@@ -76,6 +81,7 @@ export const statusColours: Record<StatusVariant, ColourSet> = {
   failed: red,
   overdue: red,
   cancelled: red,
+  red: red,
   // Blue - info/in-progress
   info: blue,
   training: blue,
